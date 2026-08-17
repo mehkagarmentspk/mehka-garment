@@ -3,32 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mehka Fashion</title>
+    <title>Mehka Fashion - Luxury Women's Clothing</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body id="body">
+    <!-- Header -->
     <header>
-        <div class="logo">MEHKA</div>
+        <div class="logo">MEHKA FASHION</div>
         <nav>
             <a href="#" class="active">Home</a>
-            <a href="#">Tshirt</a>
-            <a href="#">Hoodies</a>
-            <a href="#">Sweatshirts</a>
-            <a href="#">About Us</a>
+            <a href="#shop">Shop</a>
+            <a href="#categories">Categories</a>
+            <a href="#about">About Us</a>
         </nav>
         <div class="icons">🔍 👤 🛍️</div>
     </header>
 
+    <!-- Hero Section -->
     <main class="product-container">
         <div class="product-info">
             <h1>Wear Confidence <br><span>Define Your Style.</span></h1>
-            <p>Discover premium t-shirts, hoodies, and sweatshirts designed for comfort, quality, and everyday expression.</p>
-            <button class="btn">Get the look &gt;</button>
+            <p>Discover premium luxury apparel designed for comfort, quality, and everyday elegance.</p>
+            <button class="btn">Explore Collection &gt;</button>
         </div>
 
         <div class="product-display">
             <button class="nav-btn prev" onclick="changeSlide(-1)">&#10094;</button>
-            <img id="product-img" src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=500" alt="T-Shirt">
+            <img id="product-img" src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=500" alt="Fashion">
             <button class="nav-btn next" onclick="changeSlide(1)">&#10095;</button>
         </div>
 
@@ -36,16 +37,59 @@
             <h2 id="product-price">#15,000</h2>
             <p>Choose your size</p>
             <div class="sizes">
-                <span>XI</span>
-                <span>2XL</span>
-                <span>3XL</span>
-                <span>4XL</span>
+                <span>S</span>
+                <span>M</span>
+                <span>L</span>
+                <span>XL</span>
             </div>
         </div>
     </main>
 
+    <!-- Categories Section -->
+    <section id="categories" class="section-padding">
+        <h2>Shop By Category</h2>
+        <div class="category-grid">
+            <div class="cat-card">
+                <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=400" alt="Summer Wear">
+                <h3>Summer Wear</h3>
+            </div>
+            <div class="cat-card">
+                <img src="https://images.unsplash.com/photo-1485230895905-ec40ba36b9bc?w=400" alt="Party Dresses">
+                <h3>Party Dresses</h3>
+            </div>
+            <div class="cat-card">
+                <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=400" alt="Casual Outfits">
+                <h3>Casual Outfits</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- New Arrivals Section -->
+    <section id="shop" class="section-padding bg-light">
+        <h2>New Arrivals</h2>
+        <div class="product-grid">
+            <div class="prod-card">
+                <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=400" alt="Dress 1">
+                <h4>Elegance Kurti</h4>
+                <p>#12,000</p>
+            </div>
+            <div class="prod-card">
+                <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=400" alt="Dress 2">
+                <h4>Royal Maxi</h4>
+                <p>#18,500</p>
+            </div>
+            <div class="prod-card">
+                <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=400" alt="Dress 3">
+                <h4>Chic Formal</h4>
+                <p>#15,000</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
-        <p>Dress Better. Feel Better.</p>
+        <p>&copy; 2026 Mehka Fashion. Dress Better. Feel Better.</p>
+        <p>Contact us via WhatsApp for orders and queries.</p>
     </footer>
 
     <script src="script.js"></script>
