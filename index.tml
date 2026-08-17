@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mehka Fashion</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body id="body">
+    <header>
+        <div class="logo">MEHKA</div>
+        <nav>
+            <a href="#" class="active">Home</a>
+            <a href="#">Tshirt</a>
+            <a href="#">Hoodies</a>
+            <a href="#">Sweatshirts</a>
+            <a href="#">About Us</a>
+        </nav>
+        <div class="icons">🔍 👤 🛍️</div>
+    </header>
+
+    <main class="product-container">
+        <div class="product-info">
+            <h1>Wear Confidence <br><span>Define Your Style.</span></h1>
+            <p>Discover premium t-shirts, hoodies, and sweatshirts designed for comfort, quality, and everyday expression.</p>
+            <button class="btn">Get the look &gt;</button>
+        </div>
+
+        <div class="product-display">
+            <button class="nav-btn prev" onclick="changeSlide(-1)">&#10094;</button>
+            <img id="product-img" src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=500" alt="T-Shirt">
+            <button class="nav-btn next" onclick="changeSlide(1)">&#10095;</button>
+        </div>
+
+        <div class="product-sidebar">
+            <h2 id="product-price">#15,000</h2>
+            <p>Choose your size</p>
+            <div class="sizes">
+                <span>XI</span>
+                <span>2XL</span>
+                <span>3XL</span>
+                <span>4XL</span>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Dress Better. Feel Better.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
