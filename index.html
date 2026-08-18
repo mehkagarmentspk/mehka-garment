@@ -4,46 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MEHKA GARMENTS | Luxury Men's Collection</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Header Section -->
     <header class="luxury-header">
         <div class="logo-container">
-            <div class="main-logo">MEHKA</div>
-            <div class="sub-logo">GARMENTS</div>
+            <svg class="brand-logo-svg" viewBox="0 0 210 50" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#D4AF37" />
+                        <stop offset="50%" stop-color="#AA771C" />
+                        <stop offset="100%" stop-color="#F3E5AB" />
+                    </linearGradient>
+                </defs>
+                <g transform="translate(2, 2)">
+                    <rect x="0" y="0" width="42" height="42" fill="none" stroke="url(#goldGradient)" stroke-width="1.5" rx="4"/>
+                    <text x="21" y="27" font-family="'Playfair Display', serif" font-size="16" font-weight="bold" fill="url(#goldGradient)" text-anchor="middle">MG</text>
+                </g>
+                <text x="56" y="24" font-family="'Playfair Display', serif" font-size="20" font-weight="bold" fill="#ffffff" letter-spacing="4">MEHKA</text>
+                <text x="58" y="38" font-family="'Montserrat', sans-serif" font-size="8.5" font-weight="600" fill="#aaaaaa" letter-spacing="3.5">GARMENTS</text>
+            </svg>
         </div>
         <nav class="nav-links">
-            <a href="#collection">COLLECTION</a>
-            <a href="#about">ABOUT</a>
-            <a href="#contact">CONTACT</a>
+            <a href="#collection" class="nav-btn-3d">COLLECTION</a>
+            <a href="#atelier" class="nav-btn-3d">ATELIER</a>
+            <a href="#contact" class="nav-btn-3d">CONTACT</a>
         </nav>
     </header>
 
-    <!-- Hero Section -->
     <section class="hero-section">
         <div class="hero-content">
-            <h1>The Art of Men's Luxury</h1>
-            <p>Discover sophisticated tailoring and premium everyday essentials.</p>
+            <span class="sub-heading">THE HOUSE OF FASHION</span>
+            <h1>The Anatomy of Style</h1>
+            <p>Every garment is cut to one man and one man only. Built on canvas, styled for distinction.</p>
             <a href="#collection" class="cta-btn">EXPLORE COLLECTION</a>
         </div>
     </section>
 
-    <!-- Main Collection Section -->
     <section id="collection" class="collection-section">
         <div class="section-title">
+            <span class="gold-subtitle">CURATED MASTERPIECES</span>
             <h2>Complete Men's Wardrobe</h2>
-            <p>Crafted for perfection, styled for distinction.</p>
+            <p>Crafted for perfection, styled for the few.</p>
         </div>
 
         <div class="product-grid">
 
-            <!-- 1. Polo T-Shirt -->
             <div class="product-card">
                 <div class="product-img-box">
                     <img src="https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=500" alt="Polo T-Shirt">
+                    <div class="img-overlay"></div>
                 </div>
                 <div class="product-info">
                     <h3>Classic Polo T-Shirt</h3>
@@ -59,10 +71,10 @@
                 </div>
             </div>
 
-            <!-- 2. Cotton Pants -->
             <div class="product-card">
                 <div class="product-img-box">
                     <img src="https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=500" alt="Cotton Pants">
+                    <div class="img-overlay"></div>
                 </div>
                 <div class="product-info">
                     <h3>Slim-Fit Cotton Pants</h3>
@@ -78,10 +90,10 @@
                 </div>
             </div>
 
-            <!-- 3. Cotton Shirts -->
             <div class="product-card">
                 <div class="product-img-box">
                     <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=500" alt="Cotton Shirts">
+                    <div class="img-overlay"></div>
                 </div>
                 <div class="product-info">
                     <h3>Executive Cotton Shirt</h3>
@@ -97,10 +109,10 @@
                 </div>
             </div>
 
-            <!-- 4. Check Shirts -->
             <div class="product-card">
                 <div class="product-img-box">
                     <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=500" alt="Check Shirt">
+                    <div class="img-overlay"></div>
                 </div>
                 <div class="product-info">
                     <h3>Button-Down Check Shirt</h3>
@@ -116,10 +128,10 @@
                 </div>
             </div>
 
-            <!-- 5. Round Neck T-Shirt -->
             <div class="product-card">
                 <div class="product-img-box">
                     <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=500" alt="Round Neck T-Shirt">
+                    <div class="img-overlay"></div>
                 </div>
                 <div class="product-info">
                     <h3>Essential Round Neck Tee</h3>
@@ -135,10 +147,10 @@
                 </div>
             </div>
 
-            <!-- 6. Regular Jeans Pants -->
             <div class="product-card">
                 <div class="product-img-box">
                     <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?w=500" alt="Regular Jeans">
+                    <div class="img-overlay"></div>
                 </div>
                 <div class="product-info">
                     <h3>Classic Denim Jeans</h3>
@@ -154,10 +166,10 @@
                 </div>
             </div>
 
-            <!-- 7. Imported Jeans Pants -->
             <div class="product-card">
                 <div class="product-img-box">
                     <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=500" alt="Imported Jeans">
+                    <div class="img-overlay"></div>
                 </div>
                 <div class="product-info">
                     <h3>Imported Luxury Jeans</h3>
@@ -173,10 +185,10 @@
                 </div>
             </div>
 
-            <!-- 8. Jeans Shorts -->
             <div class="product-card">
                 <div class="product-img-box">
                     <img src="https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=500" alt="Jeans Shorts">
+                    <div class="img-overlay"></div>
                 </div>
                 <div class="product-info">
                     <h3>Casual Denim Shorts</h3>
@@ -195,10 +207,9 @@
         </div>
     </section>
 
-    <!-- Footer Section -->
     <footer class="luxury-footer">
         <div class="footer-logo">MEHKA GARMENTS</div>
-        <p>&copy; 2026 Mehka Garments. All Rights Reserved. Crafted for Elegance.</p>
+        <p>&copy; 2026 Mehka Garments. All Rights Reserved. Tailoring for the few.</p>
     </footer>
 
 </body>
