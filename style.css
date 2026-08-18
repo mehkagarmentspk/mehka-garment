@@ -1,109 +1,287 @@
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+/* --- Global Styles & 3D Fluid Setup --- */
+* {
     margin: 0;
     padding: 0;
-    background-color: #f9f9f9;
-    color: #333;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
 }
-a
-header {
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #ffffff;
+    color: #111111;
+    overflow-x: hidden;
+}
+
+/* --- Header & Branding --- */
+.luxury-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 50px;
-    background: #fff;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    padding: 25px 8%;
+    background-color: #ffffff;
+    border-bottom: 1px solid #eaeaea;
     position: sticky;
     top: 0;
     z-index: 1000;
+    animation: fadeInDown 0.8s ease;
 }
 
-.logo {
-    font-weight: bold;
-    font-size: 24px;
-    letter-spacing: 2px;
-    color: #b8860b;
+.logo-container {
+    text-align: left;
+    cursor: pointer;
 }
 
-nav a {
-    margin: 0 15px;
+.main-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    letter-spacing: 5px;
+    font-weight: 700;
+    color: #000000;
+    line-height: 1;
+}
+
+.sub-logo {
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: #666666;
+    margin-top: 4px;
+    text-transform: uppercase;
+}
+
+.nav-links a {
+    margin-left: 35px;
     text-decoration: none;
-    color: #555;
+    color: #111111;
+    font-size: 12px;
+    letter-spacing: 2px;
     font-weight: 600;
+    transition: color 0.3s ease;
 }
 
-nav a.active, nav a:hover {
+.nav-links a:hover {
     color: #b8860b;
 }
 
-.product-container {
+/* --- Hero Section with 3D Entrance Animation --- */
+.hero-section {
+    height: 85vh;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    padding: 60px 50px;
-    min-height: 70vh;
+    text-align: center;
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1600') center/cover no-repeat;
+    color: #ffffff;
+    padding: 0 10%;
+    animation: zoomIn 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.section-padding {
-    padding: 60px 50px;
+.hero-content h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 58px;
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+}
+
+.hero-content p {
+    font-size: 16px;
+    font-weight: 300;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+}
+
+.cta-btn {
+    display: inline-block;
+    padding: 15px 40px;
+    background-color: #ffffff;
+    color: #000000;
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 3px;
+    font-weight: 600;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.cta-btn:hover {
+    background-color: #b8860b;
+    color: #ffffff;
+    transform: translateY(-3px);
+}
+
+/* --- Collection Section --- */
+.collection-section {
+    padding: 100px 8%;
+    background-color: #fafafa;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-title h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 40px;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.section-title p {
+    color: #666666;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+/* --- Product Grid & 3D Hover Cards --- */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+}
+
+.product-card {
+    background: #ffffff;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.04);
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-10px) scale(1.01);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.product-img-box {
+    width: 100%;
+    height: 380px;
+    overflow: hidden;
+    position: relative;
+}
+
+.product-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.product-card:hover .product-img-box img {
+    transform: scale(1.08);
+}
+
+.product-info {
+    padding: 25px;
     text-align: center;
 }
 
-.section-padding h2 {
-    font-size: 32px;
-    margin-bottom: 40px;
-    color: #222;
+.product-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    margin-bottom: 8px;
+    font-weight: 700;
 }
 
-.category-grid, .product-grid {
+.variants-note {
+    font-size: 12px;
+    color: #888888;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+}
+
+/* --- Sizes Selector --- */
+.sizes {
     display: flex;
     justify-content: center;
-    gap: 30px;
-    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 15px;
 }
 
-.cat-card, .prod-card {
-    background: #fff;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    width: 300px;
-    transition: transform 0.3s;
+.sizes span {
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    border: 1px solid #ddd;
+    font-size: 11px;
+    font-weight: 600;
+    color: #444;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
-.cat-card:hover, .prod-card:hover {
-    transform: translateY(-5px);
+.sizes span:hover {
+    border-color: #000;
+    background: #000;
+    color: #fff;
 }
 
-.cat-card img, .prod-card img {
-    width: 100%;
-    height: 350px;
-    object-fit: cover;
-}
-
-.cat-card h3, .prod-card h4 {
-    margin: 15px 0 5px;
-    font-size: 18px;
-}
-
-.prod-card p {
-    color: #b8860b;
-    font-weight: bold;
+/* --- Pricing Box (Strikethrough High Price & Discounted Rate) --- */
+.price-box {
     margin-bottom: 20px;
 }
 
-.bg-light {
-    background-color: #fff;
+.old-price {
+    font-size: 13px;
+    color: #999999;
+    text-decoration: line-through;
+    margin-right: 10px;
 }
 
-footer {
-    background: #111;
-    color: #fff;
+.new-price {
+    font-size: 16px;
+    font-weight: 700;
+    color: #b8860b;
+}
+
+/* --- Direct WhatsApp Order Button --- */
+.whatsapp-btn {
+    display: block;
+    width: 100%;
+    padding: 12px 0;
+    background-color: #000000;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 2px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.whatsapp-btn:hover {
+    background-color: #25D366; /* WhatsApp Green Accent on Hover */
+    transform: scale(1.02);
+}
+
+/* --- Footer --- */
+.luxury-footer {
+    background-color: #111111;
+    color: #ffffff;
     text-align: center;
-    padding: 40px 20px;
+    padding: 60px 8%;
 }
 
-footer p {
-    margin: 5px 0;
-    color: #aaa;
+.footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    letter-spacing: 5px;
+    margin-bottom: 15px;
+}
+
+.luxury-footer p {
+    font-size: 12px;
+    color: #888888;
+    letter-spacing: 1px;
+}
+
+/* --- Fluid Keyframe Animations --- */
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes zoomIn {
+    from { opacity: 0; transform: scale(0.97); }
+    to { opacity: 1; transform: scale(1); }
 }
