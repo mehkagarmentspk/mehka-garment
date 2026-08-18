@@ -3,95 +3,203 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mehka Fashion - Luxury Women's Clothing</title>
+    <title>MEHKA GARMENTS | Luxury Men's Collection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body id="body">
-    <!-- Header -->
-    <header>
-        <div class="logo">MEHKA FASHION</div>
-        <nav>
-            <a href="#" class="active">Home</a>
-            <a href="#shop">Shop</a>
-            <a href="#categories">Categories</a>
-            <a href="#about">About Us</a>
+<body>
+
+    <!-- Header Section -->
+    <header class="luxury-header">
+        <div class="logo-container">
+            <div class="main-logo">MEHKA</div>
+            <div class="sub-logo">GARMENTS</div>
+        </div>
+        <nav class="nav-links">
+            <a href="#collection">COLLECTION</a>
+            <a href="#about">ABOUT</a>
+            <a href="#contact">CONTACT</a>
         </nav>
-        <div class="icons">🔍 👤 🛍️</div>
     </header>
 
     <!-- Hero Section -->
-    <main class="product-container">
-        <div class="product-info">
-            <h1>Wear Confidence <br><span>Define Your Style.</span></h1>
-            <p>Discover premium luxury apparel designed for comfort, quality, and everyday elegance.</p>
-            <button class="btn">Explore Collection &gt;</button>
-        </div>
-
-        <div class="product-display">
-            <button class="nav-btn prev" onclick="changeSlide(-1)">&#10094;</button>
-            <img id="product-img" src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=500" alt="Fashion">
-            <button class="nav-btn next" onclick="changeSlide(1)">&#10095;</button>
-        </div>
-
-        <div class="product-sidebar">
-            <h2 id="product-price">#15,000</h2>
-            <p>Choose your size</p>
-            <div class="sizes">
-                <span>S</span>
-                <span>M</span>
-                <span>L</span>
-                <span>XL</span>
-            </div>
-        </div>
-    </main>
-
-    <!-- Categories Section -->
-    <section id="categories" class="section-padding">
-        <h2>Shop By Category</h2>
-        <div class="category-grid">
-            <div class="cat-card">
-                <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=400" alt="Summer Wear">
-                <h3>Summer Wear</h3>
-            </div>
-            <div class="cat-card">
-                <img src="https://images.unsplash.com/photo-1485230895905-ec40ba36b9bc?w=400" alt="Party Dresses">
-                <h3>Party Dresses</h3>
-            </div>
-            <div class="cat-card">
-                <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=400" alt="Casual Outfits">
-                <h3>Casual Outfits</h3>
-            </div>
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>The Art of Men's Luxury</h1>
+            <p>Discover sophisticated tailoring and premium everyday essentials.</p>
+            <a href="#collection" class="cta-btn">EXPLORE COLLECTION</a>
         </div>
     </section>
 
-    <!-- New Arrivals Section -->
-    <section id="shop" class="section-padding bg-light">
-        <h2>New Arrivals</h2>
+    <!-- Main Collection Section -->
+    <section id="collection" class="collection-section">
+        <div class="section-title">
+            <h2>Complete Men's Wardrobe</h2>
+            <p>Crafted for perfection, styled for distinction.</p>
+        </div>
+
         <div class="product-grid">
-            <div class="prod-card">
-                <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=400" alt="Dress 1">
-                <h4>Elegance Kurti</h4>
-                <p>#12,000</p>
+
+            <!-- 1. Polo T-Shirt -->
+            <div class="product-card">
+                <div class="product-img-box">
+                    <img src="https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=500" alt="Polo T-Shirt">
+                </div>
+                <div class="product-info">
+                    <h3>Classic Polo T-Shirt</h3>
+                    <p class="variants-note">Available in 12 Luxury Colors</p>
+                    <div class="sizes">
+                        <span>S</span><span>M</span><span>L</span><span>XL</span>
+                    </div>
+                    <div class="price-box">
+                        <span class="old-price">PKR 4,500</span>
+                        <span class="new-price">PKR 2,999</span>
+                    </div>
+                    <a href="https://wa.me/923000000000?text=I%20want%20to%20order%20Classic%20Polo%20T-Shirt" target="_blank" class="whatsapp-btn">ORDER VIA WHATSAPP</a>
+                </div>
             </div>
-            <div class="prod-card">
-                <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=400" alt="Dress 2">
-                <h4>Royal Maxi</h4>
-                <p>#18,500</p>
+
+            <!-- 2. Cotton Pants -->
+            <div class="product-card">
+                <div class="product-img-box">
+                    <img src="https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=500" alt="Cotton Pants">
+                </div>
+                <div class="product-info">
+                    <h3>Slim-Fit Cotton Pants</h3>
+                    <p class="variants-note">Available in 8 Premium Colors</p>
+                    <div class="sizes">
+                        <span>S</span><span>M</span><span>L</span><span>XL</span>
+                    </div>
+                    <div class="price-box">
+                        <span class="old-price">PKR 6,500</span>
+                        <span class="new-price">PKR 4,200</span>
+                    </div>
+                    <a href="https://wa.me/923000000000?text=I%20want%20to%20order%20Slim-Fit%20Cotton%20Pants" target="_blank" class="whatsapp-btn">ORDER VIA WHATSAPP</a>
+                </div>
             </div>
-            <div class="prod-card">
-                <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=400" alt="Dress 3">
-                <h4>Chic Formal</h4>
-                <p>#15,000</p>
+
+            <!-- 3. Cotton Shirts -->
+            <div class="product-card">
+                <div class="product-img-box">
+                    <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=500" alt="Cotton Shirts">
+                </div>
+                <div class="product-info">
+                    <h3>Executive Cotton Shirt</h3>
+                    <p class="variants-note">Multiple Color Options</p>
+                    <div class="sizes">
+                        <span>S</span><span>M</span><span>L</span><span>XL</span>
+                    </div>
+                    <div class="price-box">
+                        <span class="old-price">PKR 5,500</span>
+                        <span class="new-price">PKR 3,500</span>
+                    </div>
+                    <a href="https://wa.me/923000000000?text=I%20want%20to%20order%20Executive%20Cotton%20Shirt" target="_blank" class="whatsapp-btn">ORDER VIA WHATSAPP</a>
+                </div>
             </div>
+
+            <!-- 4. Check Shirts -->
+            <div class="product-card">
+                <div class="product-img-box">
+                    <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=500" alt="Check Shirt">
+                </div>
+                <div class="product-info">
+                    <h3>Button-Down Check Shirt</h3>
+                    <p class="variants-note">Multiple Color Options</p>
+                    <div class="sizes">
+                        <span>S</span><span>M</span><span>L</span><span>XL</span>
+                    </div>
+                    <div class="price-box">
+                        <span class="old-price">PKR 5,800</span>
+                        <span class="new-price">PKR 3,800</span>
+                    </div>
+                    <a href="https://wa.me/923000000000?text=I%20want%20to%20order%20Button-Down%20Check%20Shirt" target="_blank" class="whatsapp-btn">ORDER VIA WHATSAPP</a>
+                </div>
+            </div>
+
+            <!-- 5. Round Neck T-Shirt -->
+            <div class="product-card">
+                <div class="product-img-box">
+                    <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=500" alt="Round Neck T-Shirt">
+                </div>
+                <div class="product-info">
+                    <h3>Essential Round Neck Tee</h3>
+                    <p class="variants-note">Multiple Color Options</p>
+                    <div class="sizes">
+                        <span>S</span><span>M</span><span>L</span><span>XL</span>
+                    </div>
+                    <div class="price-box">
+                        <span class="old-price">PKR 3,200</span>
+                        <span class="new-price">PKR 1,999</span>
+                    </div>
+                    <a href="https://wa.me/923000000000?text=I%20want%20to%20order%20Essential%20Round%20Neck%20Tee" target="_blank" class="whatsapp-btn">ORDER VIA WHATSAPP</a>
+                </div>
+            </div>
+
+            <!-- 6. Regular Jeans Pants -->
+            <div class="product-card">
+                <div class="product-img-box">
+                    <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?w=500" alt="Regular Jeans">
+                </div>
+                <div class="product-info">
+                    <h3>Classic Denim Jeans</h3>
+                    <p class="variants-note">Multiple Washes & Colors</p>
+                    <div class="sizes">
+                        <span>S</span><span>M</span><span>L</span><span>XL</span>
+                    </div>
+                    <div class="price-box">
+                        <span class="old-price">PKR 7,500</span>
+                        <span class="new-price">PKR 4,999</span>
+                    </div>
+                    <a href="https://wa.me/923000000000?text=I%20want%20to%20order%20Classic%20Denim%20Jeans" target="_blank" class="whatsapp-btn">ORDER VIA WHATSAPP</a>
+                </div>
+            </div>
+
+            <!-- 7. Imported Jeans Pants -->
+            <div class="product-card">
+                <div class="product-img-box">
+                    <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=500" alt="Imported Jeans">
+                </div>
+                <div class="product-info">
+                    <h3>Imported Luxury Jeans</h3>
+                    <p class="variants-note">Premium Imported Fabric</p>
+                    <div class="sizes">
+                        <span>S</span><span>M</span><span>L</span><span>XL</span>
+                    </div>
+                    <div class="price-box">
+                        <span class="old-price">PKR 9,500</span>
+                        <span class="new-price">PKR 6,500</span>
+                    </div>
+                    <a href="https://wa.me/923000000000?text=I%20want%20to%20order%20Imported%20Luxury%20Jeans" target="_blank" class="whatsapp-btn">ORDER VIA WHATSAPP</a>
+                </div>
+            </div>
+
+            <!-- 8. Jeans Shorts -->
+            <div class="product-card">
+                <div class="product-img-box">
+                    <img src="https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=500" alt="Jeans Shorts">
+                </div>
+                <div class="product-info">
+                    <h3>Casual Denim Shorts</h3>
+                    <p class="variants-note">Multiple Color Options</p>
+                    <div class="sizes">
+                        <span>S</span><span>M</span><span>L</span><span>XL</span>
+                    </div>
+                    <div class="price-box">
+                        <span class="old-price">PKR 4,000</span>
+                        <span class="new-price">PKR 2,500</span>
+                    </div>
+                    <a href="https://wa.me/923000000000?text=I%20want%20to%20order%20Casual%20Denim%20Shorts" target="_blank" class="whatsapp-btn">ORDER VIA WHATSAPP</a>
+                </div>
+            </div>
+
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2026 Mehka Fashion. Dress Better. Feel Better.</p>
-        <p>Contact us via WhatsApp for orders and queries.</p>
+    <!-- Footer Section -->
+    <footer class="luxury-footer">
+        <div class="footer-logo">MEHKA GARMENTS</div>
+        <p>&copy; 2026 Mehka Garments. All Rights Reserved. Crafted for Elegance.</p>
     </footer>
 
-    <script src="script.js"></script>
 </body>
 </html>
