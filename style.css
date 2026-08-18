@@ -1,4 +1,4 @@
-/* --- Global Styles & 3D Fluid Setup --- */
+/* --- Cinematic 3D Luxury Dark Theme --- */
 * {
     margin: 0;
     padding: 0;
@@ -8,9 +8,10 @@
 
 body {
     font-family: 'Montserrat', sans-serif;
-    background-color: #ffffff;
-    color: #111111;
+    background-color: #050505;
+    color: #f5f5f5;
     overflow-x: hidden;
+    position: relative;
 }
 
 /* --- Header & Branding --- */
@@ -18,139 +19,172 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 25px 8%;
-    background-color: #ffffff;
-    border-bottom: 1px solid #eaeaea;
+    padding: 22px 8%;
+    background-color: rgba(5, 5, 5, 0.95);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
     position: sticky;
     top: 0;
     z-index: 1000;
-    animation: fadeInDown 0.8s ease;
 }
 
 .logo-container {
-    text-align: left;
     cursor: pointer;
-}
-
-.main-logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 28px;
-    letter-spacing: 5px;
-    font-weight: 700;
-    color: #000000;
-    line-height: 1;
-}
-
-.sub-logo {
-    font-size: 9px;
-    letter-spacing: 3px;
-    color: #666666;
-    margin-top: 4px;
-    text-transform: uppercase;
 }
 
 .nav-links a {
     margin-left: 35px;
     text-decoration: none;
-    color: #111111;
-    font-size: 12px;
-    letter-spacing: 2px;
+    color: #cccccc;
+    font-size: 11px;
+    letter-spacing: 2.5px;
     font-weight: 600;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
+    display: inline-block;
 }
 
 .nav-links a:hover {
-    color: #b8860b;
+    color: #D4AF37;
+    transform: translateY(-2px);
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
 }
 
-/* --- Hero Section with 3D Entrance Animation --- */
+/* --- Cinematic Hero Section with 3D Typography --- */
 .hero-section {
-    height: 85vh;
+    height: 90vh;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1600') center/cover no-repeat;
+    background: radial-gradient(circle at center, rgba(20,20,20,0.8) 0%, rgba(5,5,5,0.95) 100%), url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1600') center/cover no-repeat;
     color: #ffffff;
     padding: 0 10%;
-    animation: zoomIn 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    z-index: 2;
+}
+
+.sub-heading {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 5px;
+    color: #D4AF37;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
 }
 
 .hero-content h1 {
     font-family: 'Playfair Display', serif;
-    font-size: 58px;
-    margin-bottom: 15px;
+    font-size: 64px;
+    margin-bottom: 20px;
     letter-spacing: 2px;
+    font-weight: 700;
+    /* 3D Text Effect & Gradient */
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.9), 0 0 30px rgba(212, 175, 55, 0.2);
+    background: linear-gradient(135deg, #ffffff 30%, #D4AF37 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .hero-content p {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 300;
-    margin-bottom: 30px;
+    color: #b0b0b0;
+    max-width: 600px;
+    margin: 0 auto 35px auto;
     letter-spacing: 1px;
+    line-height: 1.6;
 }
 
+/* --- 3D Interactive Buttons with Press Animation --- */
 .cta-btn {
     display: inline-block;
-    padding: 15px 40px;
-    background-color: #ffffff;
-    color: #000000;
+    padding: 16px 45px;
+    background: linear-gradient(135deg, #D4AF37 0%, #AA771C 100%);
+    color: #050505;
     text-decoration: none;
-    font-size: 12px;
+    font-size: 11px;
     letter-spacing: 3px;
-    font-weight: 600;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    font-weight: 700;
+    border-radius: 4px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3), inset 0 1px 0 rgba(255,255,255,0.4);
 }
 
 .cta-btn:hover {
-    background-color: #b8860b;
-    color: #ffffff;
-    transform: translateY(-3px);
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 15px 35px rgba(212, 175, 55, 0.5), inset 0 1px 0 rgba(255,255,255,0.6);
+}
+
+/* 3D Click Active Effect */
+.cta-btn:active, .whatsapp-btn:active, .nav-btn-3d:active {
+    transform: translateY(2px) scale(0.97) !important;
+    box-shadow: 0 3px 10px rgba(212, 175, 55, 0.4), inset 0 3px 5px rgba(0,0,0,0.3) !important;
 }
 
 /* --- Collection Section --- */
 .collection-section {
-    padding: 100px 8%;
-    background-color: #fafafa;
+    padding: 120px 8%;
+    background-color: #080808;
+    position: relative;
+    z-index: 2;
 }
 
 .section-title {
     text-align: center;
-    margin-bottom: 60px;
+    margin-bottom: 70px;
+}
+
+.gold-subtitle {
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: #D4AF37;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
 }
 
 .section-title h2 {
     font-family: 'Playfair Display', serif;
-    font-size: 40px;
-    margin-bottom: 10px;
+    font-size: 42px;
+    margin-bottom: 12px;
     letter-spacing: 1px;
+    color: #ffffff;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.8);
 }
 
 .section-title p {
-    color: #666666;
-    font-size: 14px;
-    letter-spacing: 1px;
+    color: #888888;
+    font-size: 13px;
+    letter-spacing: 1.5px;
 }
 
-/* --- Product Grid & 3D Hover Cards --- */
+/* --- 3D Interactive Product Cards --- */
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
     gap: 40px;
 }
 
 .product-card {
-    background: #ffffff;
-    border-radius: 4px;
+    background: #111111;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.04);
-    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease, border-color 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
 .product-card:hover {
-    transform: translateY(-10px) scale(1.01);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    transform: translateY(-12px) rotateX(2deg) rotateY(2deg);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.85), 0 0 25px rgba(212, 175, 55, 0.2);
+    border-color: rgba(212, 175, 55, 0.4);
 }
 
 .product-img-box {
@@ -168,25 +202,37 @@ body {
 }
 
 .product-card:hover .product-img-box img {
-    transform: scale(1.08);
+    transform: scale(1.1);
+}
+
+.img-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent 60%, rgba(5,5,5,0.7) 100%);
 }
 
 .product-info {
     padding: 25px;
     text-align: center;
+    background: #111111;
 }
 
 .product-info h3 {
     font-family: 'Playfair Display', serif;
-    font-size: 20px;
+    font-size: 21px;
     margin-bottom: 8px;
-    font-weight: 700;
+    font-weight: 600;
+    color: #ffffff;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
 }
 
 .variants-note {
-    font-size: 12px;
-    color: #888888;
-    margin-bottom: 12px;
+    font-size: 11.5px;
+    color: #999999;
+    margin-bottom: 15px;
     letter-spacing: 0.5px;
 }
 
@@ -195,71 +241,87 @@ body {
     display: flex;
     justify-content: center;
     gap: 8px;
-    margin-bottom: 15px;
+    margin-bottom: 18px;
 }
 
 .sizes span {
     display: inline-block;
-    width: 28px;
-    height: 28px;
-    line-height: 28px;
-    border: 1px solid #ddd;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
     font-size: 11px;
     font-weight: 600;
-    color: #444;
+    color: #cccccc;
     cursor: pointer;
     transition: 0.3s;
+    background: #161616;
+    border-radius: 3px;
 }
 
 .sizes span:hover {
-    border-color: #000;
-    background: #000;
-    color: #fff;
+    border-color: #D4AF37;
+    background: #D4AF37;
+    color: #050505;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3);
 }
 
-/* --- Pricing Box (Strikethrough High Price & Discounted Rate) --- */
+/* --- Pricing Box --- */
 .price-box {
     margin-bottom: 20px;
 }
 
 .old-price {
     font-size: 13px;
-    color: #999999;
+    color: #777777;
     text-decoration: line-through;
-    margin-right: 10px;
+    margin-right: 12px;
 }
 
 .new-price {
-    font-size: 16px;
+    font-size: 17px;
     font-weight: 700;
-    color: #b8860b;
+    color: #D4AF37;
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
 }
 
-/* --- Direct WhatsApp Order Button --- */
+/* --- 3D WhatsApp Button --- */
 .whatsapp-btn {
     display: block;
     width: 100%;
-    padding: 12px 0;
-    background-color: #000000;
+    padding: 13px 0;
+    background-color: #1a1a1a;
+    border: 1px solid rgba(212, 175, 55, 0.3);
     color: #ffffff;
     text-decoration: none;
     font-size: 11px;
     letter-spacing: 2px;
     font-weight: 600;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    border-radius: 4px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 
 .whatsapp-btn:hover {
-    background-color: #25D366; /* WhatsApp Green Accent on Hover */
-    transform: scale(1.02);
+    background-color: #25D366;
+    border-color: #25D366;
+    color: #ffffff;
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
 }
 
 /* --- Footer --- */
 .luxury-footer {
-    background-color: #111111;
+    background-color: #030303;
     color: #ffffff;
     text-align: center;
-    padding: 60px 8%;
+    padding: 70px 8%;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    z-index: 2;
 }
 
 .footer-logo {
@@ -267,21 +329,11 @@ body {
     font-size: 24px;
     letter-spacing: 5px;
     margin-bottom: 15px;
+    color: #D4AF37;
 }
 
 .luxury-footer p {
     font-size: 12px;
-    color: #888888;
+    color: #777777;
     letter-spacing: 1px;
-}
-
-/* --- Fluid Keyframe Animations --- */
-@keyframes fadeInDown {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes zoomIn {
-    from { opacity: 0; transform: scale(0.97); }
-    to { opacity: 1; transform: scale(1); }
 }
