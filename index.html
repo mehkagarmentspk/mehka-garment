@@ -1,216 +1,1917 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MEHKA GARMENTS | Luxury Men's Collection</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#080808">
+
+<title>MEHKA GARMENTS — Premium Men's Fashion</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================
+   GLOBAL
+========================= */
+
+:root{
+    --black:#070707;
+    --black2:#101010;
+    --white:#f5f2eb;
+    --muted:#858585;
+    --gold:#d6bd7c;
+    --line:rgba(255,255,255,.12);
+    --ease:cubic-bezier(.16,1,.3,1);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+    background:var(--black);
+}
+
+body{
+    background:var(--black);
+    color:white;
+    font-family:"DM Sans",sans-serif;
+    overflow-x:hidden;
+}
+
+body.loading{
+    overflow:hidden;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+button{
+    font-family:inherit;
+}
+
+img{
+    max-width:100%;
+    display:block;
+}
+
+
+/* =========================
+   LOADER
+========================= */
+
+#loader{
+    position:fixed;
+    inset:0;
+    z-index:9999;
+    background:#050505;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:.8s ease;
+}
+
+#loader.hide{
+    opacity:0;
+    visibility:hidden;
+}
+
+.loader-content{
+    text-align:center;
+}
+
+.loader-logo{
+    font-family:"Playfair Display",serif;
+    font-size:55px;
+    letter-spacing:8px;
+}
+
+.loader-line{
+    width:170px;
+    height:1px;
+    background:#222;
+    margin:22px auto;
+    overflow:hidden;
+}
+
+.loader-line span{
+    display:block;
+    width:45%;
+    height:100%;
+    background:var(--gold);
+    animation:loader 1.5s infinite;
+}
+
+.loader-small{
+    font-size:9px;
+    letter-spacing:5px;
+    color:#777;
+}
+
+@keyframes loader{
+    from{transform:translateX(-150%)}
+    to{transform:translateX(400%)}
+}
+
+
+/* =========================
+   NOISE
+========================= */
+
+.noise{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:100;
+    opacity:.035;
+    background-image:url(
+      "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"
+    );
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    height:85px;
+    padding:0 5vw;
+    z-index:500;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid transparent;
+    transition:.5s;
+}
+
+header.scrolled{
+    background:rgba(7,7,7,.78);
+    backdrop-filter:blur(20px);
+    border-color:var(--line);
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:13px;
+}
+
+.logo-mark{
+    width:40px;
+    height:40px;
+    border:1px solid var(--gold);
+    display:grid;
+    place-items:center;
+    font-family:"Playfair Display",serif;
+    color:var(--gold);
+    font-size:16px;
+}
+
+.logo-text{
+    font-family:"Playfair Display",serif;
+    letter-spacing:4px;
+    font-size:19px;
+}
+
+.logo-sub{
+    display:block;
+    font-family:"DM Sans",sans-serif;
+    color:#777;
+    font-size:7px;
+    letter-spacing:4px;
+    margin-top:3px;
+}
+
+nav{
+    display:flex;
+    gap:35px;
+}
+
+nav a{
+    font-size:10px;
+    letter-spacing:3px;
+    color:#bbb;
+    position:relative;
+}
+
+nav a:after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-8px;
+    height:1px;
+    width:0;
+    background:var(--gold);
+    transition:.4s;
+}
+
+nav a:hover:after{
+    width:100%;
+}
+
+.menu{
+    display:none;
+    background:none;
+    border:0;
+    color:white;
+    font-size:25px;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    min-height:100vh;
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    background:
+        radial-gradient(circle at 75% 40%,rgba(214,189,124,.12),transparent 25%),
+        radial-gradient(circle at 20% 80%,rgba(255,255,255,.05),transparent 25%),
+        #070707;
+}
+
+.hero-ring{
+    position:absolute;
+    width:750px;
+    height:750px;
+    border:1px solid rgba(214,189,124,.12);
+    border-radius:50%;
+    right:-100px;
+    top:50%;
+    transform:translateY(-50%);
+    animation:rotate 30s linear infinite;
+}
+
+.hero-ring:before{
+    content:"";
+    position:absolute;
+    inset:12%;
+    border:1px solid rgba(255,255,255,.05);
+    border-radius:50%;
+}
+
+@keyframes rotate{
+    to{transform:translateY(-50%) rotate(360deg)}
+}
+
+.hero-content{
+    width:90%;
+    max-width:1200px;
+    margin:auto;
+    position:relative;
+    z-index:2;
+}
+
+.kicker{
+    color:var(--gold);
+    font-size:10px;
+    letter-spacing:6px;
+    margin-bottom:25px;
+}
+
+.hero h1{
+    font-family:"Playfair Display",serif;
+    font-weight:500;
+    font-size:clamp(65px,10vw,145px);
+    line-height:.82;
+    letter-spacing:-6px;
+    max-width:900px;
+}
+
+.hero h1 span{
+    color:#8b8b8b;
+}
+
+.hero-description{
+    max-width:480px;
+    color:#888;
+    line-height:1.8;
+    font-size:14px;
+    margin-top:35px;
+}
+
+.buttons{
+    display:flex;
+    gap:14px;
+    margin-top:35px;
+}
+
+.btn{
+    min-height:52px;
+    padding:0 25px;
+    border:1px solid var(--gold);
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+    font-size:9px;
+    letter-spacing:3px;
+    position:relative;
+    overflow:hidden;
+    transition:.4s var(--ease);
+}
+
+.btn:before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:var(--gold);
+    transform:translateY(100%);
+    transition:.45s var(--ease);
+    z-index:-1;
+}
+
+.btn:hover{
+    color:#050505;
+    transform:translateY(-3px);
+}
+
+.btn:hover:before{
+    transform:translateY(0);
+}
+
+.btn.dark{
+    border-color:#333;
+    color:#aaa;
+}
+
+.scroll{
+    position:absolute;
+    bottom:30px;
+    left:5vw;
+    color:#666;
+    font-size:9px;
+    letter-spacing:3px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.scroll-line{
+    width:55px;
+    height:1px;
+    background:#333;
+}
+
+
+/* =========================
+   MARQUEE
+========================= */
+
+.marquee{
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    overflow:hidden;
+    white-space:nowrap;
+}
+
+.marquee-track{
+    display:inline-flex;
+    gap:45px;
+    padding:18px 0;
+    animation:marquee 25s linear infinite;
+}
+
+.marquee span{
+    color:#666;
+    font-size:10px;
+    letter-spacing:4px;
+}
+
+.marquee b{
+    color:var(--gold);
+    font-weight:400;
+}
+
+@keyframes marquee{
+    to{transform:translateX(-50%)}
+}
+
+
+/* =========================
+   SECTIONS
+========================= */
+
+.section{
+    padding:150px 5vw;
+}
+
+.eyebrow{
+    color:var(--gold);
+    font-size:9px;
+    letter-spacing:5px;
+    margin-bottom:18px;
+}
+
+.section-title{
+    max-width:800px;
+    margin-bottom:70px;
+}
+
+.section-title h2{
+    font-family:"Playfair Display",serif;
+    font-size:clamp(50px,7vw,95px);
+    line-height:.9;
+    font-weight:500;
+}
+
+.section-title p{
+    color:#777;
+    max-width:520px;
+    margin-top:25px;
+    line-height:1.8;
+}
+
+
+/* =========================
+   FEATURE
+========================= */
+
+.feature{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:7vw;
+    align-items:center;
+    background:#0c0c0c;
+}
+
+.feature-image{
+    height:75vh;
+    min-height:500px;
+    overflow:hidden;
+}
+
+.feature-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:1.2s var(--ease);
+    filter:saturate(.75);
+}
+
+.feature-image:hover img{
+    transform:scale(1.06);
+}
+
+.feature-text h2{
+    font-family:"Playfair Display",serif;
+    font-size:clamp(50px,6vw,85px);
+    line-height:.9;
+    font-weight:500;
+}
+
+.feature-text p{
+    color:#858585;
+    line-height:1.9;
+    max-width:480px;
+    margin:30px 0;
+}
+
+.details{
+    border-top:1px solid var(--line);
+    margin-bottom:35px;
+}
+
+.detail{
+    display:flex;
+    justify-content:space-between;
+    border-bottom:1px solid var(--line);
+    padding:17px 0;
+    font-size:10px;
+    color:#777;
+    letter-spacing:2px;
+}
+
+.detail strong{
+    color:#ddd;
+    font-weight:400;
+}
+
+
+/* =========================
+   PRODUCTS
+========================= */
+
+.products{
+    background:#080808;
+}
+
+.product-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:2px;
+}
+
+.product{
+    min-height:680px;
+    position:relative;
+    overflow:hidden;
+    background:#111;
+    cursor:pointer;
+    transition:.4s;
+}
+
+.product-image{
+    position:absolute;
+    inset:0;
+}
+
+.product-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:1s var(--ease);
+    filter:saturate(.75);
+}
+
+.product:hover img{
+    transform:scale(1.07);
+}
+
+.product:after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+        transparent 30%,
+        rgba(0,0,0,.15) 50%,
+        rgba(0,0,0,.92)
+    );
+}
+
+.product-info{
+    position:absolute;
+    bottom:0;
+    left:0;
+    right:0;
+    z-index:3;
+    padding:35px;
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+}
+
+.product-number{
+    color:var(--gold);
+    font-size:9px;
+    letter-spacing:4px;
+    margin-bottom:12px;
+}
+
+.product h3{
+    font-family:"Playfair Display",serif;
+    font-size:34px;
+    font-weight:500;
+}
+
+.product small{
+    display:block;
+    color:#aaa;
+    margin-top:8px;
+}
+
+.price{
+    text-align:right;
+    font-size:18px;
+}
+
+.old{
+    color:#666;
+    text-decoration:line-through;
+    display:block;
+    font-size:10px;
+    margin-bottom:5px;
+}
+
+
+/* =========================
+   STORY
+========================= */
+
+.story{
+    background:#eeeae2;
+    color:#111;
+}
+
+.story .eyebrow{
+    color:#8b7137;
+}
+
+.story h2{
+    font-family:"Playfair Display",serif;
+    font-size:clamp(55px,8vw,110px);
+    line-height:.85;
+    font-weight:500;
+}
+
+.story-grid{
+    margin-top:65px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8vw;
+}
+
+.story p{
+    color:#555;
+    line-height:1.9;
+    max-width:550px;
+}
+
+.quote{
+    font-family:"Playfair Display",serif;
+    font-size:clamp(30px,4vw,55px);
+    line-height:1;
+}
+
+
+/* =========================
+   CONTACT
+========================= */
+
+.contact{
+    min-height:70vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    background:
+        radial-gradient(circle,rgba(214,189,124,.1),transparent 30%),
+        #070707;
+}
+
+.contact h2{
+    font-family:"Playfair Display",serif;
+    font-size:clamp(65px,10vw,140px);
+    line-height:.8;
+    font-weight:500;
+}
+
+.contact p{
+    color:#777;
+    max-width:450px;
+    margin:30px auto;
+    line-height:1.8;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    border-top:1px solid var(--line);
+    padding:40px 5vw;
+    display:flex;
+    justify-content:space-between;
+    color:#666;
+    font-size:9px;
+    letter-spacing:2px;
+}
+
+footer strong{
+    color:#ddd;
+    font-family:"Playfair Display",serif;
+    font-size:16px;
+}
+
+
+/* =========================
+   REVEAL
+========================= */
+
+.reveal{
+    opacity:0;
+    transform:translateY(50px);
+    transition:1s var(--ease);
+}
+
+.reveal.show{
+    opacity:1;
+    transform:none;
+}
+
+
+/* =========================
+   PRODUCT MODAL
+========================= */
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.82);
+    backdrop-filter:blur(18px);
+    z-index:2000;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.modal.open{
+    display:flex;
+}
+
+.modal-box{
+    width:min(1000px,95vw);
+    max-height:90vh;
+    overflow:auto;
+    background:#111;
+    border:1px solid var(--line);
+    display:grid;
+    grid-template-columns:1fr 1fr;
+}
+
+.modal-image{
+    min-height:500px;
+}
+
+.modal-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.modal-content{
+    padding:55px;
+}
+
+.modal-content h2{
+    font-family:"Playfair Display",serif;
+    font-size:48px;
+    font-weight:500;
+    line-height:.95;
+}
+
+.modal-price{
+    color:var(--gold);
+    font-size:21px;
+    margin:25px 0;
+}
+
+.modal-content p{
+    color:#777;
+    line-height:1.8;
+}
+
+.close{
+    position:fixed;
+    right:30px;
+    top:25px;
+    background:none;
+    border:0;
+    color:white;
+    font-size:30px;
+    cursor:pointer;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:800px){
+
+    header{
+        height:70px;
+        padding:0 20px;
+    }
+
+    nav{
+        position:fixed;
+        top:70px;
+        left:0;
+        right:0;
+        display:none;
+        flex-direction:column;
+        background:#080808;
+        padding:25px;
+        border-bottom:1px solid var(--line);
+    }
+
+    nav.open{
+        display:flex;
+    }
+
+    .menu{
+        display:block;
+    }
+
+    .hero-content{
+        width:90%;
+    }
+
+    .hero h1{
+        font-size:18vw;
+        letter-spacing:-4px;
+    }
+
+    .hero-ring{
+        width:500px;
+        height:500px;
+        right:-250px;
+    }
+
+    .buttons{
+        flex-direction:column;
+        width:max-content;
+    }
+
+    .section{
+        padding:100px 20px;
+    }
+
+    .feature{
+        grid-template-columns:1fr;
+    }
+
+    .feature-image{
+        height:65vh;
+        min-height:420px;
+    }
+
+    .product-grid{
+        grid-template-columns:1fr;
+    }
+
+    .product{
+        min-height:600px;
+    }
+
+    .story-grid{
+        grid-template-columns:1fr;
+        gap:50px;
+    }
+
+    .modal-box{
+        grid-template-columns:1fr;
+    }
+
+    .modal-image{
+        min-height:350px;
+    }
+
+    .modal-content{
+        padding:30px;
+    }
+
+    footer{
+        flex-direction:column;
+        gap:20px;
+    }
+}
+
+</style>
 </head>
-<body>
 
-    <header class="luxury-header">
-        <div class="logo-container">
-            <svg class="brand-logo-svg" viewBox="0 0 210 50" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#D4AF37" />
-                        <stop offset="50%" stop-color="#AA771C" />
-                        <stop offset="100%" stop-color="#F3E5AB" />
-                    </linearGradient>
-                </defs>
-                <g transform="translate(2, 2)">
-                    <rect x="0" y="0" width="42" height="42" fill="none" stroke="url(#goldGradient)" stroke-width="1.5" rx="4"/>
-                    <text x="21" y="27" font-family="'Playfair Display', serif" font-size="16" font-weight="bold" fill="url(#goldGradient)" text-anchor="middle">MG</text>
-                </g>
-                <text x="56" y="24" font-family="'Playfair Display', serif" font-size="20" font-weight="bold" fill="#ffffff" letter-spacing="4">MEHKA</text>
-                <text x="58" y="38" font-family="'Montserrat', sans-serif" font-size="8.5" font-weight="600" fill="#aaaaaa" letter-spacing="3.5">GARMENTS</text>
-            </svg>
-        </div>
-        <nav class="nav-links">
-            <a href="#collection" class="nav-btn-3d">COLLECTION</a>
-            <a href="#atelier" class="nav-btn-3d">ATELIER</a>
-            <a href="#contact" class="nav-btn-3d">CONTACT</a>
-        </nav>
-    </header>
 
-    <section class="hero-section">
-        <div class="hero-content">
-            <span class="sub-heading">THE HOUSE OF FASHION</span>
-            <h1>The Anatomy of Style</h1>
-            <p>Every garment is cut to one man and one man only. Built on canvas, styled for distinction.</p>
-            <a href="#collection" class="cta-btn">EXPLORE COLLECTION</a>
-        </div>
-    </section>
+<body class="loading">
 
-    <section id="collection" class="collection-section">
-        <div class="section-title">
-            <span class="gold-subtitle">CURATED MASTERPIECES</span>
-            <h2>Complete Men's Wardrobe</h2>
-            <p>Crafted for perfection, styled for the few.</p>
+<div id="loader">
+    <div class="loader-content">
+        <div class="loader-logo">MG</div>
+        <div class="loader-line"><span></span></div>
+        <div class="loader-small">MEHKA GARMENTS</div>
+    </div>
+</div>
+
+<div class="noise"></div>
+
+
+<!-- HEADER -->
+
+<header id="header">
+
+    <a href="#home" class="logo">
+
+        <div class="logo-mark">
+            MG
         </div>
 
-        <div class="product-grid">
+        <div>
+            <div class="logo-text">MEHKA</div>
+            <span class="logo-sub">GARMENTS</span>
+        </div>
 
-            <div class="product-card">
-                <div class="product-img-box">
-                    <img src="https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=500" alt="Polo T-Shirt">
-                    <div class="img-overlay"></div>
-                </div>
-                <div class="product-info">
-                    <h3>Classic Polo T-Shirt</h3>
-                    <p class="variants-note">Available in 12 Luxury Colors</p>
-                    <div class="sizes">
-                        <span>S</span><span>M</span><span>L</span><span>XL</span>
-                    </div>
-                    <div class="price-box">
-                        <span class="old-price">PKR 4,500</span>
-                        <span class="new-price">PKR 2,999</span>
-                    </div>
-                    <a href="https://wa.me/923000000000?text=I%20want%20to%20order%20Classic%20Polo%20T-Shirt" target="_blank" class="whatsapp-btn">ORDER VIA WHATSAPP</a>
-                </div>
+    </a>
+
+    <button class="menu" id="menu">
+        ☰
+    </button>
+
+    <nav id="nav">
+
+        <a href="#collection">COLLECTION</a>
+        <a href="#story">STORY</a>
+        <a href="#contact">CONTACT</a>
+
+    </nav>
+
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+
+    <div class="hero-ring"></div>
+
+    <div class="hero-content">
+
+        <div class="kicker reveal">
+            PREMIUM MEN'S WEAR
+        </div>
+
+        <h1 class="reveal">
+            Wear the
+            <span>difference.</span>
+        </h1>
+
+        <p class="hero-description reveal">
+            Modern menswear designed with confidence,
+            refined details and a premium point of view.
+        </p>
+
+        <div class="buttons reveal">
+
+            <a href="#collection" class="btn">
+                EXPLORE COLLECTION ↘
+            </a>
+
+            <a href="#story" class="btn dark">
+                OUR STORY
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="scroll">
+        <span class="scroll-line"></span>
+        SCROLL TO DISCOVER
+    </div>
+
+</section>
+
+
+<!-- MARQUEE -->
+
+<div class="marquee">
+
+    <div class="marquee-track">
+
+        <span>MEHKA GARMENTS</span>
+        <b>✦</b>
+        <span>PREMIUM MENSWEAR</span>
+        <b>✦</b>
+        <span>MODERN LUXURY</span>
+        <b>✦</b>
+
+        <span>MEHKA GARMENTS</span>
+        <b>✦</b>
+        <span>PREMIUM MENSWEAR</span>
+        <b>✦</b>
+        <span>MODERN LUXURY</span>
+        <b>✦</b>
+
+    </div>
+
+</div>
+
+
+<!-- FEATURE -->
+
+<section class="section feature">
+
+    <div class="feature-image reveal">
+
+        <img
+        src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=1200&q=85"
+        alt="Premium Men's Shirt">
+
+    </div>
+
+
+    <div class="feature-text">
+
+        <div class="eyebrow reveal">
+            SIGNATURE EDIT
+        </div>
+
+        <h2 class="reveal">
+            The shirt
+            <br>
+            reimagined.
+        </h2>
+
+        <p class="reveal">
+            Clean silhouettes, considered details and a
+            confident attitude. This is the visual language
+            behind the new Mehka Garments experience.
+        </p>
+
+
+        <div class="details reveal">
+
+            <div class="detail">
+                <span>DESIGN</span>
+                <strong>MODERN TAILORING</strong>
             </div>
 
-            <div class="product-card">
-                <div class="product-img-box">
-                    <img src="https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=500" alt="Cotton Pants">
-                    <div class="img-overlay"></div>
-                </div>
-                <div class="product-info">
-                    <h3>Slim-Fit Cotton Pants</h3>
-                    <p class="variants-note">Available in 8 Premium Colors</p>
-                    <div class="sizes">
-                        <span>S</span><span>M</span><span>L</span><span>XL</span>
-                    </div>
-                    <div class="price-box">
-                        <span class="old-price">PKR 6,500</span>
-                        <span class="new-price">PKR 4,200</span>
-                    </div>
-                    <a href="https://wa.me/923000000000?text=I%20want%20to%20order%20Slim-Fit%20Cotton%20Pants" target="_blank" class="whatsapp-btn">ORDER VIA WHATSAPP</a>
-                </div>
+            <div class="detail">
+                <span>FEEL</span>
+                <strong>PREMIUM COMFORT</strong>
             </div>
 
-            <div class="product-card">
-                <div class="product-img-box">
-                    <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=500" alt="Cotton Shirts">
-                    <div class="img-overlay"></div>
-                </div>
-                <div class="product-info">
-                    <h3>Executive Cotton Shirt</h3>
-                    <p class="variants-note">Multiple Color Options</p>
-                    <div class="sizes">
-                        <span>S</span><span>M</span><span>L</span><span>XL</span>
-                    </div>
-                    <div class="price-box">
-                        <span class="old-price">PKR 5,500</span>
-                        <span class="new-price">PKR 3,500</span>
-                    </div>
-                    <a href="https://wa.me/923000000000?text=I%20want%20to%20order%20Executive%20Cotton%20Shirt" target="_blank" class="whatsapp-btn">ORDER VIA WHATSAPP</a>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-img-box">
-                    <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=500" alt="Check Shirt">
-                    <div class="img-overlay"></div>
-                </div>
-                <div class="product-info">
-                    <h3>Button-Down Check Shirt</h3>
-                    <p class="variants-note">Multiple Color Options</p>
-                    <div class="sizes">
-                        <span>S</span><span>M</span><span>L</span><span>XL</span>
-                    </div>
-                    <div class="price-box">
-                        <span class="old-price">PKR 5,800</span>
-                        <span class="new-price">PKR 3,800</span>
-                    </div>
-                    <a href="https://wa.me/923000000000?text=I%20want%20to%20order%20Button-Down%20Check%20Shirt" target="_blank" class="whatsapp-btn">ORDER VIA WHATSAPP</a>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-img-box">
-                    <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=500" alt="Round Neck T-Shirt">
-                    <div class="img-overlay"></div>
-                </div>
-                <div class="product-info">
-                    <h3>Essential Round Neck Tee</h3>
-                    <p class="variants-note">Multiple Color Options</p>
-                    <div class="sizes">
-                        <span>S</span><span>M</span><span>L</span><span>XL</span>
-                    </div>
-                    <div class="price-box">
-                        <span class="old-price">PKR 3,200</span>
-                        <span class="new-price">PKR 1,999</span>
-                    </div>
-                    <a href="https://wa.me/923000000000?text=I%20want%20to%20order%20Essential%20Round%20Neck%20Tee" target="_blank" class="whatsapp-btn">ORDER VIA WHATSAPP</a>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-img-box">
-                    <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?w=500" alt="Regular Jeans">
-                    <div class="img-overlay"></div>
-                </div>
-                <div class="product-info">
-                    <h3>Classic Denim Jeans</h3>
-                    <p class="variants-note">Multiple Washes & Colors</p>
-                    <div class="sizes">
-                        <span>S</span><span>M</span><span>L</span><span>XL</span>
-                    </div>
-                    <div class="price-box">
-                        <span class="old-price">PKR 7,500</span>
-                        <span class="new-price">PKR 4,999</span>
-                    </div>
-                    <a href="https://wa.me/923000000000?text=I%20want%20to%20order%20Classic%20Denim%20Jeans" target="_blank" class="whatsapp-btn">ORDER VIA WHATSAPP</a>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-img-box">
-                    <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=500" alt="Imported Jeans">
-                    <div class="img-overlay"></div>
-                </div>
-                <div class="product-info">
-                    <h3>Imported Luxury Jeans</h3>
-                    <p class="variants-note">Premium Imported Fabric</p>
-                    <div class="sizes">
-                        <span>S</span><span>M</span><span>L</span><span>XL</span>
-                    </div>
-                    <div class="price-box">
-                        <span class="old-price">PKR 9,500</span>
-                        <span class="new-price">PKR 6,500</span>
-                    </div>
-                    <a href="https://wa.me/923000000000?text=I%20want%20to%20order%20Imported%20Luxury%20Jeans" target="_blank" class="whatsapp-btn">ORDER VIA WHATSAPP</a>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-img-box">
-                    <img src="https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=500" alt="Jeans Shorts">
-                    <div class="img-overlay"></div>
-                </div>
-                <div class="product-info">
-                    <h3>Casual Denim Shorts</h3>
-                    <p class="variants-note">Multiple Color Options</p>
-                    <div class="sizes">
-                        <span>S</span><span>M</span><span>L</span><span>XL</span>
-                    </div>
-                    <div class="price-box">
-                        <span class="old-price">PKR 4,000</span>
-                        <span class="new-price">PKR 2,500</span>
-                    </div>
-                    <a href="https://wa.me/923000000000?text=I%20want%20to%20order%20Casual%20Denim%20Shorts" target="_blank" class="whatsapp-btn">ORDER VIA WHATSAPP</a>
-                </div>
+            <div class="detail">
+                <span>MOOD</span>
+                <strong>QUIET LUXURY</strong>
             </div>
 
         </div>
-    </section>
 
-    <footer class="luxury-footer">
-        <div class="footer-logo">MEHKA GARMENTS</div>
-        <p>&copy; 2026 Mehka Garments. All Rights Reserved. Tailoring for the few.</p>
-    </footer>
+        <a href="#collection" class="btn">
+            VIEW COLLECTION ↗
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- COLLECTION -->
+
+<section class="section products" id="collection">
+
+    <div class="section-title">
+
+        <div class="eyebrow reveal">
+            CURATED COLLECTION
+        </div>
+
+        <h2 class="reveal">
+            Built for
+            <br>
+            your wardrobe.
+        </h2>
+
+        <p class="reveal">
+            Explore the current Mehka Garments collection.
+            Each piece is presented as part of a premium
+            fashion experience.
+        </p>
+
+    </div>
+
+
+    <div class="product-grid">
+
+
+        <!-- PRODUCT 1 -->
+
+        <article
+        class="product reveal"
+        data-name="Classic Polo T-Shirt"
+        data-price="PKR 2,999"
+        data-image="https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=1000&q=85"
+        data-description="A refined everyday polo designed for effortless confidence.">
+
+            <div class="product-image">
+
+                <img
+                src="https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=1000&q=85"
+                alt="Classic Polo">
+
+            </div>
+
+            <div class="product-info">
+
+                <div>
+
+                    <div class="product-number">
+                        01 / POLO
+                    </div>
+
+                    <h3>
+                        Classic Polo
+                    </h3>
+
+                    <small>
+                        S · M · L · XL
+                    </small>
+
+                </div>
+
+                <div class="price">
+
+                    <span class="old">
+                        PKR 4,500
+                    </span>
+
+                    PKR 2,999
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- PRODUCT 2 -->
+
+        <article
+        class="product reveal"
+        data-name="Slim-Fit Cotton Pants"
+        data-price="PKR 4,200"
+        data-image="https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=1000&q=85"
+        data-description="Streamlined cotton trousers designed for everyday premium styling.">
+
+            <div class="product-image">
+
+                <img
+                src="https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=1000&q=85"
+                alt="Cotton Pants">
+
+            </div>
+
+            <div class="product-info">
+
+                <div>
+
+                    <div class="product-number">
+                        02 / TROUSER
+                    </div>
+
+                    <h3>
+                        Slim-Fit Pants
+                    </h3>
+
+                    <small>
+                        S · M · L · XL
+                    </small>
+
+                </div>
+
+                <div class="price">
+
+                    <span class="old">
+                        PKR 6,500
+                    </span>
+
+                    PKR 4,200
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- PRODUCT 3 -->
+
+        <article
+        class="product reveal"
+        data-name="Executive Cotton Shirt"
+        data-price="PKR 3,500"
+        data-image="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=1000&q=85"
+        data-description="A polished cotton shirt for a sharp and understated wardrobe.">
+
+            <div class="product-image">
+
+                <img
+                src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=1000&q=85"
+                alt="Executive Shirt">
+
+            </div>
+
+            <div class="product-info">
+
+                <div>
+
+                    <div class="product-number">
+                        03 / SHIRT
+                    </div>
+
+                    <h3>
+                        Executive Shirt
+                    </h3>
+
+                    <small>
+                        S · M · L · XL
+                    </small>
+
+                </div>
+
+                <div class="price">
+
+                    <span class="old">
+                        PKR 5,500
+                    </span>
+
+                    PKR 3,500
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- PRODUCT 4 -->
+
+        <article
+        class="product reveal"
+        data-name="Button Down Check Shirt"
+        data-price="PKR 3,800"
+        data-image="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=1000&q=85"
+        data-description="Classic check pattern with a modern contemporary silhouette.">
+
+            <div class="product-image">
+
+                <img
+                src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=1000&q=85"
+                alt="Check Shirt">
+
+            </div>
+
+            <div class="product-info">
+
+                <div>
+
+                    <div class="product-number">
+                        04 / CHECK
+                    </div>
+
+                    <h3>
+                        Check Shirt
+                    </h3>
+
+                    <small>
+                        S · M · L · XL
+                    </small>
+
+                </div>
+
+                <div class="price">
+
+                    <span class="old">
+                        PKR 5,800
+                    </span>
+
+                    PKR 3,800
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- PRODUCT 5 -->
+
+        <article
+        class="product reveal"
+        data-name="Essential Round Neck Tee"
+        data-price="PKR 1,999"
+        data-image="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=1000&q=85"
+        data-description="A clean essential built for comfort and everyday styling.">
+
+            <div class="product-image">
+
+                <img
+                src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=1000&q=85"
+                alt="Round Neck Tee">
+
+            </div>
+
+            <div class="product-info">
+
+                <div>
+
+                    <div class="product-number">
+                        05 / TEE
+                    </div>
+
+                    <h3>
+                        Essential Tee
+                    </h3>
+
+                    <small>
+                        S · M · L · XL
+                    </small>
+
+                </div>
+
+                <div class="price">
+
+                    <span class="old">
+                        PKR 3,200
+                    </span>
+
+                    PKR 1,999
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- PRODUCT 6 -->
+
+        <article
+        class="product reveal"
+        data-name="Classic Denim Jeans"
+        data-price="PKR 4,999"
+        data-image="https://images.unsplash.com/photo-1542272604-787c3835535d?w=1000&q=85"
+        data-description="Classic denim with a versatile wash and confident fit.">
+
+            <div class="product-image">
+
+                <img
+                src="https://images.unsplash.com/photo-1542272604-787c3835535d?w=1000&q=85"
+                alt="Classic Jeans">
+
+            </div>
+
+            <div class="product-info">
+
+                <div>
+
+                    <div class="product-number">
+                        06 / DENIM
+                    </div>
+
+                    <h3>
+                        Classic Denim
+                    </h3>
+
+                    <small>
+                        S · M · L · XL
+                    </small>
+
+                </div>
+
+                <div class="price">
+
+                    <span class="old">
+                        PKR 7,500
+                    </span>
+
+                    PKR 4,999
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- PRODUCT 7 -->
+
+        <article
+        class="product reveal"
+        data-name="Imported Luxury Jeans"
+        data-price="PKR 6,500"
+        data-image="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=1000&q=85"
+        data-description="Premium imported denim for an elevated everyday look.">
+
+            <div class="product-image">
+
+                <img
+                src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=1000&q=85"
+                alt="Luxury Jeans">
+
+            </div>
+
+            <div class="product-info">
+
+                <div>
+
+                    <div class="product-number">
+                        07 / DENIM
+                    </div>
+
+                    <h3>
+                        Luxury Jeans
+                    </h3>
+
+                    <small>
+                        S · M · L · XL
+                    </small>
+
+                </div>
+
+                <div class="price">
+
+                    <span class="old">
+                        PKR 9,500
+                    </span>
+
+                    PKR 6,500
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- PRODUCT 8 -->
+
+        <article
+        class="product reveal"
+        data-name="Casual Denim Shorts"
+        data-price="PKR 2,500"
+        data-image="https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=1000&q=85"
+        data-description="Relaxed denim shorts made for modern casual styling.">
+
+            <div class="product-image">
+
+                <img
+                src="https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=1000&q=85"
+                alt="Denim Shorts">
+
+            </div>
+
+            <div class="product-info">
+
+                <div>
+
+                    <div class="product-number">
+                        08 / SHORTS
+                    </div>
+
+                    <h3>
+                        Denim Shorts
+                    </h3>
+
+                    <small>
+                        S · M · L · XL
+                    </small>
+
+                </div>
+
+                <div class="price">
+
+                    <span class="old">
+                        PKR 4,000
+                    </span>
+
+                    PKR 2,500
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+    </div>
+
+</section>
+
+
+<!-- STORY -->
+
+<section class="section story" id="story">
+
+    <div class="eyebrow reveal">
+        THE MEHKA PHILOSOPHY
+    </div>
+
+    <h2 class="reveal">
+        Less noise.
+        <br>
+        More presence.
+    </h2>
+
+    <div class="story-grid">
+
+        <p class="reveal">
+
+            Mehka Garments is modern men's fashion
+            presented with a premium point of view.
+
+            Confident silhouettes, refined details and
+            an experience designed to feel different
+            from a normal clothing store.
+
+        </p>
+
+        <div class="quote reveal">
+
+            “Style is not what you add.
+            It is what you make unforgettable.”
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section class="contact" id="contact">
+
+    <div>
+
+        <div class="eyebrow">
+            READY WHEN YOU ARE
+        </div>
+
+        <h2>
+            Make it
+            <br>
+            Mehka.
+        </h2>
+
+        <p>
+            Explore the collection and order directly
+            through WhatsApp.
+        </p>
+
+        <a href="#collection" class="btn">
+            SHOP COLLECTION ↗
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <strong>
+        MEHKA GARMENTS
+    </strong>
+
+    <span>
+        © 2026 MEHKA GARMENTS — PREMIUM MEN'S WEAR
+    </span>
+
+</footer>
+
+
+<!-- PRODUCT MODAL -->
+
+<div class="modal" id="modal">
+
+    <button class="close" id="close">
+        ×
+    </button>
+
+    <div class="modal-box">
+
+        <div class="modal-image">
+            <img id="modalImage" src="" alt="">
+        </div>
+
+        <div class="modal-content">
+
+            <div class="eyebrow">
+                MEHKA PIECE
+            </div>
+
+            <h2 id="modalName">
+                Product
+            </h2>
+
+            <div class="modal-price" id="modalPrice">
+                PKR 0
+            </div>
+
+            <p id="modalDescription">
+            </p>
+
+            <br>
+
+            <a
+            id="whatsapp"
+            href="#"
+            target="_blank"
+            class="btn">
+
+                ORDER VIA WHATSAPP ↗
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================
+   LOADER
+========================= */
+
+window.addEventListener("load",()=>{
+
+    setTimeout(()=>{
+
+        document
+        .getElementById("loader")
+        .classList.add("hide");
+
+        document
+        .body
+        .classList.remove("loading");
+
+    },700);
+
+});
+
+
+/* =========================
+   HEADER
+========================= */
+
+const header=document.getElementById("header");
+
+window.addEventListener("scroll",()=>{
+
+    if(window.scrollY>40){
+
+        header.classList.add("scrolled");
+
+    }else{
+
+        header.classList.remove("scrolled");
+
+    }
+
+});
+
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+const menu=document.getElementById("menu");
+const nav=document.getElementById("nav");
+
+menu.addEventListener("click",()=>{
+
+    nav.classList.toggle("open");
+
+});
+
+document
+.querySelectorAll("nav a")
+.forEach(link=>{
+
+    link.addEventListener("click",()=>{
+
+        nav.classList.remove("open");
+
+    });
+
+});
+
+
+/* =========================
+   SCROLL REVEAL
+========================= */
+
+const observer=new IntersectionObserver(
+
+(entries)=>{
+
+    entries.forEach(entry=>{
+
+        if(entry.isIntersecting){
+
+            entry
+            .target
+            .classList
+            .add("show");
+
+            observer.unobserve(entry.target);
+
+        }
+
+    });
+
+},
+{
+    threshold:.12
+});
+
+document
+.querySelectorAll(".reveal")
+.forEach(element=>{
+
+    observer.observe(element);
+
+});
+
+
+/* =========================
+   PRODUCT MODAL
+========================= */
+
+const modal=document.getElementById("modal");
+
+const modalImage=
+document.getElementById("modalImage");
+
+const modalName=
+document.getElementById("modalName");
+
+const modalPrice=
+document.getElementById("modalPrice");
+
+const modalDescription=
+document.getElementById("modalDescription");
+
+const whatsapp=
+document.getElementById("whatsapp");
+
+
+/*
+ IMPORTANT:
+ Replace this number with
+ your REAL WhatsApp number.
+*/
+
+const whatsappNumber="923000000000";
+
+
+document
+.querySelectorAll(".product")
+.forEach(product=>{
+
+    product.addEventListener("click",()=>{
+
+        const name=
+        product.dataset.name;
+
+        const price=
+        product.dataset.price;
+
+        const image=
+        product.dataset.image;
+
+        const description=
+        product.dataset.description;
+
+
+        modalImage.src=image;
+
+        modalImage.alt=name;
+
+        modalName.textContent=name;
+
+        modalPrice.textContent=price;
+
+        modalDescription.textContent=
+        description;
+
+
+        const message=
+        "Assalam o Alaikum, I want to order "+
+        name+
+        " ("+
+        price+
+        ").";
+
+
+        whatsapp.href=
+        "https://wa.me/"+
+        whatsappNumber+
+        "?text="+
+        encodeURIComponent(message);
+
+
+        modal.classList.add("open");
+
+        document
+        .body
+        .classList
+        .add("loading");
+
+    });
+
+});
+
+
+document
+.getElementById("close")
+.addEventListener("click",()=>{
+
+    modal.classList.remove("open");
+
+    document
+    .body
+    .classList
+    .remove("loading");
+
+});
+
+
+modal.addEventListener("click",(event)=>{
+
+    if(event.target===modal){
+
+        modal.classList.remove("open");
+
+        document
+        .body
+        .classList
+        .remove("loading");
+
+    }
+
+});
+
+
+document
+.addEventListener("keydown",(event)=>{
+
+    if(event.key==="Escape"){
+
+        modal.classList.remove("open");
+
+        document
+        .body
+        .classList
+        .remove("loading");
+
+    }
+
+});
+
+
+/* =========================
+   3D PRODUCT TILT
+========================= */
+
+document
+.querySelectorAll(".product")
+.forEach(card=>{
+
+    card.addEventListener("mousemove",(e)=>{
+
+        if(window.innerWidth<800)
+            return;
+
+        const rect=
+        card.getBoundingClientRect();
+
+        const x=
+        (e.clientX-rect.left)/
+        rect.width-.5;
+
+        const y=
+        (e.clientY-rect.top)/
+        rect.height-.5;
+
+
+        card.style.transform=
+        `
+        perspective(1200px)
+        rotateY(${x*3}deg)
+        rotateX(${-y*3}deg)
+        scale(1.01)
+        `;
+
+    });
+
+
+    card.addEventListener("mouseleave",()=>{
+
+        card.style.transform="";
+
+    });
+
+});
+
+
+</script>
 
 </body>
 </html>
