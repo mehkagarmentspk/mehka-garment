@@ -1,1917 +1,1797 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="theme-color" content="#080808">
-
-<title>MEHKA GARMENTS — Premium Men's Fashion</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-
-<style>
-
-/* =========================
-   GLOBAL
-========================= */
-
-:root{
-    --black:#070707;
-    --black2:#101010;
-    --white:#f5f2eb;
-    --muted:#858585;
-    --gold:#d6bd7c;
-    --line:rgba(255,255,255,.12);
-    --ease:cubic-bezier(.16,1,.3,1);
-}
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-html{
-    scroll-behavior:smooth;
-    background:var(--black);
-}
-
-body{
-    background:var(--black);
-    color:white;
-    font-family:"DM Sans",sans-serif;
-    overflow-x:hidden;
-}
-
-body.loading{
-    overflow:hidden;
-}
-
-a{
-    text-decoration:none;
-    color:inherit;
-}
-
-button{
-    font-family:inherit;
-}
-
-img{
-    max-width:100%;
-    display:block;
-}
-
-
-/* =========================
-   LOADER
-========================= */
-
-#loader{
-    position:fixed;
-    inset:0;
-    z-index:9999;
-    background:#050505;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    transition:.8s ease;
-}
-
-#loader.hide{
-    opacity:0;
-    visibility:hidden;
-}
-
-.loader-content{
-    text-align:center;
-}
-
-.loader-logo{
-    font-family:"Playfair Display",serif;
-    font-size:55px;
-    letter-spacing:8px;
-}
-
-.loader-line{
-    width:170px;
-    height:1px;
-    background:#222;
-    margin:22px auto;
-    overflow:hidden;
-}
-
-.loader-line span{
-    display:block;
-    width:45%;
-    height:100%;
-    background:var(--gold);
-    animation:loader 1.5s infinite;
-}
-
-.loader-small{
-    font-size:9px;
-    letter-spacing:5px;
-    color:#777;
-}
-
-@keyframes loader{
-    from{transform:translateX(-150%)}
-    to{transform:translateX(400%)}
-}
-
-
-/* =========================
-   NOISE
-========================= */
-
-.noise{
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    z-index:100;
-    opacity:.035;
-    background-image:url(
-      "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"
-    );
-}
-
-
-/* =========================
-   HEADER
-========================= */
-
-header{
-    position:fixed;
-    top:0;
-    left:0;
-    right:0;
-    height:85px;
-    padding:0 5vw;
-    z-index:500;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    border-bottom:1px solid transparent;
-    transition:.5s;
-}
-
-header.scrolled{
-    background:rgba(7,7,7,.78);
-    backdrop-filter:blur(20px);
-    border-color:var(--line);
-}
-
-.logo{
-    display:flex;
-    align-items:center;
-    gap:13px;
-}
-
-.logo-mark{
-    width:40px;
-    height:40px;
-    border:1px solid var(--gold);
-    display:grid;
-    place-items:center;
-    font-family:"Playfair Display",serif;
-    color:var(--gold);
-    font-size:16px;
-}
-
-.logo-text{
-    font-family:"Playfair Display",serif;
-    letter-spacing:4px;
-    font-size:19px;
-}
-
-.logo-sub{
-    display:block;
-    font-family:"DM Sans",sans-serif;
-    color:#777;
-    font-size:7px;
-    letter-spacing:4px;
-    margin-top:3px;
-}
-
-nav{
-    display:flex;
-    gap:35px;
-}
-
-nav a{
-    font-size:10px;
-    letter-spacing:3px;
-    color:#bbb;
-    position:relative;
-}
-
-nav a:after{
-    content:"";
-    position:absolute;
-    left:0;
-    bottom:-8px;
-    height:1px;
-    width:0;
-    background:var(--gold);
-    transition:.4s;
-}
-
-nav a:hover:after{
-    width:100%;
-}
-
-.menu{
-    display:none;
-    background:none;
-    border:0;
-    color:white;
-    font-size:25px;
-}
-
-
-/* =========================
-   HERO
-========================= */
-
-.hero{
-    min-height:100vh;
-    position:relative;
-    overflow:hidden;
-    display:flex;
-    align-items:center;
-    background:
-        radial-gradient(circle at 75% 40%,rgba(214,189,124,.12),transparent 25%),
-        radial-gradient(circle at 20% 80%,rgba(255,255,255,.05),transparent 25%),
-        #070707;
-}
-
-.hero-ring{
-    position:absolute;
-    width:750px;
-    height:750px;
-    border:1px solid rgba(214,189,124,.12);
-    border-radius:50%;
-    right:-100px;
-    top:50%;
-    transform:translateY(-50%);
-    animation:rotate 30s linear infinite;
-}
-
-.hero-ring:before{
-    content:"";
-    position:absolute;
-    inset:12%;
-    border:1px solid rgba(255,255,255,.05);
-    border-radius:50%;
-}
-
-@keyframes rotate{
-    to{transform:translateY(-50%) rotate(360deg)}
-}
-
-.hero-content{
-    width:90%;
-    max-width:1200px;
-    margin:auto;
-    position:relative;
-    z-index:2;
-}
-
-.kicker{
-    color:var(--gold);
-    font-size:10px;
-    letter-spacing:6px;
-    margin-bottom:25px;
-}
-
-.hero h1{
-    font-family:"Playfair Display",serif;
-    font-weight:500;
-    font-size:clamp(65px,10vw,145px);
-    line-height:.82;
-    letter-spacing:-6px;
-    max-width:900px;
-}
-
-.hero h1 span{
-    color:#8b8b8b;
-}
-
-.hero-description{
-    max-width:480px;
-    color:#888;
-    line-height:1.8;
-    font-size:14px;
-    margin-top:35px;
-}
-
-.buttons{
-    display:flex;
-    gap:14px;
-    margin-top:35px;
-}
-
-.btn{
-    min-height:52px;
-    padding:0 25px;
-    border:1px solid var(--gold);
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    gap:12px;
-    font-size:9px;
-    letter-spacing:3px;
-    position:relative;
-    overflow:hidden;
-    transition:.4s var(--ease);
-}
-
-.btn:before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:var(--gold);
-    transform:translateY(100%);
-    transition:.45s var(--ease);
-    z-index:-1;
-}
-
-.btn:hover{
-    color:#050505;
-    transform:translateY(-3px);
-}
-
-.btn:hover:before{
-    transform:translateY(0);
-}
-
-.btn.dark{
-    border-color:#333;
-    color:#aaa;
-}
-
-.scroll{
-    position:absolute;
-    bottom:30px;
-    left:5vw;
-    color:#666;
-    font-size:9px;
-    letter-spacing:3px;
-    display:flex;
-    align-items:center;
-    gap:12px;
-}
-
-.scroll-line{
-    width:55px;
-    height:1px;
-    background:#333;
-}
-
-
-/* =========================
-   MARQUEE
-========================= */
-
-.marquee{
-    border-top:1px solid var(--line);
-    border-bottom:1px solid var(--line);
-    overflow:hidden;
-    white-space:nowrap;
-}
-
-.marquee-track{
-    display:inline-flex;
-    gap:45px;
-    padding:18px 0;
-    animation:marquee 25s linear infinite;
-}
-
-.marquee span{
-    color:#666;
-    font-size:10px;
-    letter-spacing:4px;
-}
-
-.marquee b{
-    color:var(--gold);
-    font-weight:400;
-}
-
-@keyframes marquee{
-    to{transform:translateX(-50%)}
-}
-
-
-/* =========================
-   SECTIONS
-========================= */
-
-.section{
-    padding:150px 5vw;
-}
-
-.eyebrow{
-    color:var(--gold);
-    font-size:9px;
-    letter-spacing:5px;
-    margin-bottom:18px;
-}
-
-.section-title{
-    max-width:800px;
-    margin-bottom:70px;
-}
-
-.section-title h2{
-    font-family:"Playfair Display",serif;
-    font-size:clamp(50px,7vw,95px);
-    line-height:.9;
-    font-weight:500;
-}
-
-.section-title p{
-    color:#777;
-    max-width:520px;
-    margin-top:25px;
-    line-height:1.8;
-}
-
-
-/* =========================
-   FEATURE
-========================= */
-
-.feature{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:7vw;
-    align-items:center;
-    background:#0c0c0c;
-}
-
-.feature-image{
-    height:75vh;
-    min-height:500px;
-    overflow:hidden;
-}
-
-.feature-image img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    transition:1.2s var(--ease);
-    filter:saturate(.75);
-}
-
-.feature-image:hover img{
-    transform:scale(1.06);
-}
-
-.feature-text h2{
-    font-family:"Playfair Display",serif;
-    font-size:clamp(50px,6vw,85px);
-    line-height:.9;
-    font-weight:500;
-}
-
-.feature-text p{
-    color:#858585;
-    line-height:1.9;
-    max-width:480px;
-    margin:30px 0;
-}
-
-.details{
-    border-top:1px solid var(--line);
-    margin-bottom:35px;
-}
-
-.detail{
-    display:flex;
-    justify-content:space-between;
-    border-bottom:1px solid var(--line);
-    padding:17px 0;
-    font-size:10px;
-    color:#777;
-    letter-spacing:2px;
-}
-
-.detail strong{
-    color:#ddd;
-    font-weight:400;
-}
-
-
-/* =========================
-   PRODUCTS
-========================= */
-
-.products{
-    background:#080808;
-}
-
-.product-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:2px;
-}
-
-.product{
-    min-height:680px;
-    position:relative;
-    overflow:hidden;
-    background:#111;
-    cursor:pointer;
-    transition:.4s;
-}
-
-.product-image{
-    position:absolute;
-    inset:0;
-}
-
-.product-image img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    transition:1s var(--ease);
-    filter:saturate(.75);
-}
-
-.product:hover img{
-    transform:scale(1.07);
-}
-
-.product:after{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:linear-gradient(
-        transparent 30%,
-        rgba(0,0,0,.15) 50%,
-        rgba(0,0,0,.92)
-    );
-}
-
-.product-info{
-    position:absolute;
-    bottom:0;
-    left:0;
-    right:0;
-    z-index:3;
-    padding:35px;
-    display:flex;
-    justify-content:space-between;
-    align-items:end;
-}
-
-.product-number{
-    color:var(--gold);
-    font-size:9px;
-    letter-spacing:4px;
-    margin-bottom:12px;
-}
-
-.product h3{
-    font-family:"Playfair Display",serif;
-    font-size:34px;
-    font-weight:500;
-}
-
-.product small{
-    display:block;
-    color:#aaa;
-    margin-top:8px;
-}
-
-.price{
-    text-align:right;
-    font-size:18px;
-}
-
-.old{
-    color:#666;
-    text-decoration:line-through;
-    display:block;
-    font-size:10px;
-    margin-bottom:5px;
-}
-
-
-/* =========================
-   STORY
-========================= */
-
-.story{
-    background:#eeeae2;
-    color:#111;
-}
-
-.story .eyebrow{
-    color:#8b7137;
-}
-
-.story h2{
-    font-family:"Playfair Display",serif;
-    font-size:clamp(55px,8vw,110px);
-    line-height:.85;
-    font-weight:500;
-}
-
-.story-grid{
-    margin-top:65px;
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:8vw;
-}
-
-.story p{
-    color:#555;
-    line-height:1.9;
-    max-width:550px;
-}
-
-.quote{
-    font-family:"Playfair Display",serif;
-    font-size:clamp(30px,4vw,55px);
-    line-height:1;
-}
-
-
-/* =========================
-   CONTACT
-========================= */
-
-.contact{
-    min-height:70vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    background:
-        radial-gradient(circle,rgba(214,189,124,.1),transparent 30%),
-        #070707;
-}
-
-.contact h2{
-    font-family:"Playfair Display",serif;
-    font-size:clamp(65px,10vw,140px);
-    line-height:.8;
-    font-weight:500;
-}
-
-.contact p{
-    color:#777;
-    max-width:450px;
-    margin:30px auto;
-    line-height:1.8;
-}
-
-
-/* =========================
-   FOOTER
-========================= */
-
-footer{
-    border-top:1px solid var(--line);
-    padding:40px 5vw;
-    display:flex;
-    justify-content:space-between;
-    color:#666;
-    font-size:9px;
-    letter-spacing:2px;
-}
-
-footer strong{
-    color:#ddd;
-    font-family:"Playfair Display",serif;
-    font-size:16px;
-}
-
-
-/* =========================
-   REVEAL
-========================= */
-
-.reveal{
-    opacity:0;
-    transform:translateY(50px);
-    transition:1s var(--ease);
-}
-
-.reveal.show{
-    opacity:1;
-    transform:none;
-}
-
-
-/* =========================
-   PRODUCT MODAL
-========================= */
-
-.modal{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.82);
-    backdrop-filter:blur(18px);
-    z-index:2000;
-    display:none;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-}
-
-.modal.open{
-    display:flex;
-}
-
-.modal-box{
-    width:min(1000px,95vw);
-    max-height:90vh;
-    overflow:auto;
-    background:#111;
-    border:1px solid var(--line);
-    display:grid;
-    grid-template-columns:1fr 1fr;
-}
-
-.modal-image{
-    min-height:500px;
-}
-
-.modal-image img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-}
-
-.modal-content{
-    padding:55px;
-}
-
-.modal-content h2{
-    font-family:"Playfair Display",serif;
-    font-size:48px;
-    font-weight:500;
-    line-height:.95;
-}
-
-.modal-price{
-    color:var(--gold);
-    font-size:21px;
-    margin:25px 0;
-}
-
-.modal-content p{
-    color:#777;
-    line-height:1.8;
-}
-
-.close{
-    position:fixed;
-    right:30px;
-    top:25px;
-    background:none;
-    border:0;
-    color:white;
-    font-size:30px;
-    cursor:pointer;
-}
-
-
-/* =========================
-   MOBILE
-========================= */
-
-@media(max-width:800px){
-
-    header{
-        height:70px;
-        padding:0 20px;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>MEHKA GARMENTS — Premium Men's Wear</title>
+
+  <meta
+    name="description"
+    content="MEHKA GARMENTS — Premium men's clothing designed for modern style."
+  >
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+
+    /* =====================================================
+       RESET
+    ===================================================== */
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    nav{
-        position:fixed;
-        top:70px;
-        left:0;
-        right:0;
-        display:none;
-        flex-direction:column;
-        background:#080808;
-        padding:25px;
-        border-bottom:1px solid var(--line);
+    html {
+      scroll-behavior: smooth;
     }
 
-    nav.open{
-        display:flex;
+    body {
+      font-family: "Inter", sans-serif;
+      background: #f7f7f5;
+      color: #171717;
+      overflow-x: hidden;
     }
 
-    .menu{
-        display:block;
+    a {
+      text-decoration: none;
+      color: inherit;
     }
 
-    .hero-content{
-        width:90%;
+    button {
+      font-family: inherit;
     }
 
-    .hero h1{
-        font-size:18vw;
-        letter-spacing:-4px;
+    img {
+      max-width: 100%;
+      display: block;
     }
 
-    .hero-ring{
-        width:500px;
-        height:500px;
-        right:-250px;
+
+    /* =====================================================
+       PRELOADER
+    ===================================================== */
+
+    #loader {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: #f7f7f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
     }
 
-    .buttons{
-        flex-direction:column;
-        width:max-content;
+    #loader.hide {
+      opacity: 0;
+      visibility: hidden;
     }
 
-    .section{
-        padding:100px 20px;
+    .loader-inner {
+      text-align: center;
     }
 
-    .feature{
-        grid-template-columns:1fr;
+    .loader-logo {
+      font-family: "Playfair Display", serif;
+      font-size: 32px;
+      letter-spacing: 7px;
+      margin-bottom: 18px;
     }
 
-    .feature-image{
-        height:65vh;
-        min-height:420px;
+    .loader-line {
+      width: 140px;
+      height: 2px;
+      background: #ddd;
+      overflow: hidden;
+      position: relative;
     }
 
-    .product-grid{
-        grid-template-columns:1fr;
+    .loader-line::after {
+      content: "";
+      position: absolute;
+      left: -100%;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: #111;
+      animation: loading 1.4s infinite;
     }
 
-    .product{
-        min-height:600px;
+    @keyframes loading {
+      0% {
+        left: -100%;
+      }
+
+      100% {
+        left: 100%;
+      }
     }
 
-    .story-grid{
-        grid-template-columns:1fr;
-        gap:50px;
+
+    /* =====================================================
+       NAVBAR
+    ===================================================== */
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+
+      padding: 22px 5%;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      background: rgba(247, 247, 245, 0.72);
+      backdrop-filter: blur(18px);
+
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+
+      transition: 0.4s ease;
     }
 
-    .modal-box{
-        grid-template-columns:1fr;
+    .navbar.scrolled {
+      padding-top: 14px;
+      padding-bottom: 14px;
+      background: rgba(247,247,245,0.92);
     }
 
-    .modal-image{
-        min-height:350px;
+    .logo {
+      font-family: "Playfair Display", serif;
+      font-size: 24px;
+      font-weight: 600;
+      letter-spacing: 4px;
     }
 
-    .modal-content{
-        padding:30px;
+    .logo span {
+      font-size: 9px;
+      display: block;
+      letter-spacing: 5px;
+      font-family: "Inter", sans-serif;
+      margin-top: -2px;
+      opacity: 0.55;
     }
 
-    footer{
-        flex-direction:column;
-        gap:20px;
+    .nav-links {
+      display: flex;
+      gap: 34px;
+      align-items: center;
     }
-}
 
-</style>
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 500;
+      position: relative;
+      padding: 6px 0;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: #111;
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-button {
+      border: 1px solid #171717;
+      padding: 11px 20px;
+      border-radius: 30px;
+      font-size: 12px;
+      transition: 0.3s ease;
+    }
+
+    .nav-button:hover {
+      background: #171717;
+      color: white;
+      transform: translateY(-2px);
+    }
+
+
+    /* =====================================================
+       HERO
+    ===================================================== */
+
+    .hero {
+      min-height: 100vh;
+      position: relative;
+
+      display: flex;
+      align-items: center;
+
+      padding: 130px 6% 70px;
+
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: #e9e9e5;
+      filter: blur(20px);
+      right: -180px;
+      top: 80px;
+      z-index: -1;
+    }
+
+    .hero-content {
+      width: 48%;
+      z-index: 2;
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #777;
+      margin-bottom: 22px;
+    }
+
+    .hero-title {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(55px, 7vw, 105px);
+      font-weight: 500;
+      line-height: 0.92;
+      letter-spacing: -4px;
+      margin-bottom: 30px;
+    }
+
+    .hero-title span {
+      display: block;
+      font-style: italic;
+      color: #555;
+    }
+
+    .hero-description {
+      max-width: 430px;
+      color: #666;
+      line-height: 1.8;
+      font-size: 14px;
+      margin-bottom: 35px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .primary-btn {
+      position: relative;
+      overflow: hidden;
+
+      background: #171717;
+      color: white;
+
+      padding: 16px 28px;
+      border-radius: 40px;
+
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1px;
+
+      border: 1px solid #171717;
+
+      transition: 0.4s ease;
+    }
+
+    .primary-btn::before {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 0;
+      background: rgba(255,255,255,0.15);
+      border-radius: 50%;
+      left: var(--x);
+      top: var(--y);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s ease, height 0.6s ease;
+    }
+
+    .primary-btn:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    .primary-btn span {
+      position: relative;
+      z-index: 2;
+    }
+
+    .secondary-btn {
+      padding: 16px 25px;
+      border-radius: 40px;
+      border: 1px solid #d3d3d0;
+      font-size: 12px;
+      transition: 0.3s ease;
+    }
+
+    .secondary-btn:hover {
+      border-color: #171717;
+      transform: translateY(-3px);
+    }
+
+
+    /* =====================================================
+       HERO VISUAL
+    ===================================================== */
+
+    .hero-visual {
+      width: 52%;
+      height: 650px;
+      position: relative;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      perspective: 1200px;
+    }
+
+    .hero-card {
+      width: min(440px, 85%);
+      height: 560px;
+
+      border-radius: 220px 220px 20px 20px;
+
+      overflow: hidden;
+
+      position: relative;
+
+      transform-style: preserve-3d;
+
+      box-shadow:
+        0 35px 80px rgba(0,0,0,0.12);
+
+      transition: transform 0.15s ease-out;
+    }
+
+    /*
+      APNI HERO MODEL IMAGE YAHAN CHANGE KARNA:
+      assets/model-hero.jpg
+    */
+
+    .hero-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-floating {
+      position: absolute;
+      bottom: 50px;
+      left: 0;
+
+      padding: 16px 20px;
+
+      background: rgba(255,255,255,0.8);
+      backdrop-filter: blur(15px);
+
+      border-radius: 14px;
+
+      box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+
+      animation: floating 4s ease-in-out infinite;
+    }
+
+    .hero-floating small {
+      display: block;
+      font-size: 9px;
+      letter-spacing: 2px;
+      color: #777;
+      margin-bottom: 5px;
+    }
+
+    .hero-floating strong {
+      font-size: 14px;
+    }
+
+    @keyframes floating {
+      0%,100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-12px);
+      }
+    }
+
+
+    /* =====================================================
+       MARQUEE
+    ===================================================== */
+
+    .marquee {
+      border-top: 1px solid #ddd;
+      border-bottom: 1px solid #ddd;
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 18px 0;
+      background: #fff;
+    }
+
+    .marquee-track {
+      display: inline-flex;
+      animation: marquee 25s linear infinite;
+    }
+
+    .marquee span {
+      font-family: "Playfair Display", serif;
+      font-size: 25px;
+      margin-right: 60px;
+      color: #444;
+    }
+
+    .marquee span::after {
+      content: "✦";
+      margin-left: 60px;
+      color: #aaa;
+    }
+
+    @keyframes marquee {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+
+    /* =====================================================
+       SECTION
+    ===================================================== */
+
+    .section {
+      padding: 130px 6%;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+
+      margin-bottom: 55px;
+    }
+
+    .section-kicker {
+      font-size: 10px;
+      letter-spacing: 4px;
+      color: #888;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(40px, 5vw, 70px);
+      font-weight: 500;
+      line-height: 1;
+    }
+
+    .section-description {
+      max-width: 350px;
+      color: #777;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+
+    /* =====================================================
+       PRODUCTS
+    ===================================================== */
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .product-card {
+      position: relative;
+      perspective: 1000px;
+      cursor: pointer;
+    }
+
+    .product-image {
+      height: 520px;
+      overflow: hidden;
+      background: #ededeb;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.2s ease;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s cubic-bezier(.2,.7,.2,1);
+    }
+
+    .product-card:hover .product-image img {
+      transform: scale(1.055);
+    }
+
+    .product-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.35),
+        transparent 45%
+      );
+      opacity: 0;
+      transition: 0.4s ease;
+    }
+
+    .product-card:hover .product-overlay {
+      opacity: 1;
+    }
+
+    .product-info {
+      display: flex;
+      justify-content: space-between;
+      padding: 18px 3px;
+    }
+
+    .product-name {
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .product-type {
+      color: #888;
+      font-size: 11px;
+      margin-top: 5px;
+    }
+
+    .product-price {
+      font-size: 13px;
+    }
+
+
+    /* =====================================================
+       FEATURE
+    ===================================================== */
+
+    .feature {
+      min-height: 650px;
+      background: #e9e9e5;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      overflow: hidden;
+    }
+
+    .feature-image {
+      min-height: 650px;
+      overflow: hidden;
+    }
+
+    .feature-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 1s ease;
+    }
+
+    .feature:hover .feature-image img {
+      transform: scale(1.04);
+    }
+
+    .feature-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 8%;
+    }
+
+    .feature-content h2 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(45px, 5vw, 75px);
+      font-weight: 500;
+      line-height: 1;
+      margin-bottom: 25px;
+    }
+
+    .feature-content p {
+      max-width: 430px;
+      color: #666;
+      line-height: 1.9;
+      font-size: 14px;
+      margin-bottom: 30px;
+    }
+
+
+    /* =====================================================
+       LOOKBOOK
+    ===================================================== */
+
+    .lookbook-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 20px;
+    }
+
+    .lookbook-item {
+      overflow: hidden;
+      position: relative;
+      height: 620px;
+    }
+
+    .lookbook-item.small {
+      height: 620px;
+    }
+
+    .lookbook-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 1s cubic-bezier(.2,.7,.2,1);
+    }
+
+    .lookbook-item:hover img {
+      transform: scale(1.06);
+    }
+
+    .lookbook-caption {
+      position: absolute;
+      left: 25px;
+      bottom: 25px;
+      color: white;
+      z-index: 2;
+    }
+
+    .lookbook-caption small {
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .lookbook-caption h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 35px;
+      font-weight: 500;
+      margin-top: 5px;
+    }
+
+    .lookbook-item::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.4),
+        transparent 50%
+      );
+    }
+
+
+    /* =====================================================
+       VIDEO SECTION
+    ===================================================== */
+
+    .video-section {
+      padding: 0 6% 130px;
+    }
+
+    .video-box {
+      height: 650px;
+      position: relative;
+      overflow: hidden;
+      background: #ddd;
+    }
+
+    .video-box video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .video-content {
+      position: absolute;
+      inset: 0;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      color: white;
+      text-align: center;
+
+      background: rgba(0,0,0,0.15);
+    }
+
+    .video-content small {
+      letter-spacing: 4px;
+      font-size: 10px;
+    }
+
+    .video-content h2 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(45px, 6vw, 90px);
+      font-weight: 500;
+      margin-top: 10px;
+    }
+
+
+    /* =====================================================
+       CTA
+    ===================================================== */
+
+    .cta {
+      padding: 140px 6%;
+      text-align: center;
+      background: #171717;
+      color: white;
+    }
+
+    .cta small {
+      font-size: 10px;
+      letter-spacing: 4px;
+      color: #aaa;
+    }
+
+    .cta h2 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(50px, 7vw, 100px);
+      font-weight: 500;
+      line-height: 0.95;
+      margin: 25px 0 35px;
+    }
+
+    .cta-button {
+      display: inline-block;
+      border: 1px solid rgba(255,255,255,0.5);
+      padding: 16px 30px;
+      border-radius: 40px;
+      font-size: 12px;
+      transition: 0.4s ease;
+    }
+
+    .cta-button:hover {
+      background: white;
+      color: #111;
+      transform: translateY(-4px);
+      box-shadow: 0 10px 35px rgba(255,255,255,0.12);
+    }
+
+
+    /* =====================================================
+       FOOTER
+    ===================================================== */
+
+    footer {
+      background: #171717;
+      color: white;
+      padding: 50px 6% 30px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      padding-bottom: 45px;
+    }
+
+    .footer-logo {
+      font-family: "Playfair Display", serif;
+      font-size: 30px;
+      letter-spacing: 4px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 35px;
+      font-size: 12px;
+      color: #bbb;
+    }
+
+    .footer-links a:hover {
+      color: white;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 20px;
+      color: #777;
+      font-size: 10px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+
+    /* =====================================================
+       SCROLL REVEAL
+    ===================================================== */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(50px);
+      transition:
+        opacity 0.9s ease,
+        transform 0.9s cubic-bezier(.2,.7,.2,1);
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+
+    /* =====================================================
+       MOBILE
+    ===================================================== */
+
+    @media (max-width: 900px) {
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        flex-direction: column;
+        padding-top: 130px;
+      }
+
+      .hero-content {
+        width: 100%;
+        text-align: center;
+      }
+
+      .hero-description {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-actions {
+        justify-content: center;
+      }
+
+      .hero-visual {
+        width: 100%;
+        height: 560px;
+        margin-top: 50px;
+      }
+
+      .products-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .feature {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-image {
+        min-height: 500px;
+      }
+
+      .lookbook-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .lookbook-item,
+      .lookbook-item.small {
+        height: 550px;
+      }
+
+      .video-box {
+        height: 500px;
+      }
+    }
+
+
+    @media (max-width: 600px) {
+
+      .navbar {
+        padding: 18px 5%;
+      }
+
+      .logo {
+        font-size: 20px;
+      }
+
+      .hero-title {
+        font-size: 57px;
+        letter-spacing: -2px;
+      }
+
+      .hero {
+        padding-left: 5%;
+        padding-right: 5%;
+      }
+
+      .hero-card {
+        height: 470px;
+      }
+
+      .section {
+        padding: 90px 5%;
+      }
+
+      .section-heading {
+        display: block;
+      }
+
+      .section-description {
+        margin-top: 20px;
+      }
+
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .product-image {
+        height: 500px;
+      }
+
+      .feature-content {
+        padding: 60px 7%;
+      }
+
+      .lookbook-grid {
+        gap: 14px;
+      }
+
+      .lookbook-item,
+      .lookbook-item.small {
+        height: 480px;
+      }
+
+      .video-section {
+        padding-left: 5%;
+        padding-right: 5%;
+      }
+
+      .video-box {
+        height: 430px;
+      }
+
+      .footer-top {
+        flex-direction: column;
+      }
+
+      .footer-links {
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+
+  </style>
 </head>
 
 
-<body class="loading">
+<body>
 
-<div id="loader">
-    <div class="loader-content">
-        <div class="loader-logo">MG</div>
-        <div class="loader-line"><span></span></div>
-        <div class="loader-small">MEHKA GARMENTS</div>
+
+  <!-- =====================================================
+       LOADER
+  ===================================================== -->
+
+  <div id="loader">
+    <div class="loader-inner">
+      <div class="loader-logo">MEHKA</div>
+      <div class="loader-line"></div>
     </div>
-</div>
-
-<div class="noise"></div>
+  </div>
 
 
-<!-- HEADER -->
+  <!-- =====================================================
+       NAVBAR
+  ===================================================== -->
 
-<header id="header">
+  <header class="navbar" id="navbar">
 
-    <a href="#home" class="logo">
-
-        <div class="logo-mark">
-            MG
-        </div>
-
-        <div>
-            <div class="logo-text">MEHKA</div>
-            <span class="logo-sub">GARMENTS</span>
-        </div>
-
+    <a href="#" class="logo">
+      MEHKA
+      <span>GARMENTS</span>
     </a>
 
-    <button class="menu" id="menu">
-        ☰
-    </button>
-
-    <nav id="nav">
-
-        <a href="#collection">COLLECTION</a>
-        <a href="#story">STORY</a>
-        <a href="#contact">CONTACT</a>
-
+    <nav class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#shop">Shop</a>
+      <a href="#collection">Collection</a>
+      <a href="#lookbook">Lookbook</a>
     </nav>
 
-</header>
+    <a href="#shop" class="nav-button">
+      Shop Now
+    </a>
+
+  </header>
 
 
-<!-- HERO -->
 
-<section class="hero" id="home">
+  <!-- =====================================================
+       HERO
+  ===================================================== -->
 
-    <div class="hero-ring"></div>
+  <main>
 
-    <div class="hero-content">
+    <section class="hero" id="home">
 
-        <div class="kicker reveal">
-            PREMIUM MEN'S WEAR
+      <div class="hero-content reveal">
+
+        <div class="eyebrow">
+          Premium Men's Clothing
         </div>
 
-        <h1 class="reveal">
-            Wear the
-            <span>difference.</span>
+        <h1 class="hero-title">
+          Wear
+          <span>Confidence.</span>
         </h1>
 
-        <p class="hero-description reveal">
-            Modern menswear designed with confidence,
-            refined details and a premium point of view.
+        <p class="hero-description">
+          Modern menswear crafted for those who appreciate
+          clean design, effortless style and premium details.
         </p>
 
-        <div class="buttons reveal">
+        <div class="hero-actions">
 
-            <a href="#collection" class="btn">
-                EXPLORE COLLECTION ↘
-            </a>
+          <a href="#shop" class="primary-btn magnetic">
+            <span>Explore Collection</span>
+          </a>
 
-            <a href="#story" class="btn dark">
-                OUR STORY
-            </a>
+          <a href="#lookbook" class="secondary-btn">
+            View Lookbook
+          </a>
 
         </div>
 
-    </div>
-
-    <div class="scroll">
-        <span class="scroll-line"></span>
-        SCROLL TO DISCOVER
-    </div>
-
-</section>
+      </div>
 
 
-<!-- MARQUEE -->
 
-<div class="marquee">
+      <div class="hero-visual">
 
-    <div class="marquee-track">
+        <div class="hero-card" id="heroCard">
+
+          <!--
+            APNI MODEL IMAGE KA PATH YAHAN LAGAO
+
+            Example:
+            assets/model-hero.jpg
+          -->
+
+          <img
+            src="assets/model-hero.jpg"
+            alt="MEHKA Garments Men's Fashion"
+          >
+
+        </div>
+
+        <div class="hero-floating">
+
+          <small>NEW COLLECTION</small>
+
+          <strong>Modern Essentials</strong>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         MARQUEE
+    ===================================================== -->
+
+    <div class="marquee">
+
+      <div class="marquee-track">
 
         <span>MEHKA GARMENTS</span>
-        <b>✦</b>
         <span>PREMIUM MENSWEAR</span>
-        <b>✦</b>
-        <span>MODERN LUXURY</span>
-        <b>✦</b>
+        <span>MODERN ESSENTIALS</span>
+        <span>CRAFTED FOR YOU</span>
 
         <span>MEHKA GARMENTS</span>
-        <b>✦</b>
         <span>PREMIUM MENSWEAR</span>
-        <b>✦</b>
-        <span>MODERN LUXURY</span>
-        <b>✦</b>
+        <span>MODERN ESSENTIALS</span>
+        <span>CRAFTED FOR YOU</span>
 
-    </div>
-
-</div>
-
-
-<!-- FEATURE -->
-
-<section class="section feature">
-
-    <div class="feature-image reveal">
-
-        <img
-        src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=1200&q=85"
-        alt="Premium Men's Shirt">
+      </div>
 
     </div>
 
 
-    <div class="feature-text">
 
-        <div class="eyebrow reveal">
-            SIGNATURE EDIT
+    <!-- =====================================================
+         SHOP
+    ===================================================== -->
+
+    <section class="section" id="shop">
+
+      <div class="section-heading reveal">
+
+        <div>
+
+          <div class="section-kicker">
+            The Collection
+          </div>
+
+          <h2 class="section-title">
+            Selected Pieces
+          </h2>
+
         </div>
 
-        <h2 class="reveal">
-            The shirt
-            <br>
-            reimagined.
-        </h2>
-
-        <p class="reveal">
-            Clean silhouettes, considered details and a
-            confident attitude. This is the visual language
-            behind the new Mehka Garments experience.
+        <p class="section-description">
+          A refined selection of everyday menswear,
+          designed to bring simplicity and confidence
+          into your wardrobe.
         </p>
 
-
-        <div class="details reveal">
-
-            <div class="detail">
-                <span>DESIGN</span>
-                <strong>MODERN TAILORING</strong>
-            </div>
-
-            <div class="detail">
-                <span>FEEL</span>
-                <strong>PREMIUM COMFORT</strong>
-            </div>
-
-            <div class="detail">
-                <span>MOOD</span>
-                <strong>QUIET LUXURY</strong>
-            </div>
-
-        </div>
-
-        <a href="#collection" class="btn">
-            VIEW COLLECTION ↗
-        </a>
-
-    </div>
-
-</section>
+      </div>
 
 
-<!-- COLLECTION -->
 
-<section class="section products" id="collection">
-
-    <div class="section-title">
-
-        <div class="eyebrow reveal">
-            CURATED COLLECTION
-        </div>
-
-        <h2 class="reveal">
-            Built for
-            <br>
-            your wardrobe.
-        </h2>
-
-        <p class="reveal">
-            Explore the current Mehka Garments collection.
-            Each piece is presented as part of a premium
-            fashion experience.
-        </p>
-
-    </div>
-
-
-    <div class="product-grid">
+      <div class="products-grid">
 
 
         <!-- PRODUCT 1 -->
 
-        <article
-        class="product reveal"
-        data-name="Classic Polo T-Shirt"
-        data-price="PKR 2,999"
-        data-image="https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=1000&q=85"
-        data-description="A refined everyday polo designed for effortless confidence.">
+        <article class="product-card reveal">
 
-            <div class="product-image">
+          <div class="product-image tilt">
 
-                <img
-                src="https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=1000&q=85"
-                alt="Classic Polo">
+            <!-- APNI PRODUCT IMAGE YAHAN LAGAO -->
 
-            </div>
+            <img
+              src="assets/product-01.jpg"
+              alt="Premium Shirt"
+            >
 
-            <div class="product-info">
+            <div class="product-overlay"></div>
 
-                <div>
+          </div>
 
-                    <div class="product-number">
-                        01 / POLO
-                    </div>
+          <div class="product-info">
 
-                    <h3>
-                        Classic Polo
-                    </h3>
+            <div>
 
-                    <small>
-                        S · M · L · XL
-                    </small>
+              <div class="product-name">
+                Classic Black Shirt
+              </div>
 
-                </div>
-
-                <div class="price">
-
-                    <span class="old">
-                        PKR 4,500
-                    </span>
-
-                    PKR 2,999
-
-                </div>
+              <div class="product-type">
+                Premium Collection
+              </div>
 
             </div>
+
+            <div class="product-price">
+              PKR 2,499
+            </div>
+
+          </div>
 
         </article>
+
 
 
         <!-- PRODUCT 2 -->
 
-        <article
-        class="product reveal"
-        data-name="Slim-Fit Cotton Pants"
-        data-price="PKR 4,200"
-        data-image="https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=1000&q=85"
-        data-description="Streamlined cotton trousers designed for everyday premium styling.">
+        <article class="product-card reveal">
 
-            <div class="product-image">
+          <div class="product-image tilt">
 
-                <img
-                src="https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=1000&q=85"
-                alt="Cotton Pants">
+            <img
+              src="assets/product-02.jpg"
+              alt="Premium Shirt"
+            >
 
-            </div>
+            <div class="product-overlay"></div>
 
-            <div class="product-info">
+          </div>
 
-                <div>
+          <div class="product-info">
 
-                    <div class="product-number">
-                        02 / TROUSER
-                    </div>
+            <div>
 
-                    <h3>
-                        Slim-Fit Pants
-                    </h3>
+              <div class="product-name">
+                Signature Check Shirt
+              </div>
 
-                    <small>
-                        S · M · L · XL
-                    </small>
-
-                </div>
-
-                <div class="price">
-
-                    <span class="old">
-                        PKR 6,500
-                    </span>
-
-                    PKR 4,200
-
-                </div>
+              <div class="product-type">
+                New Arrival
+              </div>
 
             </div>
+
+            <div class="product-price">
+              PKR 2,499
+            </div>
+
+          </div>
 
         </article>
+
 
 
         <!-- PRODUCT 3 -->
 
-        <article
-        class="product reveal"
-        data-name="Executive Cotton Shirt"
-        data-price="PKR 3,500"
-        data-image="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=1000&q=85"
-        data-description="A polished cotton shirt for a sharp and understated wardrobe.">
+        <article class="product-card reveal">
 
-            <div class="product-image">
+          <div class="product-image tilt">
 
-                <img
-                src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=1000&q=85"
-                alt="Executive Shirt">
+            <img
+              src="assets/product-03.jpg"
+              alt="Premium Shirt"
+            >
 
-            </div>
+            <div class="product-overlay"></div>
 
-            <div class="product-info">
+          </div>
 
-                <div>
+          <div class="product-info">
 
-                    <div class="product-number">
-                        03 / SHIRT
-                    </div>
+            <div>
 
-                    <h3>
-                        Executive Shirt
-                    </h3>
+              <div class="product-name">
+                Essential White Shirt
+              </div>
 
-                    <small>
-                        S · M · L · XL
-                    </small>
-
-                </div>
-
-                <div class="price">
-
-                    <span class="old">
-                        PKR 5,500
-                    </span>
-
-                    PKR 3,500
-
-                </div>
+              <div class="product-type">
+                Essential Collection
+              </div>
 
             </div>
+
+            <div class="product-price">
+              PKR 2,299
+            </div>
+
+          </div>
 
         </article>
 
 
-        <!-- PRODUCT 4 -->
+      </div>
 
-        <article
-        class="product reveal"
-        data-name="Button Down Check Shirt"
-        data-price="PKR 3,800"
-        data-image="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=1000&q=85"
-        data-description="Classic check pattern with a modern contemporary silhouette.">
+    </section>
 
-            <div class="product-image">
 
-                <img
-                src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=1000&q=85"
-                alt="Check Shirt">
 
-            </div>
+    <!-- =====================================================
+         FEATURE
+    ===================================================== -->
 
-            <div class="product-info">
+    <section class="feature reveal" id="collection">
 
-                <div>
+      <div class="feature-image">
 
-                    <div class="product-number">
-                        04 / CHECK
-                    </div>
+        <!-- MODEL IMAGE -->
 
-                    <h3>
-                        Check Shirt
-                    </h3>
+        <img
+          src="assets/model-02.jpg"
+          alt="MEHKA Collection"
+        >
 
-                    <small>
-                        S · M · L · XL
-                    </small>
+      </div>
 
-                </div>
 
-                <div class="price">
+      <div class="feature-content">
 
-                    <span class="old">
-                        PKR 5,800
-                    </span>
-
-                    PKR 3,800
-
-                </div>
-
-            </div>
-
-        </article>
-
-
-        <!-- PRODUCT 5 -->
-
-        <article
-        class="product reveal"
-        data-name="Essential Round Neck Tee"
-        data-price="PKR 1,999"
-        data-image="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=1000&q=85"
-        data-description="A clean essential built for comfort and everyday styling.">
-
-            <div class="product-image">
-
-                <img
-                src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=1000&q=85"
-                alt="Round Neck Tee">
-
-            </div>
-
-            <div class="product-info">
-
-                <div>
-
-                    <div class="product-number">
-                        05 / TEE
-                    </div>
-
-                    <h3>
-                        Essential Tee
-                    </h3>
-
-                    <small>
-                        S · M · L · XL
-                    </small>
-
-                </div>
-
-                <div class="price">
-
-                    <span class="old">
-                        PKR 3,200
-                    </span>
-
-                    PKR 1,999
-
-                </div>
-
-            </div>
-
-        </article>
-
-
-        <!-- PRODUCT 6 -->
-
-        <article
-        class="product reveal"
-        data-name="Classic Denim Jeans"
-        data-price="PKR 4,999"
-        data-image="https://images.unsplash.com/photo-1542272604-787c3835535d?w=1000&q=85"
-        data-description="Classic denim with a versatile wash and confident fit.">
-
-            <div class="product-image">
-
-                <img
-                src="https://images.unsplash.com/photo-1542272604-787c3835535d?w=1000&q=85"
-                alt="Classic Jeans">
-
-            </div>
-
-            <div class="product-info">
-
-                <div>
-
-                    <div class="product-number">
-                        06 / DENIM
-                    </div>
-
-                    <h3>
-                        Classic Denim
-                    </h3>
-
-                    <small>
-                        S · M · L · XL
-                    </small>
-
-                </div>
-
-                <div class="price">
-
-                    <span class="old">
-                        PKR 7,500
-                    </span>
-
-                    PKR 4,999
-
-                </div>
-
-            </div>
-
-        </article>
-
-
-        <!-- PRODUCT 7 -->
-
-        <article
-        class="product reveal"
-        data-name="Imported Luxury Jeans"
-        data-price="PKR 6,500"
-        data-image="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=1000&q=85"
-        data-description="Premium imported denim for an elevated everyday look.">
-
-            <div class="product-image">
-
-                <img
-                src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=1000&q=85"
-                alt="Luxury Jeans">
-
-            </div>
-
-            <div class="product-info">
-
-                <div>
-
-                    <div class="product-number">
-                        07 / DENIM
-                    </div>
-
-                    <h3>
-                        Luxury Jeans
-                    </h3>
-
-                    <small>
-                        S · M · L · XL
-                    </small>
-
-                </div>
-
-                <div class="price">
-
-                    <span class="old">
-                        PKR 9,500
-                    </span>
-
-                    PKR 6,500
-
-                </div>
-
-            </div>
-
-        </article>
-
-
-        <!-- PRODUCT 8 -->
-
-        <article
-        class="product reveal"
-        data-name="Casual Denim Shorts"
-        data-price="PKR 2,500"
-        data-image="https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=1000&q=85"
-        data-description="Relaxed denim shorts made for modern casual styling.">
-
-            <div class="product-image">
-
-                <img
-                src="https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=1000&q=85"
-                alt="Denim Shorts">
-
-            </div>
-
-            <div class="product-info">
-
-                <div>
-
-                    <div class="product-number">
-                        08 / SHORTS
-                    </div>
-
-                    <h3>
-                        Denim Shorts
-                    </h3>
-
-                    <small>
-                        S · M · L · XL
-                    </small>
-
-                </div>
-
-                <div class="price">
-
-                    <span class="old">
-                        PKR 4,000
-                    </span>
-
-                    PKR 2,500
-
-                </div>
-
-            </div>
-
-        </article>
-
-
-    </div>
-
-</section>
-
-
-<!-- STORY -->
-
-<section class="section story" id="story">
-
-    <div class="eyebrow reveal">
-        THE MEHKA PHILOSOPHY
-    </div>
-
-    <h2 class="reveal">
-        Less noise.
-        <br>
-        More presence.
-    </h2>
-
-    <div class="story-grid">
-
-        <p class="reveal">
-
-            Mehka Garments is modern men's fashion
-            presented with a premium point of view.
-
-            Confident silhouettes, refined details and
-            an experience designed to feel different
-            from a normal clothing store.
-
-        </p>
-
-        <div class="quote reveal">
-
-            “Style is not what you add.
-            It is what you make unforgettable.”
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- CONTACT -->
-
-<section class="contact" id="contact">
-
-    <div>
-
-        <div class="eyebrow">
-            READY WHEN YOU ARE
+        <div class="section-kicker">
+          Designed Differently
         </div>
 
         <h2>
-            Make it
-            <br>
-            Mehka.
+          Simple.
+          <br>
+          Refined.
+          <br>
+          Modern.
         </h2>
 
         <p>
-            Explore the collection and order directly
-            through WhatsApp.
+          MEHKA GARMENTS brings together timeless silhouettes
+          and modern styling to create clothing that feels
+          effortless from day to night.
         </p>
 
-        <a href="#collection" class="btn">
-            SHOP COLLECTION ↗
+        <a href="#shop" class="primary-btn">
+          <span>Discover Collection</span>
         </a>
 
-    </div>
+      </div>
 
-</section>
-
-
-<!-- FOOTER -->
-
-<footer>
-
-    <strong>
-        MEHKA GARMENTS
-    </strong>
-
-    <span>
-        © 2026 MEHKA GARMENTS — PREMIUM MEN'S WEAR
-    </span>
-
-</footer>
+    </section>
 
 
-<!-- PRODUCT MODAL -->
 
-<div class="modal" id="modal">
+    <!-- =====================================================
+         LOOKBOOK
+    ===================================================== -->
 
-    <button class="close" id="close">
-        ×
-    </button>
+    <section class="section" id="lookbook">
 
-    <div class="modal-box">
+      <div class="section-heading reveal">
 
-        <div class="modal-image">
-            <img id="modalImage" src="" alt="">
-        </div>
+        <div>
 
-        <div class="modal-content">
+          <div class="section-kicker">
+            Style Journal
+          </div>
 
-            <div class="eyebrow">
-                MEHKA PIECE
-            </div>
-
-            <h2 id="modalName">
-                Product
-            </h2>
-
-            <div class="modal-price" id="modalPrice">
-                PKR 0
-            </div>
-
-            <p id="modalDescription">
-            </p>
-
-            <br>
-
-            <a
-            id="whatsapp"
-            href="#"
-            target="_blank"
-            class="btn">
-
-                ORDER VIA WHATSAPP ↗
-
-            </a>
+          <h2 class="section-title">
+            The Lookbook
+          </h2>
 
         </div>
 
+      </div>
+
+
+      <div class="lookbook-grid">
+
+
+        <div class="lookbook-item reveal">
+
+          <img
+            src="assets/lookbook-01.jpg"
+            alt="MEHKA Men's Fashion"
+          >
+
+          <div class="lookbook-caption">
+
+            <small>
+              Look 01
+            </small>
+
+            <h3>
+              Everyday Luxury
+            </h3>
+
+          </div>
+
+        </div>
+
+
+        <div class="lookbook-item small reveal">
+
+          <img
+            src="assets/lookbook-02.jpg"
+            alt="MEHKA Men's Style"
+          >
+
+          <div class="lookbook-caption">
+
+            <small>
+              Look 02
+            </small>
+
+            <h3>
+              Modern Classic
+            </h3>
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         VIDEO
+    ===================================================== -->
+
+    <section class="video-section">
+
+      <div class="video-box reveal">
+
+        <!--
+          AGAR VIDEO FILE HAI TO:
+
+          assets/fashion-video.mp4
+
+          YAHAN RAKHO.
+        -->
+
+        <video
+          autoplay
+          muted
+          loop
+          playsinline
+          poster="assets/video-poster.jpg"
+        >
+
+          <source
+            src="assets/fashion-video.mp4"
+            type="video/mp4"
+          >
+
+        </video>
+
+
+        <div class="video-content">
+
+          <small>
+            MEHKA GARMENTS
+          </small>
+
+          <h2>
+            Made To Move.
+          </h2>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         CTA
+    ===================================================== -->
+
+    <section class="cta">
+
+      <small>
+        YOUR NEXT LOOK
+      </small>
+
+      <h2>
+        Dress
+        <br>
+        Different.
+      </h2>
+
+      <a href="#shop" class="cta-button">
+        Explore MEHKA
+      </a>
+
+    </section>
+
+
+  </main>
+
+
+
+  <!-- =====================================================
+       FOOTER
+  ===================================================== -->
+
+  <footer>
+
+    <div class="footer-top">
+
+      <div class="footer-logo">
+        MEHKA
+      </div>
+
+      <div class="footer-links">
+
+        <a href="#home">Home</a>
+        <a href="#shop">Shop</a>
+        <a href="#collection">Collection</a>
+        <a href="#lookbook">Lookbook</a>
+
+      </div>
+
     </div>
 
-</div>
+
+    <div class="footer-bottom">
+
+      <span>
+        © 2026 MEHKA GARMENTS
+      </span>
+
+      <span>
+        Premium Men's Clothing
+      </span>
+
+    </div>
+
+  </footer>
 
 
-<script>
 
-/* =========================
-   LOADER
-========================= */
+  <!-- =====================================================
+       JAVASCRIPT
+  ===================================================== -->
 
-window.addEventListener("load",()=>{
+  <script>
 
-    setTimeout(()=>{
+    /* =====================================================
+       PAGE LOADER
+    ===================================================== */
+
+    window.addEventListener("load", function () {
+
+      setTimeout(function () {
 
         document
-        .getElementById("loader")
-        .classList.add("hide");
+          .getElementById("loader")
+          .classList
+          .add("hide");
 
-        document
-        .body
-        .classList.remove("loading");
-
-    },700);
-
-});
-
-
-/* =========================
-   HEADER
-========================= */
-
-const header=document.getElementById("header");
-
-window.addEventListener("scroll",()=>{
-
-    if(window.scrollY>40){
-
-        header.classList.add("scrolled");
-
-    }else{
-
-        header.classList.remove("scrolled");
-
-    }
-
-});
-
-
-/* =========================
-   MOBILE MENU
-========================= */
-
-const menu=document.getElementById("menu");
-const nav=document.getElementById("nav");
-
-menu.addEventListener("click",()=>{
-
-    nav.classList.toggle("open");
-
-});
-
-document
-.querySelectorAll("nav a")
-.forEach(link=>{
-
-    link.addEventListener("click",()=>{
-
-        nav.classList.remove("open");
+      }, 700);
 
     });
 
-});
 
 
-/* =========================
-   SCROLL REVEAL
-========================= */
+    /* =====================================================
+       NAVBAR SCROLL
+    ===================================================== */
 
-const observer=new IntersectionObserver(
+    const navbar = document.getElementById("navbar");
 
-(entries)=>{
+    window.addEventListener("scroll", function () {
 
-    entries.forEach(entry=>{
+      if (window.scrollY > 40) {
 
-        if(entry.isIntersecting){
+        navbar.classList.add("scrolled");
 
-            entry
-            .target
-            .classList
-            .add("show");
+      } else {
 
-            observer.unobserve(entry.target);
+        navbar.classList.remove("scrolled");
 
+      }
+
+    });
+
+
+
+    /* =====================================================
+       SCROLL REVEAL
+    ===================================================== */
+
+    const revealElements =
+      document.querySelectorAll(".reveal");
+
+    const revealObserver =
+      new IntersectionObserver(
+
+        function (entries) {
+
+          entries.forEach(function (entry) {
+
+            if (entry.isIntersecting) {
+
+              entry.target.classList.add("active");
+
+              revealObserver.unobserve(entry.target);
+
+            }
+
+          });
+
+        },
+
+        {
+          threshold: 0.12
         }
 
-    });
-
-},
-{
-    threshold:.12
-});
-
-document
-.querySelectorAll(".reveal")
-.forEach(element=>{
-
-    observer.observe(element);
-
-});
+      );
 
 
-/* =========================
-   PRODUCT MODAL
-========================= */
+    revealElements.forEach(function (element) {
 
-const modal=document.getElementById("modal");
-
-const modalImage=
-document.getElementById("modalImage");
-
-const modalName=
-document.getElementById("modalName");
-
-const modalPrice=
-document.getElementById("modalPrice");
-
-const modalDescription=
-document.getElementById("modalDescription");
-
-const whatsapp=
-document.getElementById("whatsapp");
-
-
-/*
- IMPORTANT:
- Replace this number with
- your REAL WhatsApp number.
-*/
-
-const whatsappNumber="923000000000";
-
-
-document
-.querySelectorAll(".product")
-.forEach(product=>{
-
-    product.addEventListener("click",()=>{
-
-        const name=
-        product.dataset.name;
-
-        const price=
-        product.dataset.price;
-
-        const image=
-        product.dataset.image;
-
-        const description=
-        product.dataset.description;
-
-
-        modalImage.src=image;
-
-        modalImage.alt=name;
-
-        modalName.textContent=name;
-
-        modalPrice.textContent=price;
-
-        modalDescription.textContent=
-        description;
-
-
-        const message=
-        "Assalam o Alaikum, I want to order "+
-        name+
-        " ("+
-        price+
-        ").";
-
-
-        whatsapp.href=
-        "https://wa.me/"+
-        whatsappNumber+
-        "?text="+
-        encodeURIComponent(message);
-
-
-        modal.classList.add("open");
-
-        document
-        .body
-        .classList
-        .add("loading");
+      revealObserver.observe(element);
 
     });
 
-});
 
 
-document
-.getElementById("close")
-.addEventListener("click",()=>{
+    /* =====================================================
+       HERO 3D MOUSE EFFECT
+    ===================================================== */
 
-    modal.classList.remove("open");
+    const heroCard =
+      document.getElementById("heroCard");
+
+    if (heroCard) {
+
+      heroCard.addEventListener(
+        "mousemove",
+        function (event) {
+
+          const rect =
+            heroCard.getBoundingClientRect();
+
+          const x =
+            event.clientX - rect.left;
+
+          const y =
+            event.clientY - rect.top;
+
+          const centerX =
+            rect.width / 2;
+
+          const centerY =
+            rect.height / 2;
+
+          const rotateX =
+            ((y - centerY) / centerY) * -5;
+
+          const rotateY =
+            ((x - centerX) / centerX) * 5;
+
+          heroCard.style.transform =
+            `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.01)`;
+
+        }
+      );
+
+
+      heroCard.addEventListener(
+        "mouseleave",
+        function () {
+
+          heroCard.style.transform =
+            "rotateX(0deg) rotateY(0deg) scale(1)";
+
+        }
+      );
+
+    }
+
+
+
+    /* =====================================================
+       PRODUCT 3D TILT
+    ===================================================== */
+
+    const tiltCards =
+      document.querySelectorAll(".tilt");
+
+    tiltCards.forEach(function (card) {
+
+      card.addEventListener(
+        "mousemove",
+        function (event) {
+
+          const rect =
+            card.getBoundingClientRect();
+
+          const x =
+            event.clientX - rect.left;
+
+          const y =
+            event.clientY - rect.top;
+
+          const rotateY =
+            ((x / rect.width) - 0.5) * 7;
+
+          const rotateX =
+            ((y / rect.height) - 0.5) * -7;
+
+          card.style.transform =
+            `perspective(1000px)
+             rotateX(${rotateX}deg)
+             rotateY(${rotateY}deg)
+             scale(1.015)`;
+
+        }
+      );
+
+
+      card.addEventListener(
+        "mouseleave",
+        function () {
+
+          card.style.transform =
+            "perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)";
+
+        }
+      );
+
+    });
+
+
+
+    /* =====================================================
+       BUTTON MAGNETIC RIPPLE
+    ===================================================== */
+
+    const magneticButtons =
+      document.querySelectorAll(".magnetic");
+
+    magneticButtons.forEach(function (button) {
+
+      button.addEventListener(
+        "mousemove",
+        function (event) {
+
+          const rect =
+            button.getBoundingClientRect();
+
+          const x =
+            event.clientX - rect.left;
+
+          const y =
+            event.clientY - rect.top;
+
+          button.style.setProperty("--x", x + "px");
+          button.style.setProperty("--y", y + "px");
+
+        }
+      );
+
+    });
+
+
+
+    /* =====================================================
+       SMOOTH ANCHOR
+    ===================================================== */
 
     document
-    .body
-    .classList
-    .remove("loading");
+      .querySelectorAll('a[href^="#"]')
+      .forEach(function (anchor) {
 
-});
+        anchor.addEventListener(
+          "click",
+          function (event) {
 
+            const targetId =
+              this.getAttribute("href");
 
-modal.addEventListener("click",(event)=>{
+            if (targetId === "#") return;
 
-    if(event.target===modal){
+            const target =
+              document.querySelector(targetId);
 
-        modal.classList.remove("open");
+            if (target) {
 
-        document
-        .body
-        .classList
-        .remove("loading");
+              event.preventDefault();
 
-    }
+              target.scrollIntoView({
+                behavior: "smooth"
+              });
 
-});
+            }
 
+          }
+        );
 
-document
-.addEventListener("keydown",(event)=>{
+      });
 
-    if(event.key==="Escape"){
+  </script>
 
-        modal.classList.remove("open");
-
-        document
-        .body
-        .classList
-        .remove("loading");
-
-    }
-
-});
-
-
-/* =========================
-   3D PRODUCT TILT
-========================= */
-
-document
-.querySelectorAll(".product")
-.forEach(card=>{
-
-    card.addEventListener("mousemove",(e)=>{
-
-        if(window.innerWidth<800)
-            return;
-
-        const rect=
-        card.getBoundingClientRect();
-
-        const x=
-        (e.clientX-rect.left)/
-        rect.width-.5;
-
-        const y=
-        (e.clientY-rect.top)/
-        rect.height-.5;
-
-
-        card.style.transform=
-        `
-        perspective(1200px)
-        rotateY(${x*3}deg)
-        rotateX(${-y*3}deg)
-        scale(1.01)
-        `;
-
-    });
-
-
-    card.addEventListener("mouseleave",()=>{
-
-        card.style.transform="";
-
-    });
-
-});
-
-
-</script>
 
 </body>
 </html>
