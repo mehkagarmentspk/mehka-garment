@@ -8,31 +8,31 @@ document.addEventListener("DOMContentLoaded", () => {
      PRODUCT DATA
      ======================================================= */
 
-  const products = [
+const products = [
     {
-      name: "Classic Black Shirt",
-      category: "PREMIUM COLLECTION",
-      price: "PKR 2,499",
-      image: "assets/images/product1.jpg",
-      bg: "#e8e1d5"
+        name: "Classic Black Shirt",
+        category: "PREMIUM COLLECTION",
+        price: "PKR 2,499",
+        image: "assets/images/product1.jpg",
+        bg: "#e8e1d5"
     },
 
     {
-      name: "Signature Check Shirt",
-      category: "NEW ARRIVAL",
-      price: "PKR 2,499",
-      image: "assets/images/hero-product-02.png",
-      bg: "#dfe4df"
+        name: "Signature Check Shirt",
+        category: "NEW ARRIVAL",
+        price: "PKR 2,499",
+        image: "assets/images/hero-product-02.png",
+        bg: "#dfe4df"
     },
 
     {
-      name: "Essential White Shirt",
-      category: "ESSENTIAL COLLECTION",
-      price: "PKR 2,299",
-      image: "assets/images/hero-product-02.png",
-      bg: "#e9e7e0"
+        name: "Essential White Shirt",
+        category: "ESSENTIAL COLLECTION",
+        price: "PKR 2,299",
+        image: "assets/images/product3.jpg",
+        bg: "#e9e7e0"
     }
-  ];
+];
 
 
   /* =======================================================
