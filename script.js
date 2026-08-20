@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
       name: "Essential White Shirt",
       category: "ESSENTIAL COLLECTION",
       price: "PKR 2,299",
-      image: "assets/images/product3.jpg",
+      image: "assets/images/hero-product-02.png",
       bg: "#e9e7e0"
     }
   ];
