@@ -21,7 +21,7 @@ const products = [
         name: "Signature Check Shirt",
         category: "NEW ARRIVAL",
         price: "PKR 2,499",
-        image: "assets/images/hero-product-02.png",
+        image: "assets/images/WhatsApp Image 2026-08-19 at 2.31.55 PM (1).jpeg",
         bg: "#dfe4df"
     },
 
