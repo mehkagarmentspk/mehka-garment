@@ -8,1096 +8,195 @@
 
   <meta
     name="description"
-    content="MEHKA GARMENTS — Premium men's clothing designed for modern style."
+    content="MEHKA GARMENTS — Premium men's clothing crafted with modern style."
   >
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap"
     rel="stylesheet"
   >
 
-  <style>
-
-    /* =====================================================
-       RESET
-    ===================================================== */
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: "Inter", sans-serif;
-      background: #f7f7f5;
-      color: #171717;
-      overflow-x: hidden;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    button {
-      font-family: inherit;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-
-    /* =====================================================
-       PRELOADER
-    ===================================================== */
-
-    #loader {
-      position: fixed;
-      inset: 0;
-      z-index: 9999;
-      background: #f7f7f5;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: opacity 0.8s ease, visibility 0.8s ease;
-    }
-
-    #loader.hide {
-      opacity: 0;
-      visibility: hidden;
-    }
-
-    .loader-inner {
-      text-align: center;
-    }
-
-    .loader-logo {
-      font-family: "Playfair Display", serif;
-      font-size: 32px;
-      letter-spacing: 7px;
-      margin-bottom: 18px;
-    }
-
-    .loader-line {
-      width: 140px;
-      height: 2px;
-      background: #ddd;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .loader-line::after {
-      content: "";
-      position: absolute;
-      left: -100%;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background: #111;
-      animation: loading 1.4s infinite;
-    }
-
-    @keyframes loading {
-      0% {
-        left: -100%;
-      }
-
-      100% {
-        left: 100%;
-      }
-    }
-
-
-    /* =====================================================
-       NAVBAR
-    ===================================================== */
-
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-
-      padding: 22px 5%;
-
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      background: rgba(247, 247, 245, 0.72);
-      backdrop-filter: blur(18px);
-
-      border-bottom: 1px solid rgba(0,0,0,0.06);
-
-      transition: 0.4s ease;
-    }
-
-    .navbar.scrolled {
-      padding-top: 14px;
-      padding-bottom: 14px;
-      background: rgba(247,247,245,0.92);
-    }
-
-    .logo {
-      font-family: "Playfair Display", serif;
-      font-size: 24px;
-      font-weight: 600;
-      letter-spacing: 4px;
-    }
-
-    .logo span {
-      font-size: 9px;
-      display: block;
-      letter-spacing: 5px;
-      font-family: "Inter", sans-serif;
-      margin-top: -2px;
-      opacity: 0.55;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 34px;
-      align-items: center;
-    }
-
-    .nav-links a {
-      font-size: 13px;
-      font-weight: 500;
-      position: relative;
-      padding: 6px 0;
-    }
-
-    .nav-links a::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 1px;
-      background: #111;
-      transition: width 0.3s ease;
-    }
-
-    .nav-links a:hover::after {
-      width: 100%;
-    }
-
-    .nav-button {
-      border: 1px solid #171717;
-      padding: 11px 20px;
-      border-radius: 30px;
-      font-size: 12px;
-      transition: 0.3s ease;
-    }
-
-    .nav-button:hover {
-      background: #171717;
-      color: white;
-      transform: translateY(-2px);
-    }
-
-
-    /* =====================================================
-       HERO
-    ===================================================== */
-
-    .hero {
-      min-height: 100vh;
-      position: relative;
-
-      display: flex;
-      align-items: center;
-
-      padding: 130px 6% 70px;
-
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      width: 600px;
-      height: 600px;
-      border-radius: 50%;
-      background: #e9e9e5;
-      filter: blur(20px);
-      right: -180px;
-      top: 80px;
-      z-index: -1;
-    }
-
-    .hero-content {
-      width: 48%;
-      z-index: 2;
-    }
-
-    .eyebrow {
-      font-size: 11px;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: #777;
-      margin-bottom: 22px;
-    }
-
-    .hero-title {
-      font-family: "Playfair Display", serif;
-      font-size: clamp(55px, 7vw, 105px);
-      font-weight: 500;
-      line-height: 0.92;
-      letter-spacing: -4px;
-      margin-bottom: 30px;
-    }
-
-    .hero-title span {
-      display: block;
-      font-style: italic;
-      color: #555;
-    }
-
-    .hero-description {
-      max-width: 430px;
-      color: #666;
-      line-height: 1.8;
-      font-size: 14px;
-      margin-bottom: 35px;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 14px;
-      align-items: center;
-    }
-
-    .primary-btn {
-      position: relative;
-      overflow: hidden;
-
-      background: #171717;
-      color: white;
-
-      padding: 16px 28px;
-      border-radius: 40px;
-
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 1px;
-
-      border: 1px solid #171717;
-
-      transition: 0.4s ease;
-    }
-
-    .primary-btn::before {
-      content: "";
-      position: absolute;
-      width: 0;
-      height: 0;
-      background: rgba(255,255,255,0.15);
-      border-radius: 50%;
-      left: var(--x);
-      top: var(--y);
-      transform: translate(-50%, -50%);
-      transition: width 0.6s ease, height 0.6s ease;
-    }
-
-    .primary-btn:hover::before {
-      width: 300px;
-      height: 300px;
-    }
-
-    .primary-btn span {
-      position: relative;
-      z-index: 2;
-    }
-
-    .secondary-btn {
-      padding: 16px 25px;
-      border-radius: 40px;
-      border: 1px solid #d3d3d0;
-      font-size: 12px;
-      transition: 0.3s ease;
-    }
-
-    .secondary-btn:hover {
-      border-color: #171717;
-      transform: translateY(-3px);
-    }
-
-
-    /* =====================================================
-       HERO VISUAL
-    ===================================================== */
-
-    .hero-visual {
-      width: 52%;
-      height: 650px;
-      position: relative;
-
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      perspective: 1200px;
-    }
-
-    .hero-card {
-      width: min(440px, 85%);
-      height: 560px;
-
-      border-radius: 220px 220px 20px 20px;
-
-      overflow: hidden;
-
-      position: relative;
-
-      transform-style: preserve-3d;
-
-      box-shadow:
-        0 35px 80px rgba(0,0,0,0.12);
-
-      transition: transform 0.15s ease-out;
-    }
-
-    /*
-      APNI HERO MODEL IMAGE YAHAN CHANGE KARNA:
-      assets/model-hero.jpg
-    */
-
-    .hero-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .hero-floating {
-      position: absolute;
-      bottom: 50px;
-      left: 0;
-
-      padding: 16px 20px;
-
-      background: rgba(255,255,255,0.8);
-      backdrop-filter: blur(15px);
-
-      border-radius: 14px;
-
-      box-shadow: 0 15px 35px rgba(0,0,0,0.08);
-
-      animation: floating 4s ease-in-out infinite;
-    }
-
-    .hero-floating small {
-      display: block;
-      font-size: 9px;
-      letter-spacing: 2px;
-      color: #777;
-      margin-bottom: 5px;
-    }
-
-    .hero-floating strong {
-      font-size: 14px;
-    }
-
-    @keyframes floating {
-      0%,100% {
-        transform: translateY(0);
-      }
-
-      50% {
-        transform: translateY(-12px);
-      }
-    }
-
-
-    /* =====================================================
-       MARQUEE
-    ===================================================== */
-
-    .marquee {
-      border-top: 1px solid #ddd;
-      border-bottom: 1px solid #ddd;
-      overflow: hidden;
-      white-space: nowrap;
-      padding: 18px 0;
-      background: #fff;
-    }
-
-    .marquee-track {
-      display: inline-flex;
-      animation: marquee 25s linear infinite;
-    }
-
-    .marquee span {
-      font-family: "Playfair Display", serif;
-      font-size: 25px;
-      margin-right: 60px;
-      color: #444;
-    }
-
-    .marquee span::after {
-      content: "✦";
-      margin-left: 60px;
-      color: #aaa;
-    }
-
-    @keyframes marquee {
-      from {
-        transform: translateX(0);
-      }
-
-      to {
-        transform: translateX(-50%);
-      }
-    }
-
-
-    /* =====================================================
-       SECTION
-    ===================================================== */
-
-    .section {
-      padding: 130px 6%;
-    }
-
-    .section-heading {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-
-      margin-bottom: 55px;
-    }
-
-    .section-kicker {
-      font-size: 10px;
-      letter-spacing: 4px;
-      color: #888;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-
-    .section-title {
-      font-family: "Playfair Display", serif;
-      font-size: clamp(40px, 5vw, 70px);
-      font-weight: 500;
-      line-height: 1;
-    }
-
-    .section-description {
-      max-width: 350px;
-      color: #777;
-      font-size: 13px;
-      line-height: 1.8;
-    }
-
-
-    /* =====================================================
-       PRODUCTS
-    ===================================================== */
-
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
-    }
-
-    .product-card {
-      position: relative;
-      perspective: 1000px;
-      cursor: pointer;
-    }
-
-    .product-image {
-      height: 520px;
-      overflow: hidden;
-      background: #ededeb;
-      position: relative;
-      transform-style: preserve-3d;
-      transition: transform 0.2s ease;
-    }
-
-    .product-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.8s cubic-bezier(.2,.7,.2,1);
-    }
-
-    .product-card:hover .product-image img {
-      transform: scale(1.055);
-    }
-
-    .product-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to top,
-        rgba(0,0,0,0.35),
-        transparent 45%
-      );
-      opacity: 0;
-      transition: 0.4s ease;
-    }
-
-    .product-card:hover .product-overlay {
-      opacity: 1;
-    }
-
-    .product-info {
-      display: flex;
-      justify-content: space-between;
-      padding: 18px 3px;
-    }
-
-    .product-name {
-      font-size: 14px;
-      font-weight: 500;
-    }
-
-    .product-type {
-      color: #888;
-      font-size: 11px;
-      margin-top: 5px;
-    }
-
-    .product-price {
-      font-size: 13px;
-    }
-
-
-    /* =====================================================
-       FEATURE
-    ===================================================== */
-
-    .feature {
-      min-height: 650px;
-      background: #e9e9e5;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      overflow: hidden;
-    }
-
-    .feature-image {
-      min-height: 650px;
-      overflow: hidden;
-    }
-
-    .feature-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 1s ease;
-    }
-
-    .feature:hover .feature-image img {
-      transform: scale(1.04);
-    }
-
-    .feature-content {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 8%;
-    }
-
-    .feature-content h2 {
-      font-family: "Playfair Display", serif;
-      font-size: clamp(45px, 5vw, 75px);
-      font-weight: 500;
-      line-height: 1;
-      margin-bottom: 25px;
-    }
-
-    .feature-content p {
-      max-width: 430px;
-      color: #666;
-      line-height: 1.9;
-      font-size: 14px;
-      margin-bottom: 30px;
-    }
-
-
-    /* =====================================================
-       LOOKBOOK
-    ===================================================== */
-
-    .lookbook-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 20px;
-    }
-
-    .lookbook-item {
-      overflow: hidden;
-      position: relative;
-      height: 620px;
-    }
-
-    .lookbook-item.small {
-      height: 620px;
-    }
-
-    .lookbook-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 1s cubic-bezier(.2,.7,.2,1);
-    }
-
-    .lookbook-item:hover img {
-      transform: scale(1.06);
-    }
-
-    .lookbook-caption {
-      position: absolute;
-      left: 25px;
-      bottom: 25px;
-      color: white;
-      z-index: 2;
-    }
-
-    .lookbook-caption small {
-      font-size: 9px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-    }
-
-    .lookbook-caption h3 {
-      font-family: "Playfair Display", serif;
-      font-size: 35px;
-      font-weight: 500;
-      margin-top: 5px;
-    }
-
-    .lookbook-item::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to top,
-        rgba(0,0,0,0.4),
-        transparent 50%
-      );
-    }
-
-
-    /* =====================================================
-       VIDEO SECTION
-    ===================================================== */
-
-    .video-section {
-      padding: 0 6% 130px;
-    }
-
-    .video-box {
-      height: 650px;
-      position: relative;
-      overflow: hidden;
-      background: #ddd;
-    }
-
-    .video-box video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .video-content {
-      position: absolute;
-      inset: 0;
-
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-
-      color: white;
-      text-align: center;
-
-      background: rgba(0,0,0,0.15);
-    }
-
-    .video-content small {
-      letter-spacing: 4px;
-      font-size: 10px;
-    }
-
-    .video-content h2 {
-      font-family: "Playfair Display", serif;
-      font-size: clamp(45px, 6vw, 90px);
-      font-weight: 500;
-      margin-top: 10px;
-    }
-
-
-    /* =====================================================
-       CTA
-    ===================================================== */
-
-    .cta {
-      padding: 140px 6%;
-      text-align: center;
-      background: #171717;
-      color: white;
-    }
-
-    .cta small {
-      font-size: 10px;
-      letter-spacing: 4px;
-      color: #aaa;
-    }
-
-    .cta h2 {
-      font-family: "Playfair Display", serif;
-      font-size: clamp(50px, 7vw, 100px);
-      font-weight: 500;
-      line-height: 0.95;
-      margin: 25px 0 35px;
-    }
-
-    .cta-button {
-      display: inline-block;
-      border: 1px solid rgba(255,255,255,0.5);
-      padding: 16px 30px;
-      border-radius: 40px;
-      font-size: 12px;
-      transition: 0.4s ease;
-    }
-
-    .cta-button:hover {
-      background: white;
-      color: #111;
-      transform: translateY(-4px);
-      box-shadow: 0 10px 35px rgba(255,255,255,0.12);
-    }
-
-
-    /* =====================================================
-       FOOTER
-    ===================================================== */
-
-    footer {
-      background: #171717;
-      color: white;
-      padding: 50px 6% 30px;
-      border-top: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .footer-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 30px;
-      padding-bottom: 45px;
-    }
-
-    .footer-logo {
-      font-family: "Playfair Display", serif;
-      font-size: 30px;
-      letter-spacing: 4px;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 35px;
-      font-size: 12px;
-      color: #bbb;
-    }
-
-    .footer-links a:hover {
-      color: white;
-    }
-
-    .footer-bottom {
-      border-top: 1px solid rgba(255,255,255,0.1);
-      padding-top: 20px;
-      color: #777;
-      font-size: 10px;
-      display: flex;
-      justify-content: space-between;
-    }
-
-
-    /* =====================================================
-       SCROLL REVEAL
-    ===================================================== */
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(50px);
-      transition:
-        opacity 0.9s ease,
-        transform 0.9s cubic-bezier(.2,.7,.2,1);
-    }
-
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-
-    /* =====================================================
-       MOBILE
-    ===================================================== */
-
-    @media (max-width: 900px) {
-
-      .nav-links {
-        display: none;
-      }
-
-      .hero {
-        flex-direction: column;
-        padding-top: 130px;
-      }
-
-      .hero-content {
-        width: 100%;
-        text-align: center;
-      }
-
-      .hero-description {
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      .hero-actions {
-        justify-content: center;
-      }
-
-      .hero-visual {
-        width: 100%;
-        height: 560px;
-        margin-top: 50px;
-      }
-
-      .products-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .feature {
-        grid-template-columns: 1fr;
-      }
-
-      .feature-image {
-        min-height: 500px;
-      }
-
-      .lookbook-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .lookbook-item,
-      .lookbook-item.small {
-        height: 550px;
-      }
-
-      .video-box {
-        height: 500px;
-      }
-    }
-
-
-    @media (max-width: 600px) {
-
-      .navbar {
-        padding: 18px 5%;
-      }
-
-      .logo {
-        font-size: 20px;
-      }
-
-      .hero-title {
-        font-size: 57px;
-        letter-spacing: -2px;
-      }
-
-      .hero {
-        padding-left: 5%;
-        padding-right: 5%;
-      }
-
-      .hero-card {
-        height: 470px;
-      }
-
-      .section {
-        padding: 90px 5%;
-      }
-
-      .section-heading {
-        display: block;
-      }
-
-      .section-description {
-        margin-top: 20px;
-      }
-
-      .products-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .product-image {
-        height: 500px;
-      }
-
-      .feature-content {
-        padding: 60px 7%;
-      }
-
-      .lookbook-grid {
-        gap: 14px;
-      }
-
-      .lookbook-item,
-      .lookbook-item.small {
-        height: 480px;
-      }
-
-      .video-section {
-        padding-left: 5%;
-        padding-right: 5%;
-      }
-
-      .video-box {
-        height: 430px;
-      }
-
-      .footer-top {
-        flex-direction: column;
-      }
-
-      .footer-links {
-        flex-wrap: wrap;
-        gap: 20px;
-      }
-
-      .footer-bottom {
-        flex-direction: column;
-        gap: 10px;
-      }
-    }
-
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 
 <body>
 
-
-  <!-- =====================================================
-       LOADER
-  ===================================================== -->
-
-  <div id="loader">
-    <div class="loader-inner">
-      <div class="loader-logo">MEHKA</div>
-      <div class="loader-line"></div>
-    </div>
+  <!-- PAGE LOADER -->
+  <div class="page-loader">
+    <div class="loader-logo">MEHKA</div>
+    <div class="loader-line"></div>
   </div>
 
 
-  <!-- =====================================================
-       NAVBAR
-  ===================================================== -->
+  <!-- CUSTOM CURSOR -->
+  <div class="cursor"></div>
+  <div class="cursor-ring"></div>
 
-  <header class="navbar" id="navbar">
 
-    <a href="#" class="logo">
-      MEHKA
-      <span>GARMENTS</span>
+  <!-- NAVIGATION -->
+  <header class="navbar">
+
+    <a href="#home" class="logo">
+      <span>MEHKA</span>
+      <small>GARMENTS</small>
     </a>
 
     <nav class="nav-links">
       <a href="#home">Home</a>
-      <a href="#shop">Shop</a>
       <a href="#collection">Collection</a>
       <a href="#lookbook">Lookbook</a>
+      <a href="#about">About</a>
     </nav>
 
-    <a href="#shop" class="nav-button">
+    <a href="#collection" class="nav-shop">
       Shop Now
+      <span>↗</span>
     </a>
+
+    <button class="menu-btn" aria-label="Open Menu">
+      <span></span>
+      <span></span>
+    </button>
 
   </header>
 
 
-
-  <!-- =====================================================
-       HERO
-  ===================================================== -->
-
+  <!-- HERO / 3D PRODUCT EXPERIENCE -->
   <main>
 
-    <section class="hero" id="home">
+    <section
+      class="hero"
+      id="home"
+      data-theme="cream"
+    >
 
-      <div class="hero-content reveal">
+      <!-- Animated Background -->
+      <div class="hero-bg"></div>
 
-        <div class="eyebrow">
-          Premium Men's Clothing
-        </div>
+      <div class="hero-noise"></div>
 
-        <h1 class="hero-title">
-          Wear
-          <span>Confidence.</span>
+      <!-- Hero Text -->
+      <div class="hero-copy">
+
+        <p class="eyebrow">
+          PREMIUM MENSWEAR — 2026 COLLECTION
+        </p>
+
+        <h1>
+          WEAR<br>
+          <span>CONFIDENCE.</span>
         </h1>
 
         <p class="hero-description">
-          Modern menswear crafted for those who appreciate
-          clean design, effortless style and premium details.
+          Modern essentials crafted for men who appreciate
+          clean design, premium details and effortless style.
         </p>
 
-        <div class="hero-actions">
+        <a href="#collection" class="primary-btn magnetic">
+          <span>Explore Collection</span>
+          <strong>↗</strong>
+        </a>
 
-          <a href="#shop" class="primary-btn magnetic">
-            <span>Explore Collection</span>
-          </a>
+      </div>
 
-          <a href="#lookbook" class="secondary-btn">
-            View Lookbook
-          </a>
 
+      <!-- 3D PRODUCT STAGE -->
+      <div class="product-stage">
+
+        <div class="stage-glow"></div>
+
+        <div class="product-shadow"></div>
+
+        <div class="hero-product">
+
+          <!-- Change these image paths according to your assets -->
+          <img
+            id="heroProductImage"
+            src="assets/images/product1.jpg"
+            alt="MEHKA Premium Shirt"
+          >
+
+        </div>
+
+        <div class="product-label">
+          <span>01</span>
+          <div></div>
+          <span id="heroProductCount">03</span>
         </div>
 
       </div>
 
 
+      <!-- PRODUCT SWITCHER -->
+      <div class="product-switcher">
 
-      <div class="hero-visual">
+        <button
+          class="switch-arrow prev-product"
+          aria-label="Previous Product"
+        >
+          ←
+        </button>
 
-        <div class="hero-card" id="heroCard">
+        <div class="switch-info">
 
-          <!--
-            APNI MODEL IMAGE KA PATH YAHAN LAGAO
+          <span class="switch-category" id="productCategory">
+            PREMIUM COLLECTION
+          </span>
 
-            Example:
-            assets/model-hero.jpg
-          -->
+          <h2 id="productName">
+            Classic Black Shirt
+          </h2>
 
-          <img
-            src="assets/model-hero.jpg"
-            alt="MEHKA Garments Men's Fashion"
-          >
+          <div class="product-price" id="productPrice">
+            PKR 2,499
+          </div>
 
         </div>
 
-        <div class="hero-floating">
+        <button
+          class="switch-arrow next-product"
+          aria-label="Next Product"
+        >
+          →
+        </button>
 
-          <small>NEW COLLECTION</small>
+      </div>
 
-          <strong>Modern Essentials</strong>
 
+      <!-- PRODUCT DOTS -->
+      <div class="product-dots">
+
+        <button
+          class="dot active"
+          data-product="0"
+          aria-label="Product 1"
+        ></button>
+
+        <button
+          class="dot"
+          data-product="1"
+          aria-label="Product 2"
+        ></button>
+
+        <button
+          class="dot"
+          data-product="2"
+          aria-label="Product 3"
+        ></button>
+
+      </div>
+
+
+      <!-- SCROLL INDICATOR -->
+      <div class="scroll-indicator">
+
+        <span>SCROLL TO DISCOVER</span>
+
+        <div class="scroll-line">
+          <span></span>
         </div>
 
       </div>
@@ -1105,49 +204,43 @@
     </section>
 
 
+    <!-- MARQUEE -->
+    <section class="marquee-section">
 
-    <!-- =====================================================
-         MARQUEE
-    ===================================================== -->
-
-    <div class="marquee">
-
-      <div class="marquee-track">
+      <div class="marquee">
 
         <span>MEHKA GARMENTS</span>
+        <i>✦</i>
+
         <span>PREMIUM MENSWEAR</span>
+        <i>✦</i>
+
         <span>MODERN ESSENTIALS</span>
+        <i>✦</i>
+
         <span>CRAFTED FOR YOU</span>
+        <i>✦</i>
 
         <span>MEHKA GARMENTS</span>
-        <span>PREMIUM MENSWEAR</span>
-        <span>MODERN ESSENTIALS</span>
-        <span>CRAFTED FOR YOU</span>
+        <i>✦</i>
 
       </div>
 
-    </div>
+    </section>
 
 
-
-    <!-- =====================================================
-         SHOP
-    ===================================================== -->
-
-    <section class="section" id="shop">
+    <!-- COLLECTION -->
+    <section class="collection-section" id="collection">
 
       <div class="section-heading reveal">
 
         <div>
+          <p class="eyebrow">THE COLLECTION</p>
 
-          <div class="section-kicker">
-            The Collection
-          </div>
-
-          <h2 class="section-title">
-            Selected Pieces
+          <h2>
+            SELECTED<br>
+            <em>PIECES.</em>
           </h2>
-
         </div>
 
         <p class="section-description">
@@ -1159,174 +252,175 @@
       </div>
 
 
+      <div class="product-grid">
 
-      <div class="products-grid">
+        <!-- PRODUCT 01 -->
+        <article
+          class="product-card reveal"
+          data-tilt
+        >
 
+          <div class="card-image">
 
-        <!-- PRODUCT 1 -->
-
-        <article class="product-card reveal">
-
-          <div class="product-image tilt">
-
-            <!-- APNI PRODUCT IMAGE YAHAN LAGAO -->
+            <span class="card-number">01</span>
 
             <img
-              src="assets/product-01.jpg"
-              alt="Premium Shirt"
+              src="assets/images/product1.jpg"
+              alt="Classic Black Shirt"
+              loading="lazy"
             >
 
-            <div class="product-overlay"></div>
+            <div class="card-overlay">
+
+              <a href="#" class="view-product">
+                View Product
+                <span>↗</span>
+              </a>
+
+            </div>
 
           </div>
 
-          <div class="product-info">
+          <div class="card-info">
 
             <div>
-
-              <div class="product-name">
-                Classic Black Shirt
-              </div>
-
-              <div class="product-type">
-                Premium Collection
-              </div>
-
+              <span>PREMIUM COLLECTION</span>
+              <h3>Classic Black Shirt</h3>
             </div>
 
-            <div class="product-price">
-              PKR 2,499
-            </div>
+            <strong>PKR 2,499</strong>
 
           </div>
 
         </article>
 
 
+        <!-- PRODUCT 02 -->
+        <article
+          class="product-card reveal"
+          data-tilt
+        >
 
-        <!-- PRODUCT 2 -->
+          <div class="card-image">
 
-        <article class="product-card reveal">
-
-          <div class="product-image tilt">
+            <span class="card-number">02</span>
 
             <img
-              src="assets/product-02.jpg"
-              alt="Premium Shirt"
+              src="assets/images/product2.jpg"
+              alt="Signature Check Shirt"
+              loading="lazy"
             >
 
-            <div class="product-overlay"></div>
+            <div class="card-overlay">
+
+              <a href="#" class="view-product">
+                View Product
+                <span>↗</span>
+              </a>
+
+            </div>
 
           </div>
 
-          <div class="product-info">
+          <div class="card-info">
 
             <div>
-
-              <div class="product-name">
-                Signature Check Shirt
-              </div>
-
-              <div class="product-type">
-                New Arrival
-              </div>
-
+              <span>NEW ARRIVAL</span>
+              <h3>Signature Check Shirt</h3>
             </div>
 
-            <div class="product-price">
-              PKR 2,499
-            </div>
+            <strong>PKR 2,499</strong>
 
           </div>
 
         </article>
 
 
+        <!-- PRODUCT 03 -->
+        <article
+          class="product-card reveal"
+          data-tilt
+        >
 
-        <!-- PRODUCT 3 -->
+          <div class="card-image">
 
-        <article class="product-card reveal">
-
-          <div class="product-image tilt">
+            <span class="card-number">03</span>
 
             <img
-              src="assets/product-03.jpg"
-              alt="Premium Shirt"
+              src="assets/images/product3.jpg"
+              alt="Essential White Shirt"
+              loading="lazy"
             >
 
-            <div class="product-overlay"></div>
+            <div class="card-overlay">
+
+              <a href="#" class="view-product">
+                View Product
+                <span>↗</span>
+              </a>
+
+            </div>
 
           </div>
 
-          <div class="product-info">
+          <div class="card-info">
 
             <div>
-
-              <div class="product-name">
-                Essential White Shirt
-              </div>
-
-              <div class="product-type">
-                Essential Collection
-              </div>
-
+              <span>ESSENTIAL COLLECTION</span>
+              <h3>Essential White Shirt</h3>
             </div>
 
-            <div class="product-price">
-              PKR 2,299
-            </div>
+            <strong>PKR 2,299</strong>
 
           </div>
 
         </article>
-
 
       </div>
 
     </section>
 
 
+    <!-- CINEMATIC STORY -->
+    <section class="story-section" id="about">
 
-    <!-- =====================================================
-         FEATURE
-    ===================================================== -->
-
-    <section class="feature reveal" id="collection">
-
-      <div class="feature-image">
-
-        <!-- MODEL IMAGE -->
+      <div class="story-image reveal">
 
         <img
-          src="assets/model-02.jpg"
-          alt="MEHKA Collection"
+          src="assets/images/lookbook1.jpg"
+          alt="MEHKA Garments Men's Fashion"
+          loading="lazy"
         >
+
+        <div class="story-number">
+          01 / 03
+        </div>
 
       </div>
 
 
-      <div class="feature-content">
+      <div class="story-content reveal">
 
-        <div class="section-kicker">
-          Designed Differently
-        </div>
+        <p class="eyebrow">
+          DESIGNED DIFFERENTLY
+        </p>
 
         <h2>
-          Simple.
-          <br>
-          Refined.
-          <br>
-          Modern.
+          SIMPLE.<br>
+          REFINED.<br>
+          <em>MODERN.</em>
         </h2>
 
         <p>
-          MEHKA GARMENTS brings together timeless silhouettes
-          and modern styling to create clothing that feels
-          effortless from day to night.
+          MEHKA GARMENTS brings together timeless
+          silhouettes and modern styling to create
+          clothing that feels effortless from day
+          to night.
         </p>
 
-        <a href="#shop" class="primary-btn">
-          <span>Discover Collection</span>
+        <a href="#lookbook" class="text-link">
+          Discover Our Story
+          <span>↗</span>
         </a>
 
       </div>
@@ -1334,178 +428,140 @@
     </section>
 
 
+    <!-- LOOKBOOK -->
+    <section class="lookbook-section" id="lookbook">
 
-    <!-- =====================================================
-         LOOKBOOK
-    ===================================================== -->
+      <div class="lookbook-heading reveal">
 
-    <section class="section" id="lookbook">
+        <p class="eyebrow">
+          STYLE JOURNAL
+        </p>
 
-      <div class="section-heading reveal">
-
-        <div>
-
-          <div class="section-kicker">
-            Style Journal
-          </div>
-
-          <h2 class="section-title">
-            The Lookbook
-          </h2>
-
-        </div>
+        <h2>
+          THE<br>
+          <em>LOOKBOOK.</em>
+        </h2>
 
       </div>
 
 
       <div class="lookbook-grid">
 
-
-        <div class="lookbook-item reveal">
-
-          <img
-            src="assets/lookbook-01.jpg"
-            alt="MEHKA Men's Fashion"
-          >
-
-          <div class="lookbook-caption">
-
-            <small>
-              Look 01
-            </small>
-
-            <h3>
-              Everyday Luxury
-            </h3>
-
-          </div>
-
-        </div>
-
-
-        <div class="lookbook-item small reveal">
+        <article class="look-card large reveal">
 
           <img
-            src="assets/lookbook-02.jpg"
+            src="assets/images/lookbook1.jpg"
             alt="MEHKA Men's Style"
+            loading="lazy"
           >
 
-          <div class="lookbook-caption">
+          <div class="look-caption">
 
-            <small>
-              Look 02
-            </small>
+            <span>LOOK 01</span>
 
             <h3>
-              Modern Classic
+              Everyday<br>
+              Luxury
             </h3>
 
           </div>
 
-        </div>
+        </article>
 
 
-      </div>
+        <article class="look-card reveal">
 
-    </section>
-
-
-
-    <!-- =====================================================
-         VIDEO
-    ===================================================== -->
-
-    <section class="video-section">
-
-      <div class="video-box reveal">
-
-        <!--
-          AGAR VIDEO FILE HAI TO:
-
-          assets/fashion-video.mp4
-
-          YAHAN RAKHO.
-        -->
-
-        <video
-          autoplay
-          muted
-          loop
-          playsinline
-          poster="assets/video-poster.jpg"
-        >
-
-          <source
-            src="assets/fashion-video.mp4"
-            type="video/mp4"
+          <img
+            src="assets/images/lookbook2.jpg"
+            alt="MEHKA Men's Fashion"
+            loading="lazy"
           >
 
-        </video>
+          <div class="look-caption">
 
+            <span>LOOK 02</span>
 
-        <div class="video-content">
+            <h3>
+              Modern<br>
+              Classic
+            </h3>
 
-          <small>
-            MEHKA GARMENTS
-          </small>
+          </div>
 
-          <h2>
-            Made To Move.
-          </h2>
-
-        </div>
+        </article>
 
       </div>
 
     </section>
 
 
+    <!-- CTA -->
+    <section class="cta-section">
 
-    <!-- =====================================================
-         CTA
-    ===================================================== -->
+      <div class="cta-background"></div>
 
-    <section class="cta">
+      <div class="cta-content reveal">
 
-      <small>
-        YOUR NEXT LOOK
-      </small>
+        <p class="eyebrow">
+          MEHKA GARMENTS
+        </p>
 
-      <h2>
-        Dress
-        <br>
-        Different.
-      </h2>
+        <h2>
+          MADE<br>
+          <em>TO MOVE.</em>
+        </h2>
 
-      <a href="#shop" class="cta-button">
-        Explore MEHKA
-      </a>
+        <a href="#collection" class="primary-btn light magnetic">
+
+          <span>Shop Collection</span>
+
+          <strong>↗</strong>
+
+        </a>
+
+      </div>
 
     </section>
-
 
   </main>
 
 
-
-  <!-- =====================================================
-       FOOTER
-  ===================================================== -->
-
-  <footer>
+  <!-- FOOTER -->
+  <footer class="footer">
 
     <div class="footer-top">
 
-      <div class="footer-logo">
-        MEHKA
+      <div class="footer-brand">
+
+        <div class="logo">
+          <span>MEHKA</span>
+          <small>GARMENTS</small>
+        </div>
+
+        <p>
+          Premium men's clothing<br>
+          crafted for confidence.
+        </p>
+
       </div>
+
 
       <div class="footer-links">
 
-        <a href="#home">Home</a>
-        <a href="#shop">Shop</a>
-        <a href="#collection">Collection</a>
-        <a href="#lookbook">Lookbook</a>
+        <div>
+          <span>EXPLORE</span>
+
+          <a href="#home">Home</a>
+          <a href="#collection">Collection</a>
+          <a href="#lookbook">Lookbook</a>
+        </div>
+
+        <div>
+          <span>CONNECT</span>
+
+          <a href="#" target="_blank">Instagram</a>
+          <a href="#" target="_blank">WhatsApp</a>
+        </div>
 
       </div>
 
@@ -1519,7 +575,7 @@
       </span>
 
       <span>
-        Premium Men's Clothing
+        PREMIUM MENSWEAR
       </span>
 
     </div>
@@ -1527,278 +583,73 @@
   </footer>
 
 
+  <!-- PRODUCT QUICK VIEW -->
+  <div class="quick-view" id="quickView">
 
-  <!-- =====================================================
-       JAVASCRIPT
-  ===================================================== -->
+    <div class="quick-view-inner">
 
-  <script>
+      <button
+        class="quick-close"
+        aria-label="Close"
+      >
+        ×
+      </button>
 
-    /* =====================================================
-       PAGE LOADER
-    ===================================================== */
+      <div class="quick-image">
 
-    window.addEventListener("load", function () {
+        <img
+          id="quickImage"
+          src=""
+          alt=""
+        >
 
-      setTimeout(function () {
+      </div>
 
-        document
-          .getElementById("loader")
-          .classList
-          .add("hide");
+      <div class="quick-content">
 
-      }, 700);
+        <span id="quickCategory">
+          PREMIUM COLLECTION
+        </span>
 
-    });
+        <h2 id="quickName">
+          Product
+        </h2>
 
+        <strong id="quickPrice">
+          PKR 2,499
+        </strong>
 
+        <p>
+          Premium quality menswear designed
+          for everyday confidence.
+        </p>
 
-    /* =====================================================
-       NAVBAR SCROLL
-    ===================================================== */
+        <div class="sizes">
 
-    const navbar = document.getElementById("navbar");
+          <button>S</button>
+          <button>M</button>
+          <button>L</button>
+          <button>XL</button>
 
-    window.addEventListener("scroll", function () {
+        </div>
 
-      if (window.scrollY > 40) {
+        <a
+          href="#"
+          class="primary-btn"
+          id="orderButton"
+        >
+          <span>Order Now</span>
+          <strong>↗</strong>
+        </a>
 
-        navbar.classList.add("scrolled");
+      </div>
 
-      } else {
+    </div>
 
-        navbar.classList.remove("scrolled");
-
-      }
-
-    });
-
-
-
-    /* =====================================================
-       SCROLL REVEAL
-    ===================================================== */
-
-    const revealElements =
-      document.querySelectorAll(".reveal");
-
-    const revealObserver =
-      new IntersectionObserver(
-
-        function (entries) {
-
-          entries.forEach(function (entry) {
-
-            if (entry.isIntersecting) {
-
-              entry.target.classList.add("active");
-
-              revealObserver.unobserve(entry.target);
-
-            }
-
-          });
-
-        },
-
-        {
-          threshold: 0.12
-        }
-
-      );
-
-
-    revealElements.forEach(function (element) {
-
-      revealObserver.observe(element);
-
-    });
-
-
-
-    /* =====================================================
-       HERO 3D MOUSE EFFECT
-    ===================================================== */
-
-    const heroCard =
-      document.getElementById("heroCard");
-
-    if (heroCard) {
-
-      heroCard.addEventListener(
-        "mousemove",
-        function (event) {
-
-          const rect =
-            heroCard.getBoundingClientRect();
-
-          const x =
-            event.clientX - rect.left;
-
-          const y =
-            event.clientY - rect.top;
-
-          const centerX =
-            rect.width / 2;
-
-          const centerY =
-            rect.height / 2;
-
-          const rotateX =
-            ((y - centerY) / centerY) * -5;
-
-          const rotateY =
-            ((x - centerX) / centerX) * 5;
-
-          heroCard.style.transform =
-            `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.01)`;
-
-        }
-      );
-
-
-      heroCard.addEventListener(
-        "mouseleave",
-        function () {
-
-          heroCard.style.transform =
-            "rotateX(0deg) rotateY(0deg) scale(1)";
-
-        }
-      );
-
-    }
-
-
-
-    /* =====================================================
-       PRODUCT 3D TILT
-    ===================================================== */
-
-    const tiltCards =
-      document.querySelectorAll(".tilt");
-
-    tiltCards.forEach(function (card) {
-
-      card.addEventListener(
-        "mousemove",
-        function (event) {
-
-          const rect =
-            card.getBoundingClientRect();
-
-          const x =
-            event.clientX - rect.left;
-
-          const y =
-            event.clientY - rect.top;
-
-          const rotateY =
-            ((x / rect.width) - 0.5) * 7;
-
-          const rotateX =
-            ((y / rect.height) - 0.5) * -7;
-
-          card.style.transform =
-            `perspective(1000px)
-             rotateX(${rotateX}deg)
-             rotateY(${rotateY}deg)
-             scale(1.015)`;
-
-        }
-      );
-
-
-      card.addEventListener(
-        "mouseleave",
-        function () {
-
-          card.style.transform =
-            "perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)";
-
-        }
-      );
-
-    });
-
-
-
-    /* =====================================================
-       BUTTON MAGNETIC RIPPLE
-    ===================================================== */
-
-    const magneticButtons =
-      document.querySelectorAll(".magnetic");
-
-    magneticButtons.forEach(function (button) {
-
-      button.addEventListener(
-        "mousemove",
-        function (event) {
-
-          const rect =
-            button.getBoundingClientRect();
-
-          const x =
-            event.clientX - rect.left;
-
-          const y =
-            event.clientY - rect.top;
-
-          button.style.setProperty("--x", x + "px");
-          button.style.setProperty("--y", y + "px");
-
-        }
-      );
-
-    });
-
-
-
-    /* =====================================================
-       SMOOTH ANCHOR
-    ===================================================== */
-
-    document
-      .querySelectorAll('a[href^="#"]')
-      .forEach(function (anchor) {
-
-        anchor.addEventListener(
-          "click",
-          function (event) {
-
-            const targetId =
-              this.getAttribute("href");
-
-            if (targetId === "#") return;
-
-            const target =
-              document.querySelector(targetId);
-
-            if (target) {
-
-              event.preventDefault();
-
-              target.scrollIntoView({
-                behavior: "smooth"
-              });
-
-            }
-
-          }
-        );
-
-      });
-
-  </script>
-<section class="image-hero">
-  <img src="assets/images/WhatsApp Image 2026-08-16 at 1.36.03 PM.jpeg" alt="MEHKA GARMENTS">
-  <div class="image-hero-content">
-    <p>MEHKA GARMENTS</p>
-    <h1>Wear Your Confidence.</h1>
-    <a href="#shop">Explore Collection</a>
   </div>
-</section>
+
+
+  <script src="script.js"></script>
 
 </body>
 </html>
