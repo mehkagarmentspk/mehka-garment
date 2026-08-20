@@ -1,678 +1,1040 @@
 /* =========================================================
-   MEHKA GARMENTS
-   Premium Smooth Animation System
+   MEHKA GARMENTS — INTERACTIVE 3D EXPERIENCE
    ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
 
-  /* ---------------------------------------------------------
-     1. PAGE LOADER
-  --------------------------------------------------------- */
+  /* =======================================================
+     PRODUCT DATA
+     ======================================================= */
 
-  document.body.classList.add("page-ready");
+  const products = [
+    {
+      name: "Classic Black Shirt",
+      category: "PREMIUM COLLECTION",
+      price: "PKR 2,499",
+      image: "assets/images/product1.jpg",
+      bg: "#e8e1d5"
+    },
+
+    {
+      name: "Signature Check Shirt",
+      category: "NEW ARRIVAL",
+      price: "PKR 2,499",
+      image: "assets/images/product2.jpg",
+      bg: "#dfe4df"
+    },
+
+    {
+      name: "Essential White Shirt",
+      category: "ESSENTIAL COLLECTION",
+      price: "PKR 2,299",
+      image: "assets/images/product3.jpg",
+      bg: "#e9e7e0"
+    }
+  ];
+
+
+  /* =======================================================
+     ELEMENTS
+     ======================================================= */
+
+  const loader = document.querySelector(".page-loader");
+
+  const hero = document.querySelector(".hero");
+
+  const heroImage =
+    document.querySelector("#heroProductImage");
+
+  const productName =
+    document.querySelector("#productName");
+
+  const productCategory =
+    document.querySelector("#productCategory");
+
+  const productPrice =
+    document.querySelector("#productPrice");
+
+  const productCount =
+    document.querySelector("#heroProductCount");
+
+  const heroProduct =
+    document.querySelector(".hero-product");
+
+  const productShadow =
+    document.querySelector(".product-shadow");
+
+  const prevButton =
+    document.querySelector(".prev-product");
+
+  const nextButton =
+    document.querySelector(".next-product");
+
+  const dots =
+    document.querySelectorAll(".dot");
+
+
+  /* =======================================================
+     LOADER
+     ======================================================= */
 
   window.addEventListener("load", () => {
-    document.body.classList.add("loaded");
-  });
 
+    setTimeout(() => {
 
-  /* ---------------------------------------------------------
-     2. SMOOTH SCROLL
-  --------------------------------------------------------- */
+      loader?.classList.add("loaded");
 
-  document.querySelectorAll('a[href^="#"]').forEach(link => {
+      document.body.classList.remove("no-scroll");
 
-    link.addEventListener("click", function (e) {
-
-      const targetId = this.getAttribute("href");
-
-      if (!targetId || targetId === "#") return;
-
-      const target = document.querySelector(targetId);
-
-      if (target) {
-        e.preventDefault();
-
-        target.scrollIntoView({
-          behavior: "smooth",
-          block: "start"
-        });
-      }
-
-    });
+    }, 900);
 
   });
 
 
-  /* ---------------------------------------------------------
-     3. NAVBAR SCROLL EFFECT
-  --------------------------------------------------------- */
+  /* =======================================================
+     PRODUCT STATE
+     ======================================================= */
 
-  const navbar =
-    document.querySelector("nav") ||
-    document.querySelector(".navbar") ||
-    document.querySelector("header");
+  let currentProduct = 0;
 
-  function updateNavbar() {
+  let isChanging = false;
 
-    if (!navbar) return;
 
-    if (window.scrollY > 60) {
-      navbar.classList.add("scrolled");
-    } else {
-      navbar.classList.remove("scrolled");
+  /* =======================================================
+     PRODUCT SWITCH FUNCTION
+     ======================================================= */
+
+  function changeProduct(index, direction = 1) {
+
+    if (isChanging) return;
+
+    if (index < 0) {
+      index = products.length - 1;
     }
 
-  }
+    if (index >= products.length) {
+      index = 0;
+    }
 
-  window.addEventListener("scroll", updateNavbar, {
-    passive: true
-  });
+    if (index === currentProduct) return;
 
-  updateNavbar();
+    isChanging = true;
+
+    const product = products[index];
 
 
-  /* ---------------------------------------------------------
-     4. SCROLL REVEAL ANIMATION
-  --------------------------------------------------------- */
+    /* EXIT ANIMATION */
 
-  const revealElements = document.querySelectorAll(
-    ".reveal, .fade-up, .animate, .product-card, .category-card, section"
-  );
+    heroProduct.style.transition =
+      "transform .45s cubic-bezier(.22,1,.36,1), opacity .35s ease";
 
-  const revealObserver = new IntersectionObserver(
-    (entries) => {
+    heroProduct.style.opacity = "0";
 
-      entries.forEach(entry => {
+    heroProduct.style.transform =
+      `translate(calc(-50% + ${direction * 70}px), -50%) rotateY(${direction * -15}deg) scale(.94)`;
 
-        if (entry.isIntersecting) {
 
-          entry.target.classList.add("visible");
+    setTimeout(() => {
 
-          revealObserver.unobserve(entry.target);
+      currentProduct = index;
 
-        }
+
+      /* UPDATE IMAGE */
+
+      heroImage.src = product.image;
+
+      heroImage.alt = product.name;
+
+
+      /* UPDATE TEXT */
+
+      productName.textContent =
+        product.name;
+
+      productCategory.textContent =
+        product.category;
+
+      productPrice.textContent =
+        product.price;
+
+
+      /* UPDATE NUMBER */
+
+      productCount.textContent =
+        String(products.length).padStart(2, "0");
+
+
+      /* UPDATE BACKGROUND */
+
+      hero.style.backgroundColor =
+        product.bg;
+
+
+      /* UPDATE DOTS */
+
+      dots.forEach((dot, i) => {
+
+        dot.classList.toggle(
+          "active",
+          i === currentProduct
+        );
 
       });
 
-    },
-    {
-      threshold: 0.12,
-      rootMargin: "0px 0px -50px 0px"
-    }
-  );
 
-  revealElements.forEach(element => {
-    revealObserver.observe(element);
-  });
+      /* ENTER FROM OPPOSITE SIDE */
 
+      heroProduct.style.transition = "none";
 
-  /* ---------------------------------------------------------
-     5. PRODUCT 3D TILT
-  --------------------------------------------------------- */
+      heroProduct.style.opacity = "0";
 
-  const productCards = document.querySelectorAll(
-    ".product-card, .product, .card"
-  );
-
-  productCards.forEach(card => {
-
-    card.addEventListener("mousemove", (e) => {
-
-      const rect = card.getBoundingClientRect();
-
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-
-      const rotateX =
-        ((y - centerY) / centerY) * -4;
-
-      const rotateY =
-        ((x - centerX) / centerX) * 4;
-
-      card.style.transform =
-        `perspective(900px)
-         rotateX(${rotateX}deg)
-         rotateY(${rotateY}deg)
-         translateY(-6px)`;
-
-    });
-
-    card.addEventListener("mouseleave", () => {
-
-      card.style.transform =
-        "perspective(900px) rotateX(0deg) rotateY(0deg) translateY(0)";
-
-    });
-
-  });
+      heroProduct.style.transform =
+        `translate(calc(-50% + ${direction * -70}px), -50%) rotateY(${direction * 15}deg) scale(.94)`;
 
 
-  /* ---------------------------------------------------------
-     6. IMAGE PARALLAX
-  --------------------------------------------------------- */
+      requestAnimationFrame(() => {
 
-  const parallaxImages = document.querySelectorAll(
-    ".parallax img, .hero img, .hero-image img"
-  );
+        requestAnimationFrame(() => {
 
-  window.addEventListener("scroll", () => {
+          heroProduct.style.transition =
+            "transform 1s cubic-bezier(.22,1,.36,1), opacity .55s ease";
 
-    const scrollPosition = window.scrollY;
+          heroProduct.style.opacity = "1";
 
-    parallaxImages.forEach(img => {
+          heroProduct.style.transform =
+            "translate(-50%, -50%) rotateY(-7deg) scale(1)";
 
-      const rect = img.getBoundingClientRect();
+          isChanging = false;
 
-      if (
-        rect.top < window.innerHeight &&
-        rect.bottom > 0
-      ) {
+        });
 
-        const movement =
-          (window.innerHeight / 2 - rect.top) * 0.025;
+      });
 
-        img.style.transform =
-          `translate3d(0, ${movement}px, 0)`;
+    }, 400);
 
-      }
-
-    });
-
-  }, {
-    passive: true
-  });
+  }
 
 
-  /* ---------------------------------------------------------
-     7. BUTTON CLICK EFFECT
-  --------------------------------------------------------- */
+  /* =======================================================
+     NEXT / PREVIOUS
+     ======================================================= */
 
-  const buttons = document.querySelectorAll(
-    "button, .btn, .button, .shop-btn, .cta"
-  );
+  nextButton?.addEventListener("click", () => {
 
-  buttons.forEach(button => {
-
-    button.addEventListener("click", function (e) {
-
-      const ripple = document.createElement("span");
-
-      ripple.classList.add("click-ripple");
-
-      const rect =
-        this.getBoundingClientRect();
-
-      ripple.style.left =
-        `${e.clientX - rect.left}px`;
-
-      ripple.style.top =
-        `${e.clientY - rect.top}px`;
-
-      this.appendChild(ripple);
-
-      setTimeout(() => {
-        ripple.remove();
-      }, 700);
-
-    });
-
-  });
-
-
-  /* ---------------------------------------------------------
-     8. MAGNETIC BUTTON EFFECT
-  --------------------------------------------------------- */
-
-  const magneticButtons =
-    document.querySelectorAll(
-      ".magnetic, .shop-btn, .cta"
+    changeProduct(
+      currentProduct + 1,
+      1
     );
 
-  magneticButtons.forEach(button => {
+  });
 
-    button.addEventListener("mousemove", e => {
 
-      const rect =
-        button.getBoundingClientRect();
+  prevButton?.addEventListener("click", () => {
 
-      const x =
-        e.clientX - rect.left - rect.width / 2;
+    changeProduct(
+      currentProduct - 1,
+      -1
+    );
 
-      const y =
-        e.clientY - rect.top - rect.height / 2;
+  });
 
-      button.style.transform =
-        `translate(${x * 0.12}px, ${y * 0.12}px)`;
 
-    });
+  /* =======================================================
+     DOT NAVIGATION
+     ======================================================= */
 
-    button.addEventListener("mouseleave", () => {
+  dots.forEach((dot) => {
 
-      button.style.transform =
-        "translate(0, 0)";
+    dot.addEventListener("click", () => {
+
+      const index =
+        Number(dot.dataset.product);
+
+      const direction =
+        index > currentProduct ? 1 : -1;
+
+      changeProduct(
+        index,
+        direction
+      );
 
     });
 
   });
 
 
-  /* ---------------------------------------------------------
-     9. MOBILE MENU
-  --------------------------------------------------------- */
+  /* =======================================================
+     AUTO PRODUCT CHANGE
+     ======================================================= */
 
-  const menuButton =
-    document.querySelector(".menu-toggle") ||
-    document.querySelector(".hamburger") ||
-    document.querySelector("#menu-toggle");
+  let autoPlay = setInterval(() => {
 
-  const mobileMenu =
-    document.querySelector(".mobile-menu") ||
-    document.querySelector(".nav-links") ||
-    document.querySelector(".menu");
+    changeProduct(
+      currentProduct + 1,
+      1
+    );
 
-  if (menuButton && mobileMenu) {
+  }, 6500);
 
-    menuButton.addEventListener("click", () => {
 
-      menuButton.classList.toggle("active");
+  function resetAutoPlay() {
 
-      mobileMenu.classList.toggle("active");
+    clearInterval(autoPlay);
 
-      document.body.classList.toggle("menu-open");
+    autoPlay = setInterval(() => {
+
+      changeProduct(
+        currentProduct + 1,
+        1
+      );
+
+    }, 6500);
+
+  }
+
+
+  nextButton?.addEventListener(
+    "click",
+    resetAutoPlay
+  );
+
+  prevButton?.addEventListener(
+    "click",
+    resetAutoPlay
+  );
+
+
+  /* =======================================================
+     MOUSE 3D PRODUCT MOVEMENT
+     ======================================================= */
+
+  if (window.innerWidth > 800) {
+
+    hero.addEventListener("mousemove", (event) => {
+
+      const rect =
+        hero.getBoundingClientRect();
+
+      const x =
+        (event.clientX - rect.left)
+        / rect.width;
+
+      const y =
+        (event.clientY - rect.top)
+        / rect.height;
+
+
+      const rotateY =
+        (x - .5) * 12;
+
+      const rotateX =
+        (y - .5) * -8;
+
+
+      heroProduct.style.transform =
+        `translate(-50%, -50%)
+         rotateX(${rotateX}deg)
+         rotateY(${rotateY}deg)`;
+
+
+      /* SHADOW MOVEMENT */
+
+      productShadow.style.transform =
+        `translateX(calc(-50% + ${(x - .5) * 30}px))
+         scaleX(${1 + Math.abs(x - .5) * .15})`;
+
+    });
+
+
+    hero.addEventListener("mouseleave", () => {
+
+      heroProduct.style.transform =
+        "translate(-50%, -50%) rotateY(-7deg)";
+
+      productShadow.style.transform =
+        "translateX(-50%)";
 
     });
 
   }
 
 
-  /* ---------------------------------------------------------
-     10. CLOSE MOBILE MENU AFTER CLICK
-  --------------------------------------------------------- */
+  /* =======================================================
+     SCROLL PARALLAX
+     ======================================================= */
 
-  document.querySelectorAll(
-    ".mobile-menu a, .nav-links a, .menu a"
-  ).forEach(link => {
+  let ticking = false;
 
-    link.addEventListener("click", () => {
+  function updateScroll() {
 
-      if (mobileMenu) {
-        mobileMenu.classList.remove("active");
-      }
-
-      if (menuButton) {
-        menuButton.classList.remove("active");
-      }
-
-      document.body.classList.remove("menu-open");
-
-    });
-
-  });
-
-
-  /* ---------------------------------------------------------
-     11. CUSTOM CURSOR GLOW
-  --------------------------------------------------------- */
-
-  const cursorGlow =
-    document.createElement("div");
-
-  cursorGlow.className = "cursor-glow";
-
-  document.body.appendChild(cursorGlow);
-
-  document.addEventListener("mousemove", e => {
-
-    cursorGlow.style.left =
-      `${e.clientX}px`;
-
-    cursorGlow.style.top =
-      `${e.clientY}px`;
-
-  });
-
-
-  /* ---------------------------------------------------------
-     12. HOVER GLOW ON INTERACTIVE ELEMENTS
-  --------------------------------------------------------- */
-
-  const interactiveElements =
-    document.querySelectorAll(
-      "a, button, .product-card, .category-card"
-    );
-
-  interactiveElements.forEach(element => {
-
-    element.addEventListener("mouseenter", () => {
-      document.body.classList.add("hovering");
-    });
-
-    element.addEventListener("mouseleave", () => {
-      document.body.classList.remove("hovering");
-    });
-
-  });
-
-
-  /* ---------------------------------------------------------
-     13. PRODUCT IMAGE ZOOM
-  --------------------------------------------------------- */
-
-  const productImages =
-    document.querySelectorAll(
-      ".product-card img, .product img"
-    );
-
-  productImages.forEach(img => {
-
-    img.addEventListener("mouseenter", () => {
-
-      img.style.transition =
-        "transform 0.6s cubic-bezier(.2,.8,.2,1)";
-
-      img.style.transform =
-        "scale(1.06)";
-
-    });
-
-    img.addEventListener("mouseleave", () => {
-
-      img.style.transform =
-        "scale(1)";
-
-    });
-
-  });
-
-
-  /* ---------------------------------------------------------
-     14. ACTIVE NAVIGATION LINK
-  --------------------------------------------------------- */
-
-  const sections =
-    document.querySelectorAll("section[id]");
-
-  const navLinks =
-    document.querySelectorAll(
-      'nav a[href^="#"], .navbar a[href^="#"]'
-    );
-
-  window.addEventListener("scroll", () => {
-
-    let currentSection = "";
-
-    sections.forEach(section => {
-
-      const sectionTop =
-        section.offsetTop - 180;
-
-      if (window.scrollY >= sectionTop) {
-        currentSection = section.getAttribute("id");
-      }
-
-    });
-
-    navLinks.forEach(link => {
-
-      link.classList.remove("active");
-
-      if (
-        link.getAttribute("href") ===
-        `#${currentSection}`
-      ) {
-        link.classList.add("active");
-      }
-
-    });
-
-  }, {
-    passive: true
-  });
-
-
-  /* ---------------------------------------------------------
-     15. HERO TEXT PARALLAX
-  --------------------------------------------------------- */
-
-  const heroText =
-    document.querySelector(
-      ".hero-content, .hero-text"
-    );
-
-  window.addEventListener("scroll", () => {
-
-    if (!heroText) return;
-
-    const scroll =
+    const scrollY =
       window.scrollY;
 
-    if (scroll < window.innerHeight) {
+    const heroHeight =
+      hero.offsetHeight;
 
-      heroText.style.transform =
-        `translateY(${scroll * 0.12}px)`;
+    const progress =
+      Math.min(
+        scrollY / heroHeight,
+        1
+      );
 
-      heroText.style.opacity =
-        Math.max(
-          0,
-          1 - scroll / 650
-        );
+
+    if (scrollY <= heroHeight) {
+
+      const moveY =
+        progress * 100;
+
+      const scale =
+        1 - progress * .08;
+
+      const rotate =
+        progress * 8;
+
+
+      heroProduct.style.setProperty(
+        "--scroll-progress",
+        progress
+      );
+
+
+      heroProduct.style.transform =
+        `translate(-50%, calc(-50% + ${moveY}px))
+         rotateY(${-7 + rotate}deg)
+         scale(${scale})`;
+
+
+      /* Hero text moves slightly faster */
+
+      if (window.innerWidth > 700) {
+
+        const heroCopy =
+          document.querySelector(".hero-copy");
+
+        if (heroCopy) {
+
+          heroCopy.style.transform =
+            `translateY(calc(-50% + ${progress * -70}px))`;
+
+          heroCopy.style.opacity =
+            String(1 - progress * 1.2);
+
+        }
+
+      }
 
     }
 
-  }, {
-    passive: true
-  });
+
+    ticking = false;
+
+  }
 
 
-  /* ---------------------------------------------------------
-     16. NUMBER / COUNTER ANIMATION
-  --------------------------------------------------------- */
+  window.addEventListener(
+    "scroll",
+    () => {
 
-  const counters =
-    document.querySelectorAll(
-      "[data-count]"
-    );
+      if (!ticking) {
 
-  const counterObserver =
+        window.requestAnimationFrame(
+          updateScroll
+        );
+
+        ticking = true;
+
+      }
+
+    },
+    { passive: true }
+  );
+
+
+  /* =======================================================
+     REVEAL ON SCROLL
+     ======================================================= */
+
+  const revealElements =
+    document.querySelectorAll(".reveal");
+
+
+  const revealObserver =
     new IntersectionObserver(
-      entries => {
+      (entries) => {
 
-        entries.forEach(entry => {
+        entries.forEach((entry) => {
 
-          if (!entry.isIntersecting) return;
+          if (entry.isIntersecting) {
 
-          const counter =
-            entry.target;
-
-          const target =
-            parseInt(
-              counter.dataset.count,
-              10
+            entry.target.classList.add(
+              "visible"
             );
 
-          let current = 0;
-
-          const duration = 1600;
-
-          const start =
-            performance.now();
-
-          function animateCounter(time) {
-
-            const progress =
-              Math.min(
-                (time - start) / duration,
-                1
-              );
-
-            current =
-              Math.floor(
-                progress * target
-              );
-
-            counter.textContent =
-              current.toLocaleString();
-
-            if (progress < 1) {
-              requestAnimationFrame(
-                animateCounter
-              );
-            }
+            revealObserver.unobserve(
+              entry.target
+            );
 
           }
-
-          requestAnimationFrame(
-            animateCounter
-          );
-
-          counterObserver.unobserve(counter);
 
         });
 
       },
       {
-        threshold: 0.6
+        threshold: .12
       }
     );
 
-  counters.forEach(counter => {
-    counterObserver.observe(counter);
-  });
 
+  revealElements.forEach((element) => {
 
-  /* ---------------------------------------------------------
-     17. IMAGE LAZY LOADING
-  --------------------------------------------------------- */
-
-  document.querySelectorAll("img").forEach(img => {
-
-    if (!img.hasAttribute("loading")) {
-      img.setAttribute("loading", "lazy");
-    }
+    revealObserver.observe(element);
 
   });
 
 
-  /* ---------------------------------------------------------
-     18. ESC KEY — CLOSE MENU
-  --------------------------------------------------------- */
+  /* =======================================================
+     PRODUCT CARD 3D TILT
+     ======================================================= */
 
-  document.addEventListener("keydown", e => {
+  const cards =
+    document.querySelectorAll(
+      "[data-tilt]"
+    );
 
-    if (e.key === "Escape") {
 
-      if (mobileMenu) {
-        mobileMenu.classList.remove("active");
+  cards.forEach((card) => {
+
+    card.addEventListener(
+      "mousemove",
+      (event) => {
+
+        if (window.innerWidth <= 800) {
+          return;
+        }
+
+        const rect =
+          card.getBoundingClientRect();
+
+        const x =
+          event.clientX - rect.left;
+
+        const y =
+          event.clientY - rect.top;
+
+        const centerX =
+          rect.width / 2;
+
+        const centerY =
+          rect.height / 2;
+
+        const rotateY =
+          ((x - centerX) / centerX) * 4;
+
+        const rotateX =
+          ((centerY - y) / centerY) * 4;
+
+
+        card.style.transform =
+          `perspective(900px)
+           rotateX(${rotateX}deg)
+           rotateY(${rotateY}deg)
+           translateY(-5px)`;
+
       }
+    );
 
-      if (menuButton) {
-        menuButton.classList.remove("active");
+
+    card.addEventListener(
+      "mouseleave",
+      () => {
+
+        card.style.transform =
+          "";
+
       }
-
-      document.body.classList.remove(
-        "menu-open"
-      );
-
-    }
+    );
 
   });
 
 
-  /* ---------------------------------------------------------
-     19. PAGE TRANSITION
-  --------------------------------------------------------- */
+  /* =======================================================
+     QUICK VIEW
+     ======================================================= */
 
-  document.querySelectorAll(
-    'a:not([target="_blank"])'
-  ).forEach(link => {
+  const quickView =
+    document.querySelector("#quickView");
 
-    link.addEventListener("click", function (e) {
+  const quickImage =
+    document.querySelector("#quickImage");
 
-      const href =
-        this.getAttribute("href");
+  const quickName =
+    document.querySelector("#quickName");
 
-      if (
-        !href ||
-        href.startsWith("#") ||
-        href.startsWith("mailto:") ||
-        href.startsWith("tel:")
-      ) {
-        return;
+  const quickCategory =
+    document.querySelector("#quickCategory");
+
+  const quickPrice =
+    document.querySelector("#quickPrice");
+
+  const quickClose =
+    document.querySelector(".quick-close");
+
+
+  const viewButtons =
+    document.querySelectorAll(
+      ".view-product"
+    );
+
+
+  viewButtons.forEach((button, index) => {
+
+    button.addEventListener(
+      "click",
+      (event) => {
+
+        event.preventDefault();
+
+        const product =
+          products[index];
+
+        quickImage.src =
+          product.image;
+
+        quickImage.alt =
+          product.name;
+
+        quickName.textContent =
+          product.name;
+
+        quickCategory.textContent =
+          product.category;
+
+        quickPrice.textContent =
+          product.price;
+
+        quickView.classList.add(
+          "open"
+        );
+
+        document.body.classList.add(
+          "no-scroll"
+        );
+
       }
-
-      if (
-        href.startsWith("http") &&
-        !href.includes(window.location.hostname)
-      ) {
-        return;
-      }
-
-      e.preventDefault();
-
-      document.body.classList.add(
-        "page-exit"
-      );
-
-      setTimeout(() => {
-        window.location.href = href;
-      }, 350);
-
-    });
+    );
 
   });
 
 
-  /* ---------------------------------------------------------
-     20. SCROLL PROGRESS
-  --------------------------------------------------------- */
+  function closeQuickView() {
 
-  const progressBar =
-    document.createElement("div");
+    quickView.classList.remove(
+      "open"
+    );
 
-  progressBar.className =
-    "scroll-progress";
+    document.body.classList.remove(
+      "no-scroll"
+    );
 
-  document.body.appendChild(
-    progressBar
+  }
+
+
+  quickClose?.addEventListener(
+    "click",
+    closeQuickView
   );
 
-  window.addEventListener("scroll", () => {
 
-    const scrollTop =
-      window.scrollY;
+  quickView?.addEventListener(
+    "click",
+    (event) => {
 
-    const documentHeight =
-      document.documentElement.scrollHeight -
-      window.innerHeight;
+      if (
+        event.target === quickView
+      ) {
 
-    const progress =
-      documentHeight > 0
-        ? (scrollTop / documentHeight) * 100
-        : 0;
+        closeQuickView();
 
-    progressBar.style.width =
-      `${progress}%`;
+      }
 
-  }, {
-    passive: true
+    }
+  );
+
+
+  document.addEventListener(
+    "keydown",
+    (event) => {
+
+      if (event.key === "Escape") {
+
+        closeQuickView();
+
+      }
+
+    }
+  );
+
+
+  /* =======================================================
+     SIZE BUTTONS
+     ======================================================= */
+
+  const sizeButtons =
+    document.querySelectorAll(
+      ".sizes button"
+    );
+
+
+  sizeButtons.forEach((button) => {
+
+    button.addEventListener(
+      "click",
+      () => {
+
+        sizeButtons.forEach((item) => {
+
+          item.classList.remove(
+            "selected"
+          );
+
+        });
+
+        button.classList.add(
+          "selected"
+        );
+
+      }
+    );
+
   });
 
 
-  /* ---------------------------------------------------------
-     21. CONSOLE MESSAGE
-  --------------------------------------------------------- */
+  /* =======================================================
+     MAGNETIC BUTTONS
+     ======================================================= */
+
+  const magneticButtons =
+    document.querySelectorAll(
+      ".magnetic"
+    );
+
+
+  magneticButtons.forEach((button) => {
+
+    button.addEventListener(
+      "mousemove",
+      (event) => {
+
+        if (window.innerWidth <= 800) {
+          return;
+        }
+
+        const rect =
+          button.getBoundingClientRect();
+
+        const x =
+          event.clientX - rect.left;
+
+        const y =
+          event.clientY - rect.top;
+
+        const moveX =
+          (x - rect.width / 2) * .12;
+
+        const moveY =
+          (y - rect.height / 2) * .12;
+
+
+        button.style.transform =
+          `translate(${moveX}px, ${moveY}px)`;
+
+      }
+    );
+
+
+    button.addEventListener(
+      "mouseleave",
+      () => {
+
+        button.style.transform =
+          "";
+
+      }
+    );
+
+  });
+
+
+  /* =======================================================
+     CUSTOM CURSOR
+     ======================================================= */
+
+  const cursor =
+    document.querySelector(".cursor");
+
+  const cursorRing =
+    document.querySelector(".cursor-ring");
+
+
+  if (
+    cursor &&
+    cursorRing &&
+    window.innerWidth > 800
+  ) {
+
+    let mouseX = 0;
+    let mouseY = 0;
+
+    let ringX = 0;
+    let ringY = 0;
+
+
+    window.addEventListener(
+      "mousemove",
+      (event) => {
+
+        mouseX = event.clientX;
+        mouseY = event.clientY;
+
+        cursor.style.left =
+          `${mouseX}px`;
+
+        cursor.style.top =
+          `${mouseY}px`;
+
+      }
+    );
+
+
+    function animateCursor() {
+
+      ringX +=
+        (mouseX - ringX) * .12;
+
+      ringY +=
+        (mouseY - ringY) * .12;
+
+
+      cursorRing.style.left =
+        `${ringX}px`;
+
+      cursorRing.style.top =
+        `${ringY}px`;
+
+
+      requestAnimationFrame(
+        animateCursor
+      );
+
+    }
+
+
+    animateCursor();
+
+
+    const interactiveElements =
+      document.querySelectorAll(
+        "a, button, .product-card"
+      );
+
+
+    interactiveElements.forEach(
+      (element) => {
+
+        element.addEventListener(
+          "mouseenter",
+          () => {
+
+            cursorRing.classList.add(
+              "active"
+            );
+
+          }
+        );
+
+
+        element.addEventListener(
+          "mouseleave",
+          () => {
+
+            cursorRing.classList.remove(
+              "active"
+            );
+
+          }
+        );
+
+      }
+    );
+
+  }
+
+
+  /* =======================================================
+     MOBILE MENU
+     ======================================================= */
+
+  const menuButton =
+    document.querySelector(".menu-btn");
+
+  const navLinks =
+    document.querySelector(".nav-links");
+
+
+  menuButton?.addEventListener(
+    "click",
+    () => {
+
+      menuButton.classList.toggle(
+        "open"
+      );
+
+      navLinks?.classList.toggle(
+        "mobile-open"
+      );
+
+    }
+  );
+
+
+  /* =======================================================
+     KEYBOARD PRODUCT CONTROL
+     ======================================================= */
+
+  document.addEventListener(
+    "keydown",
+    (event) => {
+
+      if (
+        event.key === "ArrowRight"
+      ) {
+
+        changeProduct(
+          currentProduct + 1,
+          1
+        );
+
+        resetAutoPlay();
+
+      }
+
+      if (
+        event.key === "ArrowLeft"
+      ) {
+
+        changeProduct(
+          currentProduct - 1,
+          -1
+        );
+
+        resetAutoPlay();
+
+      }
+
+    }
+  );
+
+
+  /* =======================================================
+     TOUCH SWIPE
+     ======================================================= */
+
+  let touchStartX = 0;
+
+  let touchEndX = 0;
+
+
+  hero.addEventListener(
+    "touchstart",
+    (event) => {
+
+      touchStartX =
+        event.changedTouches[0].screenX;
+
+    },
+    { passive: true }
+  );
+
+
+  hero.addEventListener(
+    "touchend",
+    (event) => {
+
+      touchEndX =
+        event.changedTouches[0].screenX;
+
+
+      const distance =
+        touchEndX - touchStartX;
+
+
+      if (Math.abs(distance) < 50) {
+        return;
+      }
+
+
+      if (distance < 0) {
+
+        changeProduct(
+          currentProduct + 1,
+          1
+        );
+
+      } else {
+
+        changeProduct(
+          currentProduct - 1,
+          -1
+        );
+
+      }
+
+
+      resetAutoPlay();
+
+    },
+    { passive: true }
+  );
+
+
+  /* =======================================================
+     INITIAL STATE
+     ======================================================= */
+
+  if (products[0]) {
+
+    hero.style.backgroundColor =
+      products[0].bg;
+
+    heroImage.src =
+      products[0].image;
+
+    heroImage.alt =
+      products[0].name;
+
+    productName.textContent =
+      products[0].name;
+
+    productCategory.textContent =
+      products[0].category;
+
+    productPrice.textContent =
+      products[0].price;
+
+  }
+
+
+  /* =======================================================
+     CONSOLE
+     ======================================================= */
 
   console.log(
     "%c MEHKA GARMENTS ",
-    "font-size:20px;font-weight:bold;"
+    "background:#171717;color:#fff;padding:8px 14px;font-weight:bold;"
   );
 
   console.log(
-    "Premium fashion experience loaded."
+    "Premium 3D Fashion Experience Loaded."
   );
 
 });
