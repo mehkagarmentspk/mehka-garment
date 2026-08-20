@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
       name: "Signature Check Shirt",
       category: "NEW ARRIVAL",
       price: "PKR 2,499",
-      image: "assets/images/product2.jpg",
+      image: "assets/images/hero-product-02.png",
       bg: "#dfe4df"
     },
 
